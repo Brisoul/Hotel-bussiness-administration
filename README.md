@@ -1,6 +1,6 @@
-    Проект: Ведение гостиничного бизнеса(корчма вместо гостиницы, просто для интересных названий :D)
+Project: Running a hotel business (a tavern instead of a hotel, just for interesting names :D)
 
-    Предполагаю, что проект позволит получать и изменять информацию о работниках и гостях, также
-    регулировать доступ в комнаты, этажи. Регулировать расписание работы работников, их зарплату, статус и тд. 
-    Регулировать время до которого гости будут посетителями отеля, и возможности которые откроет их статус(к примеру
-    доступ в столовую, бассейн или гостиничный тренажерный зал или клуб). 
+I assume that the project will probably receive and change information about employees and guests, same way
+regulate access to rooms, floors. Regulate the normal work of employees, their salary, status, etc.
+Regulate time that hotel guests spend at hotel and the opportunities that their status allows (for example,
+access to the dining room, swimming pool or hotel gym or club).

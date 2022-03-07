@@ -1,7 +1,14 @@
 package com.netcracker.hb.entities;
 
+import lombok.Data;
+
+@Data
 public class Employee extends Person{
-    private int experience;
-    private int salary;
-    private WorkGroup position;
+
+    private Role role;
+
+    public class Contract{
+        
+
+    }
 }

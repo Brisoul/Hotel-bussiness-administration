@@ -1,9 +1,7 @@
 package com.netcracker.hb.entities;
 
-import lombok.Data;
 
-@Data
-public class Person {
+public abstract class Person {
 
     private String name;
     private String surname;

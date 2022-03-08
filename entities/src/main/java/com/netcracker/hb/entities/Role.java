@@ -1,7 +1,12 @@
 package com.netcracker.hb.entities;
 
+import lombok.extern.slf4j.Slf4j;
+
+@Slf4j
 public enum Role {
     ADMIN,
-    MODERATOR,
-    EMPLOYEE
+    MANAGER,
+    EMPLOYEE,
+    GUEST
+
 }

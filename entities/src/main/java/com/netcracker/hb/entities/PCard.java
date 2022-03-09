@@ -1,6 +1,12 @@
 package com.netcracker.hb.entities;
 
+import lombok.Data;
+
+import java.util.Date;
+
+@Data
 public class PCard {
-    private static int num = 1;
-    private static int expireDate  = 360;
+    private int num;
+    private Date expireDate;
+    private Role role;
 }

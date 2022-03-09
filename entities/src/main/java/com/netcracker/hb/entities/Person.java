@@ -9,6 +9,5 @@ public abstract class Person {
     private String sex;
     private AddressInfo address;
     private PCard card;
-    private Role role;
 
 }

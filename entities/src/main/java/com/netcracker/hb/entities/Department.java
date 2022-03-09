@@ -1,4 +1,7 @@
 package com.netcracker.hb.entities;
 
-public class Department {
+public enum Department {
+    KITCHEN,
+    ROOM_CARE,
+    RECEPTION
 }

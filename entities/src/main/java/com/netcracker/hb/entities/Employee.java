@@ -7,11 +7,13 @@ import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
+@Data
 @Slf4j
 public class Employee extends Person{
 
     private Role role;
     private Set rooms = new HashSet();
+
 
     public Employee(Role role){
         this.role = role;

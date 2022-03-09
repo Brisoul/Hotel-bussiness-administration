@@ -34,17 +34,18 @@ public class console {
         floor2.setRoom(room250);
         floor3.setRoom(room300);
         floor3.setRoom(room350);
+
         //задаем комнатам role
         room100.setRole(Role.ADMIN);
         room150.setRole(Role.GUEST);
         room200.setRole(Role.MANAGER);
-        room250.setRole(Role.EMPLOYEE);
+        room250.setRole(Role.SERVICE_EMPLOYEE);
         room300.setRole(Role.GUEST);
         room350.setRole(Role.GUEST);
 
 
         //итого у нас есть 6 комнат 3 из них гостевые и 3 для работников
-        //создадим 3 гостей c 3 азными пакетами и заселим их в комнаты
+        //создадим 3 гостей c 3 разными пакетами и привяжем к ним комнаты
         Guest anatoliy = new Guest(room150);
         anatoliy.setService(Service.BREAKFAST);
 
@@ -54,11 +55,23 @@ public class console {
         Guest alex = new Guest(room350);
         alex.setService(Service.DINNER);
 
+
+        //создадим 3 работников с разными ролями привяжим к ним комнаты
         Employee evgeniy = new Employee(Role.ADMIN);
+        evgeniy.setRooms(room100);
+        evgeniy.setRooms(room200);
+        evgeniy.setRooms(room250);
+
 
         Employee oleg = new Employee(Role.MANAGER);
+        oleg.setRooms(room200);
+        oleg.setRooms(room250);
+        oleg.setRooms(room300);
 
-        Employee mari = new Employee(Role.EMPLOYEE);
+        Employee mari = new Employee(Role.SERVICE_EMPLOYEE);
+        mari.setRooms(room250);
+        mari.setRooms(room300);
+
 
 
 

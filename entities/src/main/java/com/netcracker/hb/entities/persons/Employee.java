@@ -1,27 +1,30 @@
-package com.netcracker.hb.entities;
+package com.netcracker.hb.entities.persons;
 
+import com.netcracker.hb.entities.Role;
+import com.netcracker.hb.entities.hotel.Room;
+import com.netcracker.hb.entities.persons.Person;
 import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
 
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
+import java.util.UUID;
 
 @Data
 @Slf4j
-public class Employee extends Person{
+public class Employee extends Person {
+
+    private UUID uuid = UUID.randomUUID();
 
     private Role role;
-    private Set rooms = new HashSet();
+    private Set<Room> rooms = new HashSet<>();
 
 
     public Employee(Role role){
         this.role = role;
     }
 
-    public Set getRooms() {
-        return rooms;
-    }
 
     public void setRooms(Room roomsN) {
         switch(this.role) {

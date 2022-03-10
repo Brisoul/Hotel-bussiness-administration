@@ -1,30 +1,25 @@
-package com.netcracker.hb.entities;
+package com.netcracker.hb.entities.hotel;
 
+import com.netcracker.hb.entities.hotel.Room;
 import lombok.Data;
 
 import java.util.HashSet;
 import java.util.Set;
+import java.util.UUID;
 
 @Data
 public class Floor {
+    UUID uuid = UUID.randomUUID();
     private int floorNum;
-    private Set Rooms = new HashSet();
+    private Set<Room> rooms = new HashSet<>();
 
     public Floor(int num){
         floorNum = num;
 
     }
 
-    public Set getRoom() {
-        return Rooms;
-    }
-
-    public void setRoom(Room roomN) {
-        Rooms.add(roomN);
-    }
-
     public void deleteRooms(Room roomN) {
-        Rooms.remove(roomN);
+        rooms.remove(roomN);
     }
 
 }

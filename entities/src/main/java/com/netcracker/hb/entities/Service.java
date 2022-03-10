@@ -4,7 +4,5 @@ public enum Service {
     BREAKFAST,
     LUNCH,
     DINNER,
-    BAR,
-    DISCO,
 
 }

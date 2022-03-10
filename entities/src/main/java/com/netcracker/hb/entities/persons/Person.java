@@ -1,4 +1,4 @@
-package com.netcracker.hb.entities;
+package com.netcracker.hb.entities.persons;
 
 
 public abstract class Person {
@@ -8,6 +8,6 @@ public abstract class Person {
     private int age;
     private String sex;
     private AddressInfo address;
-    private PCard card;
+    private PersonalCard card;
 
 }

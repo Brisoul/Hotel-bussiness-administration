@@ -1,20 +1,26 @@
-package com.netcracker.hb.entities;
+package com.netcracker.hb.entities.persons;
 
 
+import com.netcracker.hb.entities.Role;
+import com.netcracker.hb.entities.Service;
+import com.netcracker.hb.entities.hotel.Room;
+import com.netcracker.hb.entities.persons.Person;
 import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
 
 import java.util.HashSet;
 import java.util.Set;
+import java.util.UUID;
 
 
 @Data
 @Slf4j
 public class Guest extends Person {
+    private UUID uuid = UUID.randomUUID();
 
     final private Role role = Role.GUEST;
     private Room room;
-    private Set service = new HashSet();
+    private Set<Service> service = new HashSet<>();
 
     public Guest(Room room){
         if (room.getRole() == Role.GUEST ){
@@ -40,13 +46,6 @@ public class Guest extends Person {
         }
     }
 
-    public Set getService() {
-        return service;
-    }
-
-    public void setService(Service serviceN) {
-        service.add(serviceN);
-    }
 
     public void deleteService(Service serviceN) {
         service.remove(serviceN);

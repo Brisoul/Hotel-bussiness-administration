@@ -9,13 +9,17 @@ import java.util.UUID;
 
 @Data
 public class Room implements Serializable {
-    private static final long serialVersionUID = 1L;
-    private UUID uuid = UUID.randomUUID();
 
-    private int roomNum;
-    private Role role;
+  private static final long serialVersionUID = 123;
+  private UUID uuid = UUID.randomUUID();
 
-    public Room(int num){
-        roomNum = num;
-    }
+  private int roomNum;
+  private Role role;
+
+  private Floor floorId;
+
+
+  public Room(int num) {
+    roomNum = num;
+  }
 }

@@ -1,26 +1,27 @@
 package com.netcracker.hb.entities.hotel;
 
 
-import com.netcracker.hb.entities.persons.AddressInfo;
 import com.netcracker.hb.entities.Department;
+import com.netcracker.hb.entities.persons.AddressInfo;
 import lombok.Data;
 
+import java.io.Serializable;
 import java.util.Set;
 import java.util.HashSet;
 import java.util.UUID;
 
 @Data
-public class Hotel {
-    private UUID uuid = UUID.randomUUID();
-    private AddressInfo address;
-    private Set<Floor> floors = new HashSet<>();
-    private Set<Department> departments = new HashSet<>();
+public class Hotel implements Serializable {
 
-    public void deleteFloor(Floor floorN) {
-        floors.remove(floorN);
-    }
+  private static final long serialVersionUID = 123;
+  private UUID uuid = UUID.randomUUID();
 
-    public void deleteDepartments(Department DepartmentN) {
-        departments.remove(DepartmentN);
-    }
+  private AddressInfo address;
+  private Set<Floor> floors = new HashSet<>();
+
+
+  public void deleteFloor(Floor floorN) {
+    floors.remove(floorN);
+  }
+
 }

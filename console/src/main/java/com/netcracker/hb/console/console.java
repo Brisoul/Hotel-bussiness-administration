@@ -1,6 +1,8 @@
 package com.netcracker.hb.console;
 
 import com.netcracker.hb.entities.hotel.Hotel;
+import java.io.FileInputStream;
+import java.io.ObjectInputStream;
 import lombok.extern.slf4j.Slf4j;
 
 import java.io.FileOutputStream;
@@ -10,7 +12,7 @@ import java.io.IOException;
 
 @Slf4j
 public class console {
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) throws IOException, ClassNotFoundException {
 
         //создаем отель
         Hotel belarus = new Hotel();
@@ -80,6 +82,13 @@ public class console {
         objectOutputStream.writeObject(belarus);
 
         objectOutputStream.close();
+
+
+        FileInputStream fileInputStream = new FileInputStream("C:\\Users\\Username\\Desktop\\save.ser");
+        ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream);
+
+        Hotel belarusFirst = (Hotel) objectInputStream.readObject();
+
 
     }
 

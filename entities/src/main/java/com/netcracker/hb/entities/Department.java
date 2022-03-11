@@ -1,7 +1,9 @@
 package com.netcracker.hb.entities;
 
-public enum Department {
-    KITCHEN,
-    ROOM_CARE,
-    RECEPTION
+import java.io.Serializable;
+
+public enum Department implements Serializable {
+  KITCHEN,
+  ROOM_CARE,
+  RECEPTION
 }

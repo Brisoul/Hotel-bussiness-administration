@@ -10,7 +10,7 @@ import java.util.UUID;
 @Data
 public class PersonalCard implements Serializable {
 
-  private static final long serialVersionUID = 123;
+  private static final long serialVersionUID = 7L;
   private UUID uuid = UUID.randomUUID();
 
   private int num;

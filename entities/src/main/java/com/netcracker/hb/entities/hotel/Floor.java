@@ -1,6 +1,6 @@
 package com.netcracker.hb.entities.hotel;
 
-import com.netcracker.hb.entities.hotel.Room;
+import lombok.Builder;
 import lombok.Data;
 
 import java.io.Serializable;
@@ -9,19 +9,17 @@ import java.util.Set;
 import java.util.UUID;
 
 @Data
+@Builder
 public class Floor implements Serializable {
 
-  private static final long serialVersionUID = 123;
+  private static final long serialVersionUID = 1L;
   private UUID uuid = UUID.randomUUID();
 
   private int floorNum;
   private Set<Room> rooms = new HashSet<>();
   private Hotel hotelId;
 
-
-  public Floor(int num) {
-    floorNum = num;
-
+  public Floor() {
   }
 
   public void deleteRooms(Room roomN) {
@@ -29,3 +27,5 @@ public class Floor implements Serializable {
   }
 
 }
+
+

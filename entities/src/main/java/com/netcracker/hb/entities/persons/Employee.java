@@ -2,7 +2,8 @@ package com.netcracker.hb.entities.persons;
 
 import com.netcracker.hb.entities.Role;
 import com.netcracker.hb.entities.hotel.Room;
-import com.netcracker.hb.entities.persons.Person;
+import java.util.HashMap;
+import lombok.Builder;
 import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
 
@@ -14,13 +15,15 @@ import java.util.UUID;
 
 @Data
 @Slf4j
+@Builder
 public class Employee extends Person implements Serializable {
 
-  private static final long serialVersionUID = 123;
-  private UUID uuid = UUID.randomUUID();
+  private static final long serialVersionUID = 5L;
+  private UUID uuid;
 
   private Role role;
   private Set<Room> rooms = new HashSet<>();
+  private HashMap<String, String> userCredits = new HashMap<String, String>();
 
   public void setRooms(Room roomsN) {
     switch (this.role) {

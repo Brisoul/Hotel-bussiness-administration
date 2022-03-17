@@ -3,6 +3,7 @@ package com.netcracker.hb.entities.persons;
 
 import com.netcracker.hb.entities.Role;
 import com.netcracker.hb.entities.hotel.Room;
+import lombok.Builder;
 import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
 
@@ -14,9 +15,10 @@ import java.util.UUID;
 
 @Data
 @Slf4j
+@Builder
 public class Guest extends Person implements Serializable {
 
-  private static final long serialVersionUID = 123;
+  private static final long serialVersionUID = 6L;
   private UUID uuid = UUID.randomUUID();
 
   final private Role role = Role.GUEST;

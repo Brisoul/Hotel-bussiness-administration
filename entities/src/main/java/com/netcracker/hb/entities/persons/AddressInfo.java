@@ -8,8 +8,8 @@ import java.util.UUID;
 @Data
 public class AddressInfo implements Serializable {
 
-  private static final long serialVersionUID = 123;
-  private UUID uuid = UUID.randomUUID();
+  private static final long serialVersionUID = 4L;
+  private UUID uuid;
 
   private String countryName;
   private String townName;

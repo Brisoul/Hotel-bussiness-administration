@@ -17,6 +17,7 @@ public class Room implements Serializable {
 
   private int roomNum;
   private Role role;
-  private Floor floorId;
+  private UUID floorId;
+
 
 }

@@ -16,14 +16,15 @@ import lombok.Singular;
 public class Hotel implements Serializable {
 
   private static final long serialVersionUID = 2L;
-  private UUID uuid = UUID.randomUUID();
+  private UUID uuid;
 
   private AddressInfo address;
-  private Set<Floor> floors = new HashSet<>();
+
+  private Set<UUID> floorsID = new HashSet<>();
 
 
-  public void deleteFloor(Floor floorN) {
-    floors.remove(floorN);
+  public void deleteFloor(UUID floorN) {
+    floorsID.remove(floorN);
   }
 
 }

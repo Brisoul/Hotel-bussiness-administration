@@ -1,19 +1,18 @@
 package com.netcracker.hb.Dao.CRUD;
 
 import java.io.IOException;
+import java.util.UUID;
 
 public interface CRUD<T> {
 
-  public void addObject() throws IOException, ClassNotFoundException;
-
-  public void displayObject();
-
   public T searchObject(int num);
 
-  public void deleteObject();
+  public T searchUUIDObject(UUID uuid);
 
-  public void changeObject();
+  public String searchFileName(T object);
 
-  //public void saveObject(T object);
+  public void deleteObject(T object);
+
+  public void saveObject(T object);
 
 }

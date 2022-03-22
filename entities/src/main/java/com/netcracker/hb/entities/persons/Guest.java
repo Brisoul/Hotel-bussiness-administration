@@ -5,6 +5,7 @@ import com.netcracker.hb.entities.Role;
 import com.netcracker.hb.entities.hotel.Room;
 import lombok.Builder;
 import lombok.Data;
+import lombok.extern.log4j.Log4j;
 import lombok.extern.slf4j.Slf4j;
 
 import java.io.Serializable;
@@ -14,38 +15,17 @@ import java.util.UUID;
 
 
 @Data
-@Slf4j
+@Log4j
 @Builder
 public class Guest extends Person implements Serializable {
 
   private static final long serialVersionUID = 6L;
-  private UUID uuid = UUID.randomUUID();
+  private UUID uuid;
 
-  final private Role role = Role.GUEST;
-  private Room room;
-  private Set<Service> service = new HashSet<>();
+  private final Role role = Role.GUEST;
+  private UUID roomID;
+  private Set<Service> service;
 
-//  public Guest(Room room) {
-//    if (room.getRole() == Role.GUEST) {
-//      this.room = room;
-//    } else {
-//      log.info("Error, trying to add guest to the nonguest room");
-//      //Тут пока 2 нюанса как сделать так чтобы к 1 комнате нельзя было присобачить 2 гостя
-//      //И что делать если попытаться присобачить гостя в негостевую комнату
-//    }
-//
-//  }
-
-  public void setRoom(Room room) {
-    if (room.getRole() == Role.GUEST) {
-      this.room = room;
-      log.info("Success in changing room");
-    } else {
-      log.info("Error, trying to add guest to the nonguest room");
-      //Тут пока 2 нюанса как сделать так чтобы к 1 комнате нельзя было присобачить 2 гостя
-      //И что делать если попытаться присобачить гостя в негостевую комнату
-    }
-  }
 
   public void deleteService(Service serviceN) {
     service.remove(serviceN);

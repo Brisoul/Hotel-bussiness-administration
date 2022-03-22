@@ -1,0 +1,76 @@
+2022-03-22 18:52:03 INFO  HotelCRUD:95 - file {e58404e5-4eeb-48fa-88c3-9372bfd78434}-hotel.txt successfully deleted
+2022-03-22 18:52:03 INFO  InitializationManager:31 - Hotel was not created start creating base hotel...
+2022-03-22 18:52:03 INFO  HotelCRUD:112 - The 727e0541-1972-4409-84e7-976d5cfa8538-hotel was successfully written to a file
+2022-03-22 18:52:03 INFO  InitializationManager:37 - How many floors do u wanna add to hotel?
+2022-03-22 18:52:03 INFO  ValidationService:20 - write number
+2022-03-22 18:52:15 INFO  FloorCRUD:161 - The 29e2d2cc-9816-4ab7-97f4-04a0aec1c386-floor1 was written to a file
+2022-03-22 18:52:15 INFO  HotelCRUD:112 - The 727e0541-1972-4409-84e7-976d5cfa8538-hotel was successfully written to a file
+2022-03-22 18:52:15 INFO  InitializationManager:44 - Choose numbers of rooms
+2022-03-22 18:52:15 INFO  ValidationService:20 - write number
+2022-03-22 18:52:18 INFO  RoomService:32 - Enter room num
+2022-03-22 18:52:18 INFO  ValidationService:20 - write number
+2022-03-22 18:52:19 INFO  ValidationService:40 - Enter usage(Role)1.Guest2.Employee3.Manager4.Admin
+2022-03-22 18:52:20 INFO  RoomService:37 - Enter floor on which the room is located 
+2022-03-22 18:52:20 INFO  ValidationService:20 - write number
+2022-03-22 18:52:22 INFO  RoomsCRUD:167 - The d561f517-4768-445f-a2d6-dddc99d3c3c9-room1 was successfully written to a file
+2022-03-22 18:52:22 INFO  FloorCRUD:161 - The 29e2d2cc-9816-4ab7-97f4-04a0aec1c386-floor1 was written to a file
+2022-03-22 18:53:47 INFO  HotelCRUD:112 - The 727e0541-1972-4409-84e7-976d5cfa8538-hotel was successfully written to a file
+2022-03-22 18:53:47 INFO  FloorCRUD:161 - The 29e2d2cc-9816-4ab7-97f4-04a0aec1c386-floor1 was written to a file
+2022-03-22 18:53:47 INFO  RoomsCRUD:149 - file d561f517-4768-445f-a2d6-dddc99d3c3c9-room1.txt successfully deleted
+2022-03-22 18:53:47 INFO  FloorCRUD:146 - file 29e2d2cc-9816-4ab7-97f4-04a0aec1c386-floor1.txt successfully deleted
+2022-03-22 18:53:47 INFO  HotelCRUD:95 - file {727e0541-1972-4409-84e7-976d5cfa8538}-hotel.txt successfully deleted
+2022-03-22 18:53:47 INFO  InitializationManager:31 - Hotel was not created start creating base hotel...
+2022-03-22 18:53:47 INFO  HotelCRUD:112 - The 7a729a18-ec54-453f-9d6a-7023a5695e0c-hotel was successfully written to a file
+2022-03-22 18:53:47 INFO  InitializationManager:37 - How many floors do u wanna add to hotel?
+2022-03-22 18:53:47 INFO  ValidationService:20 - write number
+2022-03-22 18:53:56 INFO  FloorCRUD:161 - The cc59ff98-51d4-4059-a76b-689d622a3d5e-floor1 was written to a file
+2022-03-22 18:53:56 INFO  HotelCRUD:112 - The 7a729a18-ec54-453f-9d6a-7023a5695e0c-hotel was successfully written to a file
+2022-03-22 18:53:56 INFO  InitializationManager:44 - Choose numbers of rooms
+2022-03-22 18:53:56 INFO  ValidationService:20 - write number
+2022-03-22 18:53:57 INFO  RoomService:32 - Enter room num
+2022-03-22 18:53:57 INFO  ValidationService:20 - write number
+2022-03-22 18:53:57 INFO  ValidationService:40 - Enter usage(Role)1.Guest2.Employee3.Manager4.Admin
+2022-03-22 18:53:58 INFO  RoomService:37 - Enter floor on which the room is located 
+2022-03-22 18:53:58 INFO  ValidationService:20 - write number
+2022-03-22 18:53:58 INFO  RoomsCRUD:167 - The 5bf38f03-6827-4b8d-9ea4-0f2c6e70b8c5-room1 was successfully written to a file
+2022-03-22 18:53:58 INFO  FloorCRUD:161 - The cc59ff98-51d4-4059-a76b-689d622a3d5e-floor1 was written to a file
+2022-03-22 19:00:30 INFO  HotelCRUD:112 - The 7a729a18-ec54-453f-9d6a-7023a5695e0c-hotel was successfully written to a file
+2022-03-22 19:00:30 INFO  FloorCRUD:161 - The cc59ff98-51d4-4059-a76b-689d622a3d5e-floor1 was written to a file
+2022-03-22 19:00:30 INFO  RoomsCRUD:149 - file 5bf38f03-6827-4b8d-9ea4-0f2c6e70b8c5-room1.txt successfully deleted
+2022-03-22 19:00:30 INFO  FloorCRUD:146 - file cc59ff98-51d4-4059-a76b-689d622a3d5e-floor1.txt successfully deleted
+2022-03-22 19:00:30 INFO  HotelCRUD:95 - file {7a729a18-ec54-453f-9d6a-7023a5695e0c}-hotel.txt successfully deleted
+2022-03-22 19:00:30 INFO  InitializationManager:31 - Hotel was not created start creating base hotel...
+2022-03-22 19:00:30 INFO  HotelCRUD:112 - The d38114c6-be35-4243-be6e-03ec4e9839d6-hotel was successfully written to a file
+2022-03-22 19:00:30 INFO  InitializationManager:37 - How many floors do u wanna add to hotel?
+2022-03-22 19:00:30 INFO  ValidationService:20 - write number
+2022-03-22 19:00:43 INFO  FloorCRUD:161 - The 6b1c6bb7-2590-456a-a15c-20ac3b70da58-floor1 was written to a file
+2022-03-22 19:00:43 INFO  HotelCRUD:112 - The d38114c6-be35-4243-be6e-03ec4e9839d6-hotel was successfully written to a file
+2022-03-22 19:00:43 INFO  InitializationManager:44 - Choose numbers of rooms
+2022-03-22 19:00:43 INFO  ValidationService:20 - write number
+2022-03-22 19:00:43 INFO  RoomService:32 - Enter room num
+2022-03-22 19:00:43 INFO  ValidationService:20 - write number
+2022-03-22 19:00:44 INFO  ValidationService:40 - Enter usage(Role)1.Guest2.Employee3.Manager4.Admin
+2022-03-22 19:00:45 INFO  RoomService:37 - Enter floor on which the room is located 
+2022-03-22 19:00:45 INFO  ValidationService:20 - write number
+2022-03-22 19:00:46 INFO  RoomsCRUD:167 - The cd2d7fd2-5892-45c8-b6b5-d4a303222124-room1 was successfully written to a file
+2022-03-22 19:00:46 INFO  FloorCRUD:161 - The 6b1c6bb7-2590-456a-a15c-20ac3b70da58-floor1 was written to a file
+2022-03-22 19:19:42 INFO  HotelCRUD:118 - The d38114c6-be35-4243-be6e-03ec4e9839d6-hotel was successfully written to a file
+2022-03-22 19:19:42 INFO  FloorCRUD:165 - The 6b1c6bb7-2590-456a-a15c-20ac3b70da58-floor1 was written to a file
+2022-03-22 19:19:42 INFO  RoomsCRUD:156 - file cd2d7fd2-5892-45c8-b6b5-d4a303222124-room1.txt successfully deleted
+2022-03-22 19:19:42 INFO  FloorCRUD:150 - file 6b1c6bb7-2590-456a-a15c-20ac3b70da58-floor1.txt successfully deleted
+2022-03-22 19:19:42 INFO  HotelCRUD:101 - file {d38114c6-be35-4243-be6e-03ec4e9839d6}-hotel.txt successfully deleted
+2022-03-22 19:19:42 INFO  InitializationManager:31 - Hotel was not created start creating base hotel...
+2022-03-22 19:19:42 INFO  HotelCRUD:118 - The 70651568-55a8-456b-b2ef-9519453b11ec-hotel was successfully written to a file
+2022-03-22 19:19:42 INFO  InitializationManager:37 - How many floors do u wanna add to hotel?
+2022-03-22 19:19:42 INFO  ValidationService:20 - write number
+2022-03-22 19:19:45 INFO  FloorCRUD:165 - The 32680d0b-7a4a-41be-8a42-1dc5baed3283-floor1 was written to a file
+2022-03-22 19:19:45 INFO  HotelCRUD:118 - The 70651568-55a8-456b-b2ef-9519453b11ec-hotel was successfully written to a file
+2022-03-22 19:19:45 INFO  InitializationManager:44 - Choose numbers of rooms
+2022-03-22 19:19:45 INFO  ValidationService:20 - write number
+2022-03-22 19:19:46 INFO  RoomService:30 - Enter room num
+2022-03-22 19:19:46 INFO  ValidationService:20 - write number
+2022-03-22 19:19:46 INFO  ValidationService:40 - Enter usage(Role)1.Guest2.Employee3.Manager4.Admin
+2022-03-22 19:19:47 INFO  RoomService:35 - Enter floor on which the room is located 
+2022-03-22 19:19:47 INFO  ValidationService:20 - write number
+2022-03-22 19:19:47 INFO  RoomsCRUD:174 - The bed09135-b730-49ea-ab01-37e5b7d79cdb-room1 was successfully written to a file
+2022-03-22 19:19:47 INFO  FloorCRUD:165 - The 32680d0b-7a4a-41be-8a42-1dc5baed3283-floor1 was written to a file

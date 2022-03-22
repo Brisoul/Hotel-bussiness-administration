@@ -11,7 +11,7 @@ import java.util.UUID;
 public class PersonalCard implements Serializable {
 
   private static final long serialVersionUID = 7L;
-  private UUID uuid = UUID.randomUUID();
+  private UUID uuid;
 
   private int num;
   private Date expireDate;

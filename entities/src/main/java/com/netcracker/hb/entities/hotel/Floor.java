@@ -13,17 +13,16 @@ import java.util.UUID;
 public class Floor implements Serializable {
 
   private static final long serialVersionUID = 1L;
-  private UUID uuid = UUID.randomUUID();
+  private UUID uuid;
 
   private int floorNum;
-  private Set<Room> rooms = new HashSet<>();
-  private Hotel hotelId;
+  private Set<UUID> roomsID = new HashSet<>();
+  private UUID hotelId;
 
-  public Floor() {
-  }
 
-  public void deleteRooms(Room roomN) {
-    rooms.remove(roomN);
+
+  public void deleteRooms(UUID roomN) {
+    roomsID.remove(roomN);
   }
 
 }

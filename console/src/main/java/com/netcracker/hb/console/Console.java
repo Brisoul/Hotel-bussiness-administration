@@ -1,25 +1,25 @@
 package com.netcracker.hb.console;
 
-import com.netcracker.hb.Dao.CRUD.HotelCRUD;
-import java.util.Scanner;
-
-import lombok.extern.slf4j.Slf4j;
-
-import java.io.IOException;
+import lombok.extern.log4j.Log4j;
 
 
-@Slf4j
-public class console {
+@Log4j
+public class Console {
 
-  public static void main(String[] args) throws IOException, ClassNotFoundException {
-    HotelCRUD hotelCRUD = new HotelCRUD();
-    hotelCRUD.addObject();
-    hotelCRUD.searchObject(1);
+  private static final InitializationManager initializationManager = new InitializationManager();
+  private static final UtilizeManager utilizeManager = new UtilizeManager();
+
+  public static void main(String[] args){
+
+    utilizeManager.utilize();
+    initializationManager.initialize();
 
 
 
 
-//    Scanner in = new Scanner(System.in);
+
+
+    //    Scanner in = new Scanner(System.in);
 //    int userChoice;
 //    do {
 //      log.info("1.Add Room");
@@ -42,6 +42,12 @@ public class console {
 //
 //
 //    } while (userChoice != 0);
+
+
+
+
+
+
 
 
   }

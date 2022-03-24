@@ -15,14 +15,15 @@ import java.util.Set;
 import java.util.UUID;
 
 @Data
-@Log4j
 @Builder
 public class Employee extends Person implements Serializable {
 
   private static final long serialVersionUID = 5L;
 
-  private Role role;
   private Set<UUID> roomsID;
+  private String username;
+  private String password;
+  private UUID contractID;
 
 
   public void deleteRoomsID(UUID uuid) {

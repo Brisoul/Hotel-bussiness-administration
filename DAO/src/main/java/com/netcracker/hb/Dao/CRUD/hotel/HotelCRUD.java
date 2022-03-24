@@ -18,8 +18,11 @@ import lombok.extern.log4j.Log4j;
 public class HotelCRUD implements CRUD<Hotel> {
 
   private static final CRUD<Hotel> hotelCRUD = new HotelCRUD();
-  private HotelCRUD(){}
-  public static CRUD<Hotel> getHotelCRUD(){
+
+  private HotelCRUD() {
+  }
+
+  public static CRUD<Hotel> getHotelCRUD() {
     return hotelCRUD;
   }
 
@@ -27,7 +30,8 @@ public class HotelCRUD implements CRUD<Hotel> {
 
 
   @Override
-  public Hotel searchObject(int hotelNum) {
+  public Hotel searchObjectNum(int hotelNum) {
+    log.info("<Start searching hotel...");
 
     File hotelFolderDirectory = new File(
         "entSAVE/hotel_entities");
@@ -42,7 +46,11 @@ public class HotelCRUD implements CRUD<Hotel> {
                 + hotelFolderName);
         ObjectInputStream objectHotelIn = new ObjectInputStream(fileHotelIn);
 
-        hotel = (Hotel)objectHotelIn.readObject();
+        Hotel object = (Hotel) objectHotelIn.readObject();
+        if (object != null) {
+          log.info("Hotel was found>");
+          hotel = object;
+        }
         objectHotelIn.close();
 
 
@@ -54,17 +62,21 @@ public class HotelCRUD implements CRUD<Hotel> {
     } catch (ClassNotFoundException e) {
       e.printStackTrace();
     } finally {
+      if (hotel == null) {
+        log.error("HOTEL NOT FOUND>");
+      }
       return hotel;
     }
   }
 
   @Override
   public Hotel searchUUIDObject(UUID uuid) {
-    return searchObject(1);
+    return searchObjectNum(1);
   }
 
   @Override
   public String searchFileName(Hotel object) {
+    log.info("<Start searching file name of hotel...");
 
     File hotelFolderDirectory = new File("entSAVE/hotel_entities");
     String[] hotelList = hotelFolderDirectory.list();
@@ -72,6 +84,10 @@ public class HotelCRUD implements CRUD<Hotel> {
     String fileName = null;
     for (String hotelFolderName : hotelList) {
       fileName = hotelFolderName;
+      log.info("File name of hotel was found>");
+    }
+    if (fileName == null) {
+      log.error("FILE NAME OF HOTEL NOT FOUND>");
     }
     return fileName;
 
@@ -79,6 +95,7 @@ public class HotelCRUD implements CRUD<Hotel> {
 
   @Override
   public void deleteObject(Hotel hotel) {
+    log.info("<Start delete hotel...");
     //удаляем все внутренние этажи
 
     if (hotel.getFloorsID() != null && !hotel.getFloorsID().isEmpty()) {
@@ -88,29 +105,30 @@ public class HotelCRUD implements CRUD<Hotel> {
       }
     }
 
-    Hotel object = searchObject(1);
+    Hotel object = searchObjectNum(1);
     //todo возможно прийдется удалять еще привязанных гостей
     //удаляем файл
     File deleteFile = new File("entSAVE/hotel_entities/" + searchFileName(object));
 
     if (deleteFile != null) {
-      log.info("file "+searchFileName(object)+" successfully deleted");
+      log.info("hotel was successfully deleted>");
       deleteFile.delete();
+    } else {
+      log.warn("NOTHING WAS DELETED, FILE HOTEL NOT FOUND>");
     }
 
   }
 
   @Override
   public void saveObject(Hotel hotel) {
+    log.info("<Start saving hotel...");
     try {
-      FileOutputStream fileHotelOut = new FileOutputStream(
-          "entSAVE/hotel_entities/"
-              + "{" + hotel.getUuid() + "}-hotel.txt");
-
+      FileOutputStream fileHotelOut = new FileOutputStream("entSAVE/hotel_entities/"
+          + hotel.getUuid() + "-hotel.txt");
       ObjectOutputStream objectHotelOut = new ObjectOutputStream(fileHotelOut);
       objectHotelOut.writeObject(hotel);
       objectHotelOut.close();
-      log.info("The "+hotel.getUuid()+"-hotel was successfully written to a file");
+      log.info("Success saving hotel>");
     } catch (Exception ex) {
       ex.printStackTrace();
     }

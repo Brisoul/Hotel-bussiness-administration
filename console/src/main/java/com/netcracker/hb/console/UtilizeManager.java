@@ -9,7 +9,7 @@ public class UtilizeManager {
 
   public void utilize(){
 
-    hotelCRUD.deleteObject(hotelCRUD.searchObject(1));
+    hotelCRUD.deleteObject(hotelCRUD.searchObjectNum(1));
   }
 
 }

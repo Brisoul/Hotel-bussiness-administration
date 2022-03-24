@@ -2,6 +2,7 @@ package com.netcracker.hb.entities.hotel;
 
 
 import com.netcracker.hb.entities.Role;
+import java.util.Set;
 import lombok.Builder;
 import lombok.Data;
 
@@ -18,6 +19,17 @@ public class Room implements Serializable {
   private int roomNum;
   private Role role;
   private UUID floorId;
+
+  private Set<UUID> employeeID;
+  private Set<UUID> guestID;
+
+  public void deleteEmployee(UUID employeeN) {
+    employeeID.remove(employeeN);
+  }
+
+  public void deleteGuest(UUID guestN) {
+    guestID.remove(guestN);
+  }
 
 
 }

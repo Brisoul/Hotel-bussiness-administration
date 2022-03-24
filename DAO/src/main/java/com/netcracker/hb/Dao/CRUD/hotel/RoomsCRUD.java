@@ -10,7 +10,6 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-import java.util.Set;
 import java.util.UUID;
 import lombok.extern.log4j.Log4j;
 
@@ -27,7 +26,8 @@ public class RoomsCRUD implements CRUD<Room> {
 
 
   @Override
-  public Room searchObject(int roomNum) {
+  public Room searchObjectNum(int roomNum) {
+    log.info("<Start searching room....");
 
     File roomFolderDirectory = new File(
         "entSAVE/room_entities");
@@ -43,6 +43,7 @@ public class RoomsCRUD implements CRUD<Room> {
         Room object = (Room) objectRoomIn.readObject();
         //если номер комнаты совпадает то передаем
         if (object.getRoomNum() == roomNum) {
+          log.info("Room was found>");
           room = object;
         }
         objectRoomIn.close();
@@ -56,6 +57,9 @@ public class RoomsCRUD implements CRUD<Room> {
     } catch (ClassNotFoundException e) {
       e.printStackTrace();
     } finally {
+      if(room ==null){
+        log.error("ROOM NOT FOUND>");
+      }
       return (Room) room;
     }
 
@@ -64,6 +68,8 @@ public class RoomsCRUD implements CRUD<Room> {
 
   @Override
   public Room searchUUIDObject(UUID uuid) {
+
+    log.info("<Start searching room....");
 
     File roomFolderDirectory = new File("entSAVE/room_entities");
     String[] roomList = roomFolderDirectory.list();
@@ -78,6 +84,7 @@ public class RoomsCRUD implements CRUD<Room> {
         Room object = (Room) objectRoomIn.readObject();
         //если ююайди комнаты совпадает то передаем
         if (object.getUuid().equals(uuid)) {
+          log.info("Room was found>");
           room = object;
         }
         objectRoomIn.close();
@@ -90,6 +97,9 @@ public class RoomsCRUD implements CRUD<Room> {
     } catch (ClassNotFoundException e) {
       e.printStackTrace();
     } finally {
+      if(room ==null){
+        log.error("ROOM NOT FOUND>");
+      }
       return (Room) room;
     }
 
@@ -98,7 +108,7 @@ public class RoomsCRUD implements CRUD<Room> {
 
   @Override
   public String searchFileName(Room room) {
-
+    log.info("<Start searching file name of room...");
     File roomFolderDirectory = new File(
         "entSAVE/room_entities");
     String[] roomList = roomFolderDirectory.list();
@@ -113,6 +123,7 @@ public class RoomsCRUD implements CRUD<Room> {
         Room object = (Room) objectRoomIn.readObject();
         //если номер комнаты совпадает то передаем
         if (object.equals(room)) {
+          log.info("File name of room was found>");
           fileName = roomFolderName;
         }
         objectRoomIn.close();
@@ -125,6 +136,9 @@ public class RoomsCRUD implements CRUD<Room> {
     } catch (ClassNotFoundException e) {
       e.printStackTrace();
     } finally {
+      if(fileName == null){
+        log.error("FILE NAME OF ROOM NOT FOUND>");
+      }
       return fileName;
     }
 
@@ -133,45 +147,39 @@ public class RoomsCRUD implements CRUD<Room> {
 
   @Override
   public void deleteObject(Room room) {
+    log.info("<Start delete room...");
 
-    Room object = searchObject(room.getRoomNum());
+    Room object = searchObjectNum(room.getRoomNum());
 
     //удаляем из хешлиста привязанного флура
     Floor floor = floorCRUD.searchUUIDObject(object.getFloorId());
-    Set floorHashSet = floor.getRoomsID();
-    floorHashSet.remove(room.getUuid());
-    floor.setRoomsID(floorHashSet);
+    floor.deleteRooms(object.getUuid());
     floorCRUD.saveObject(floor);
 
-
-    object = searchObject(room.getRoomNum());
-    //todo возможно прийдется удалять еще привязанных гостей
+    object = searchObjectNum(room.getRoomNum());
     //удаляем файл
     File deleteFile = new File("entSAVE/room_entities/" + searchFileName(object));
     if (deleteFile != null) {
-      log.info("file "+searchFileName(object)+" successfully deleted");
+      log.info("Room was successfully deleted>" );
       deleteFile.delete();
+    } else{
+      log.warn("NOTHING WAS DELETED, FILE ROOM NOT FOUND>");
     }
   }
 
   @Override
   public void saveObject(Room room) {
+    log.info("<Start saving room...");
     int roomNum = room.getRoomNum();
     try {
 
       FileOutputStream fileRoomOut = new FileOutputStream(
-
-          "entSAVE/room_entities/"
-               + room.getUuid() + "-room" + roomNum + ".txt");
-
+          "entSAVE/room_entities/" + room.getUuid() + "-room.txt");
       ObjectOutputStream objectRoomOut = new ObjectOutputStream(fileRoomOut);
       objectRoomOut.writeObject(room);
+      log.info("Success saving room>");
       objectRoomOut.close();
-      log.info(
-          "The "+room.getUuid()+"-room"+roomNum+" was successfully written to a file");
-
-    } catch (
-        Exception ex) {
+    } catch (Exception ex) {
       ex.printStackTrace();
     }
 

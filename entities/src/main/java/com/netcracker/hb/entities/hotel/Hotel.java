@@ -1,7 +1,6 @@
 package com.netcracker.hb.entities.hotel;
 
 
-import com.netcracker.hb.entities.persons.AddressInfo;
 import lombok.Builder;
 import lombok.Data;
 
@@ -17,10 +16,7 @@ public class Hotel implements Serializable {
 
   private static final long serialVersionUID = 2L;
   private UUID uuid;
-
-  private AddressInfo address;
-
-  private Set<UUID> floorsID = new HashSet<>();
+  private Set<UUID> floorsID ;
 
 
   public void deleteFloor(UUID floorN) {

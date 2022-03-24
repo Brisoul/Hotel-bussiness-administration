@@ -7,5 +7,7 @@ public interface Service<T> {
 
   public void changeObject(T object);
 
+  public void displayObject(T object);
+
 
 }

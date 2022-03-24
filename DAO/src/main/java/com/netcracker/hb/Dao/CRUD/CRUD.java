@@ -5,7 +5,7 @@ import java.util.UUID;
 
 public interface CRUD<T> {
 
-  public T searchObject(int num);
+  public T searchObjectNum(int num);
 
   public T searchUUIDObject(UUID uuid);
 

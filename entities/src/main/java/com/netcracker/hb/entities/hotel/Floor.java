@@ -16,7 +16,7 @@ public class Floor implements Serializable {
   private UUID uuid;
 
   private int floorNum;
-  private Set<UUID> roomsID = new HashSet<>();
+  private Set<UUID> roomsID ;
   private UUID hotelId;
 
 

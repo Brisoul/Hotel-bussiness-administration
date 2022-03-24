@@ -28,9 +28,11 @@ public class FloorCRUD implements CRUD<Floor> {
   private static final CRUD<Room> roomsCRUD = RoomsCRUD.getRoomsCRUD();
 
 
-  @Override
-  public Floor searchObject(int floorNum) {
 
+  @Override
+  public Floor searchObjectNum(int floorNum) {
+
+    log.info("<Start searching floor....");
     File floorFolderDirectory = new File("entSAVE/floor_entities");
     String[] floorList = floorFolderDirectory.list();
     Floor floor = null;
@@ -43,6 +45,7 @@ public class FloorCRUD implements CRUD<Floor> {
         Floor object = (Floor) objectFloorIn.readObject();
         //если номер этажа совпадает то передаем
         if (object.getFloorNum() == floorNum) {
+          log.info("Floor was found>");
           floor = object;
         }
         objectFloorIn.close();
@@ -54,6 +57,9 @@ public class FloorCRUD implements CRUD<Floor> {
     } catch (ClassNotFoundException e) {
       e.printStackTrace();
     } finally {
+      if(floor ==null){
+        log.error("FLOOR NOT FOUND>");
+      }
       return floor;
     }
 
@@ -61,7 +67,7 @@ public class FloorCRUD implements CRUD<Floor> {
 
   @Override
   public Floor searchUUIDObject(UUID uuid) {
-
+    log.info("<Start searching floor....");
     File floorFolderDirectory = new File("entSAVE/floor_entities");
     String[] floorList = floorFolderDirectory.list();
     Floor floor = null;
@@ -74,6 +80,7 @@ public class FloorCRUD implements CRUD<Floor> {
         Floor object = (Floor) objectFloorIn.readObject();
         //если номер этажа совпадает то передаем
         if (object.getUuid().equals(uuid)) {
+          log.info("Floor was found>");
           floor = object;
         }
         objectFloorIn.close();
@@ -85,12 +92,17 @@ public class FloorCRUD implements CRUD<Floor> {
     } catch (ClassNotFoundException e) {
       e.printStackTrace();
     } finally {
+      if(floor ==null){
+        log.error("FLOOR NOT FOUND>");
+      }
       return floor;
     }
   }
 
   @Override
   public String searchFileName(Floor floor) {
+
+    log.info("<Start searching file name of floor...");
 
     File floorFolderDirectory = new File("entSAVE/floor_entities");
     String[] floorList = floorFolderDirectory.list();
@@ -104,9 +116,8 @@ public class FloorCRUD implements CRUD<Floor> {
         Floor object = (Floor) objectFloorIn.readObject();
 
         if (object.equals(floor)) {
+          log.info("File name of floor was found>");
           fileName = floorFolderName;
-          objectFloorIn.close();
-          return fileName;
         }
         objectFloorIn.close();
       }
@@ -117,6 +128,9 @@ public class FloorCRUD implements CRUD<Floor> {
     } catch (ClassNotFoundException e) {
       e.printStackTrace();
     } finally {
+      if(fileName == null){
+        log.error("FILE NAME OF FLOOR NOT FOUND>");
+      }
       return fileName;
     }
 
@@ -124,8 +138,9 @@ public class FloorCRUD implements CRUD<Floor> {
 
   @Override
   public void deleteObject(Floor object) {
+    log.info("<Start delete floor...");
 
-    Floor floor = searchObject(object.getFloorNum());
+    Floor floor = searchObjectNum(object.getFloorNum());
 
     //отвязываем от отеля
     Hotel hotel = hotelCRUD.searchUUIDObject(floor.getUuid());
@@ -139,29 +154,32 @@ public class FloorCRUD implements CRUD<Floor> {
       }
     }
     //Сохраняем
-    floor = searchObject(object.getFloorNum());
+    floor = searchObjectNum(object.getFloorNum());
 
     //todo возможно прийдется удалять еще привязанных гостей
     //удаляем файл
     File deleteFile = new File("entSAVE/floor_entities/" + searchFileName(floor));
 
     if (deleteFile != null) {
-      log.info("file "+searchFileName(floor)+" successfully deleted" );
+      log.info("Floor was successfully deleted>" );
       deleteFile.delete();
+    } else{
+      log.warn("NOTHING WAS DELETED, FILE FLOOR NOT FOUND>");
     }
   }
 
   @Override
   public void saveObject(Floor floor) {
+    log.info("<Start saving floor...");
 
     try {
       FileOutputStream fileFloorOut = new FileOutputStream("entSAVE/floor_entities/"
-           + floor.getUuid() + "-floor" + floor.getFloorNum() + ".txt");
+           + floor.getUuid() + "-floor.txt");
 
       ObjectOutputStream objectFloorOut = new ObjectOutputStream(fileFloorOut);
       objectFloorOut.writeObject(floor);
       objectFloorOut.close();
-      log.info("The "+floor.getUuid()+"-floor"+floor.getFloorNum()+" was written to a file");
+      log.info("Success saving floor>");
     } catch (Exception ex) {
       ex.printStackTrace();
     }

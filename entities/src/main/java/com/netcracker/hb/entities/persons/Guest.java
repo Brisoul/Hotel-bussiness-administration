@@ -15,14 +15,10 @@ import java.util.UUID;
 
 
 @Data
-@Log4j
 @Builder
 public class Guest extends Person implements Serializable {
 
   private static final long serialVersionUID = 6L;
-  private UUID uuid;
-
-  private final Role role = Role.GUEST;
   private UUID roomID;
   private Set<Service> service;
 

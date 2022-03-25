@@ -15,6 +15,7 @@ import com.netcracker.hb.entities.persons.Contract;
 import com.netcracker.hb.entities.persons.Employee;
 import com.netcracker.hb.entities.persons.PersonalCard;
 import java.util.HashSet;
+import java.util.Set;
 import java.util.UUID;
 import lombok.extern.log4j.Log4j;
 
@@ -76,26 +77,31 @@ public class EmployeeService implements Service<Employee> {
       log.info("3.Set age");
       log.info("4.Set sex");
       log.info("5.Set role(this will delete all room connections and personal card))");
-      log.info("7.Set username");
+      log.info("6.Set username");
       log.info("7.Set password");
       log.info("8.Change card");
       log.info("9.Change contract");
+      log.info("10.Change roomlist");
       log.info("666.Back to previous menu");
       userChoice = validationService.validationNumberChoice();
       switch (userChoice) {
         case 1:
+          log.info("name");
           object.setName(validationService.validationName());
           employeeCRUD.saveObject(object);
           break;
         case 2:
+          log.info("surname");
           object.setSurname(validationService.validationName());
           employeeCRUD.saveObject(object);
           break;
         case 3:
+          log.info("age");
           object.setAge(validationService.validationNumberChoice());
           employeeCRUD.saveObject(object);
           break;
         case 4:
+          log.info("sex");
           object.setSex(validationService.validationName());
           employeeCRUD.saveObject(object);
           break;
@@ -112,10 +118,12 @@ public class EmployeeService implements Service<Employee> {
           employeeCRUD.saveObject(object);
           break;
         case 6:
+          log.info("username");
           object.setUsername(validationService.validationName());
           employeeCRUD.saveObject(object);
           break;
         case 7:
+          log.info("password");
           object.setPassword(validationService.validationName());
           employeeCRUD.saveObject(object);
           break;
@@ -204,6 +212,26 @@ public class EmployeeService implements Service<Employee> {
 
           employeeCRUD.saveObject(object);
           break;
+        case 10:
+          log.info("Write room num");
+          int roomNum = validationService.validationNumberChoice();
+          Room room = roomCRUD.searchObjectNum(roomNum);
+          if(validationService.validationRole(room.getRole(), object.getRole())){
+            log.info("access is allowed");
+            Set<UUID> employers = room.getEmployeeID();
+            employers.add(object.getUuid());
+            room.setEmployeeID(employers);
+            roomCRUD.saveObject(room);
+
+            Set<UUID> roomSet = object.getRoomsID();
+            roomSet.add(room.getUuid());
+            object.setRoomsID(roomSet);
+            employeeCRUD.saveObject(object);
+          } else{
+            log.error("access is denied");
+            log.error("Error adding room");
+          }
+          break;
         case 666:
           log.info("see u!");
           break;
@@ -226,6 +254,13 @@ public class EmployeeService implements Service<Employee> {
     log.info("Возраст " + object.getAge());
     log.info("Пол " + object.getSex());
     log.info("Должность " + object.getRole());
+    log.info("_______________________");
+    log.info("Доступно комнат "+ object.getRoomsID().size());
+    log.info("Номера доступных комнат ");
+    for(UUID uuid : object.getRoomsID()){
+      Room room = roomCRUD.searchUUIDObject(uuid);
+      log.info(room.getRoomNum());
+    }
     log.info("_______________________");
     if (object.getContractID() == null) {
       log.info("Контракт : не задан");

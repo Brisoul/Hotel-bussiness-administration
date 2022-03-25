@@ -53,6 +53,37 @@ public class ValidationService {
 
   }
 
+  public boolean validationRole(Role mainRole, Role addedRole){
+    //Сравниваем 2 роли, на допуск второй к первой.
+    switch (mainRole){//равняем под главную роль
+      case GUEST:
+        return true;
+      case SERVICE_EMPLOYEE:
+        if(addedRole == Role.GUEST){
+          return false;
+        } else{
+          return true;
+        }
+      case MANAGER:
+        if(addedRole == Role.SERVICE_EMPLOYEE){
+          return false;
+        } else{
+          return true;
+        }
+      case ADMIN:
+        if(addedRole == Role.MANAGER){
+          return false;
+        } else{
+          return true;
+        }
+      default:
+        break;
+    }
+
+
+    return false;
+  }
+
   public Role validationRoleEmployeeChoice() {
     Role role;
     int i, userChoice;

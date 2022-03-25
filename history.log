@@ -4237,3 +4237,706 @@
 2022-03-25 18:36:13 INFO  ContractService:55 - 4.set Salary
 2022-03-25 18:36:13 INFO  ContractService:56 - 5.set WorkTime
 2022-03-25 18:36:13 INFO  ContractService:57 - 666.Back to previous menu
+2022-03-25 20:35:59 INFO  HotelCRUD:43 - <Start searching hotel...
+2022-03-25 20:35:59 ERROR HotelCRUD:75 - HOTEL NOT FOUND>
+2022-03-25 20:35:59 INFO  InitializationManager:39 - Hotel was not created start creating base hotel...
+2022-03-25 20:35:59 INFO  HotelService:25 - <Start creating hotel...
+2022-03-25 20:35:59 INFO  HotelCRUD:133 - <Start saving hotel...
+2022-03-25 20:35:59 INFO  HotelCRUD:140 - Success saving hotel>
+2022-03-25 20:35:59 INFO  HotelService:34 - End creating hotel>
+2022-03-25 20:35:59 INFO  InitializationManager:45 - Choose numbers of floors
+2022-03-25 20:36:10 INFO  FloorService:36 - <Start creating floor...
+2022-03-25 20:36:10 INFO  HotelCRUD:43 - <Start searching hotel...
+2022-03-25 20:36:10 INFO  HotelCRUD:60 - Hotel was found>
+2022-03-25 20:36:10 INFO  FloorCRUD:205 - <Start saving floor...
+2022-03-25 20:36:10 INFO  FloorCRUD:214 - Success saving floor>
+2022-03-25 20:36:10 INFO  HotelCRUD:133 - <Start saving hotel...
+2022-03-25 20:36:10 INFO  HotelCRUD:140 - Success saving hotel>
+2022-03-25 20:36:10 INFO  FloorService:56 - End creating floor>
+2022-03-25 20:36:10 INFO  FloorService:36 - <Start creating floor...
+2022-03-25 20:36:10 INFO  HotelCRUD:43 - <Start searching hotel...
+2022-03-25 20:36:10 INFO  HotelCRUD:60 - Hotel was found>
+2022-03-25 20:36:10 INFO  FloorCRUD:205 - <Start saving floor...
+2022-03-25 20:36:10 INFO  FloorCRUD:214 - Success saving floor>
+2022-03-25 20:36:10 INFO  HotelCRUD:133 - <Start saving hotel...
+2022-03-25 20:36:10 INFO  HotelCRUD:140 - Success saving hotel>
+2022-03-25 20:36:10 INFO  FloorService:56 - End creating floor>
+2022-03-25 20:36:10 INFO  FloorService:36 - <Start creating floor...
+2022-03-25 20:36:10 INFO  HotelCRUD:43 - <Start searching hotel...
+2022-03-25 20:36:10 INFO  HotelCRUD:60 - Hotel was found>
+2022-03-25 20:36:10 INFO  FloorCRUD:205 - <Start saving floor...
+2022-03-25 20:36:10 INFO  FloorCRUD:214 - Success saving floor>
+2022-03-25 20:36:10 INFO  HotelCRUD:133 - <Start saving hotel...
+2022-03-25 20:36:10 INFO  HotelCRUD:140 - Success saving hotel>
+2022-03-25 20:36:10 INFO  FloorService:56 - End creating floor>
+2022-03-25 20:36:10 INFO  FloorService:36 - <Start creating floor...
+2022-03-25 20:36:10 INFO  HotelCRUD:43 - <Start searching hotel...
+2022-03-25 20:36:10 INFO  HotelCRUD:60 - Hotel was found>
+2022-03-25 20:36:10 INFO  FloorCRUD:205 - <Start saving floor...
+2022-03-25 20:36:10 INFO  FloorCRUD:214 - Success saving floor>
+2022-03-25 20:36:10 INFO  HotelCRUD:133 - <Start saving hotel...
+2022-03-25 20:36:10 INFO  HotelCRUD:140 - Success saving hotel>
+2022-03-25 20:36:10 INFO  FloorService:56 - End creating floor>
+2022-03-25 20:36:10 INFO  FloorService:36 - <Start creating floor...
+2022-03-25 20:36:10 INFO  HotelCRUD:43 - <Start searching hotel...
+2022-03-25 20:36:10 INFO  HotelCRUD:60 - Hotel was found>
+2022-03-25 20:36:10 INFO  FloorCRUD:205 - <Start saving floor...
+2022-03-25 20:36:10 INFO  FloorCRUD:214 - Success saving floor>
+2022-03-25 20:36:10 INFO  HotelCRUD:133 - <Start saving hotel...
+2022-03-25 20:36:10 INFO  HotelCRUD:140 - Success saving hotel>
+2022-03-25 20:36:10 INFO  FloorService:56 - End creating floor>
+2022-03-25 20:36:10 INFO  FloorService:36 - <Start creating floor...
+2022-03-25 20:36:10 INFO  HotelCRUD:43 - <Start searching hotel...
+2022-03-25 20:36:10 INFO  HotelCRUD:60 - Hotel was found>
+2022-03-25 20:36:10 INFO  FloorCRUD:205 - <Start saving floor...
+2022-03-25 20:36:10 INFO  FloorCRUD:214 - Success saving floor>
+2022-03-25 20:36:10 INFO  HotelCRUD:133 - <Start saving hotel...
+2022-03-25 20:36:10 INFO  HotelCRUD:140 - Success saving hotel>
+2022-03-25 20:36:10 INFO  FloorService:56 - End creating floor>
+2022-03-25 20:36:10 INFO  FloorService:36 - <Start creating floor...
+2022-03-25 20:36:10 INFO  HotelCRUD:43 - <Start searching hotel...
+2022-03-25 20:36:10 INFO  HotelCRUD:60 - Hotel was found>
+2022-03-25 20:36:10 INFO  FloorCRUD:205 - <Start saving floor...
+2022-03-25 20:36:10 INFO  FloorCRUD:214 - Success saving floor>
+2022-03-25 20:36:10 INFO  HotelCRUD:133 - <Start saving hotel...
+2022-03-25 20:36:10 INFO  HotelCRUD:140 - Success saving hotel>
+2022-03-25 20:36:10 INFO  FloorService:56 - End creating floor>
+2022-03-25 20:36:10 INFO  FloorService:36 - <Start creating floor...
+2022-03-25 20:36:10 INFO  HotelCRUD:43 - <Start searching hotel...
+2022-03-25 20:36:10 INFO  HotelCRUD:60 - Hotel was found>
+2022-03-25 20:36:10 INFO  FloorCRUD:205 - <Start saving floor...
+2022-03-25 20:36:10 INFO  FloorCRUD:214 - Success saving floor>
+2022-03-25 20:36:10 INFO  HotelCRUD:133 - <Start saving hotel...
+2022-03-25 20:36:10 INFO  HotelCRUD:140 - Success saving hotel>
+2022-03-25 20:36:10 INFO  FloorService:56 - End creating floor>
+2022-03-25 20:36:10 INFO  FloorService:36 - <Start creating floor...
+2022-03-25 20:36:10 INFO  HotelCRUD:43 - <Start searching hotel...
+2022-03-25 20:36:10 INFO  HotelCRUD:60 - Hotel was found>
+2022-03-25 20:36:10 INFO  FloorCRUD:205 - <Start saving floor...
+2022-03-25 20:36:10 INFO  FloorCRUD:214 - Success saving floor>
+2022-03-25 20:36:10 INFO  HotelCRUD:133 - <Start saving hotel...
+2022-03-25 20:36:10 INFO  HotelCRUD:140 - Success saving hotel>
+2022-03-25 20:36:10 INFO  FloorService:56 - End creating floor>
+2022-03-25 20:36:10 INFO  InitializationManager:52 - Choose numbers of rooms
+2022-03-25 20:36:16 INFO  RoomService:43 - <Start creating room...
+2022-03-25 20:36:16 INFO  ValidationService:92 - Enter usage(Role)
+2022-03-25 20:36:16 INFO  ValidationService:93 - 1.Guest
+2022-03-25 20:36:16 INFO  ValidationService:94 - 2.Employee
+2022-03-25 20:36:16 INFO  ValidationService:95 - 3.Manager
+2022-03-25 20:36:16 INFO  ValidationService:96 - 4.Admin
+2022-03-25 20:36:19 INFO  RoomService:48 - Enter floor on which the room is located 
+2022-03-25 20:36:22 INFO  FloorCRUD:67 - <Start searching floor....
+2022-03-25 20:36:22 INFO  FloorCRUD:80 - Floor was found>
+2022-03-25 20:36:22 INFO  RoomsCRUD:231 - <Start saving room...
+2022-03-25 20:36:22 INFO  RoomsCRUD:239 - Success saving room>
+2022-03-25 20:36:22 INFO  FloorCRUD:205 - <Start saving floor...
+2022-03-25 20:36:22 INFO  FloorCRUD:214 - Success saving floor>
+2022-03-25 20:36:22 INFO  RoomService:73 - End creating room>
+2022-03-25 20:36:22 INFO  RoomService:43 - <Start creating room...
+2022-03-25 20:36:22 INFO  ValidationService:92 - Enter usage(Role)
+2022-03-25 20:36:22 INFO  ValidationService:93 - 1.Guest
+2022-03-25 20:36:22 INFO  ValidationService:94 - 2.Employee
+2022-03-25 20:36:22 INFO  ValidationService:95 - 3.Manager
+2022-03-25 20:36:22 INFO  ValidationService:96 - 4.Admin
+2022-03-25 20:36:25 INFO  RoomService:48 - Enter floor on which the room is located 
+2022-03-25 20:36:26 INFO  FloorCRUD:67 - <Start searching floor....
+2022-03-25 20:36:26 INFO  FloorCRUD:80 - Floor was found>
+2022-03-25 20:36:26 INFO  RoomsCRUD:231 - <Start saving room...
+2022-03-25 20:36:26 INFO  RoomsCRUD:239 - Success saving room>
+2022-03-25 20:36:26 INFO  FloorCRUD:205 - <Start saving floor...
+2022-03-25 20:36:26 INFO  FloorCRUD:214 - Success saving floor>
+2022-03-25 20:36:26 INFO  RoomService:73 - End creating room>
+2022-03-25 20:36:26 INFO  RoomService:43 - <Start creating room...
+2022-03-25 20:36:26 INFO  ValidationService:92 - Enter usage(Role)
+2022-03-25 20:36:26 INFO  ValidationService:93 - 1.Guest
+2022-03-25 20:36:26 INFO  ValidationService:94 - 2.Employee
+2022-03-25 20:36:26 INFO  ValidationService:95 - 3.Manager
+2022-03-25 20:36:26 INFO  ValidationService:96 - 4.Admin
+2022-03-25 20:36:29 INFO  RoomService:48 - Enter floor on which the room is located 
+2022-03-25 20:36:32 INFO  FloorCRUD:67 - <Start searching floor....
+2022-03-25 20:36:32 INFO  FloorCRUD:80 - Floor was found>
+2022-03-25 20:36:32 INFO  RoomsCRUD:231 - <Start saving room...
+2022-03-25 20:36:32 INFO  RoomsCRUD:239 - Success saving room>
+2022-03-25 20:36:32 INFO  FloorCRUD:205 - <Start saving floor...
+2022-03-25 20:36:32 INFO  FloorCRUD:214 - Success saving floor>
+2022-03-25 20:36:32 INFO  RoomService:73 - End creating room>
+2022-03-25 20:36:32 INFO  RoomService:43 - <Start creating room...
+2022-03-25 20:36:32 INFO  ValidationService:92 - Enter usage(Role)
+2022-03-25 20:36:32 INFO  ValidationService:93 - 1.Guest
+2022-03-25 20:36:32 INFO  ValidationService:94 - 2.Employee
+2022-03-25 20:36:32 INFO  ValidationService:95 - 3.Manager
+2022-03-25 20:36:32 INFO  ValidationService:96 - 4.Admin
+2022-03-25 20:36:34 INFO  RoomService:48 - Enter floor on which the room is located 
+2022-03-25 20:36:35 INFO  FloorCRUD:67 - <Start searching floor....
+2022-03-25 20:36:35 INFO  FloorCRUD:80 - Floor was found>
+2022-03-25 20:36:35 INFO  RoomsCRUD:231 - <Start saving room...
+2022-03-25 20:36:35 INFO  RoomsCRUD:239 - Success saving room>
+2022-03-25 20:36:35 INFO  FloorCRUD:205 - <Start saving floor...
+2022-03-25 20:36:35 INFO  FloorCRUD:214 - Success saving floor>
+2022-03-25 20:36:35 INFO  RoomService:73 - End creating room>
+2022-03-25 20:36:35 INFO  EmployeeCRUD:108 - <Start searching employee by role....ADMIN
+2022-03-25 20:36:35 ERROR EmployeeCRUD:134 - EMPLOYEE NOT FOUND>
+2022-03-25 20:36:35 INFO  InitializationManager:73 - Admin role was not created please create Admin. Start creating
+2022-03-25 20:36:35 INFO  EmployeeService:46 - Enter username
+2022-03-25 20:36:52 INFO  EmployeeService:48 - Enter password
+2022-03-25 20:36:56 INFO  EmployeeService:50 - <Start creating employee...
+2022-03-25 20:36:56 INFO  ValidationService:60 - Enter usage(Role)
+2022-03-25 20:36:56 INFO  ValidationService:61 - 1.Employee
+2022-03-25 20:36:56 INFO  ValidationService:62 - 2.Manager
+2022-03-25 20:36:56 INFO  ValidationService:63 - 3.Admin
+2022-03-25 20:37:08 INFO  EmployeeService:59 - Enter Name
+2022-03-25 20:37:14 INFO  EmployeeService:61 - Enter Surname
+2022-03-25 20:37:16 INFO  EmployeeCRUD:287 - <Start saving employee...
+2022-03-25 20:37:16 INFO  EmployeeCRUD:296 - Success saving employee>
+2022-03-25 20:37:16 INFO  EmployeeService:65 - End creating employee>
+2022-03-25 20:37:16 INFO  EmployeeCRUD:108 - <Start searching employee by role....ADMIN
+2022-03-25 20:37:16 INFO  EmployeeCRUD:121 - employee with that role was found>
+2022-03-25 20:37:16 INFO  Console:20 - Start work...
+2022-03-25 20:37:16 INFO  Console:23 - Hello Guest, please logIn to start work with hotel
+2022-03-25 20:37:16 INFO  Console:24 - 1.Start LogIn
+2022-03-25 20:37:16 INFO  Console:25 - 2.Registration
+2022-03-25 20:37:16 INFO  Console:26 - 666 Exit
+2022-03-25 20:37:16 INFO  Console:27 - Choose a number of menu:
+2022-03-25 20:37:19 INFO  LogIn:25 - Start LogIn....
+2022-03-25 20:37:19 INFO  ValidationService:217 - Username 
+2022-03-25 20:37:21 INFO  ValidationService:219 - Password
+2022-03-25 20:37:23 INFO  EmployeeCRUD:74 - <Start searching employee....
+2022-03-25 20:37:23 INFO  EmployeeCRUD:87 - employee was found>
+2022-03-25 20:37:23 INFO  ValidationService:226 - U successfully logged in
+2022-03-25 20:37:23 INFO  LogIn:28 - Start LogIn....
+2022-03-25 20:37:23 INFO  LogIn:29 - Hello AdminAdmin
+2022-03-25 20:37:23 INFO  LogIn:30 - 1.Start work as ADMIN
+2022-03-25 20:37:23 INFO  LogIn:31 - 666 Back to main menu
+2022-03-25 20:37:23 INFO  LogIn:32 - Choose a number of menu:
+2022-03-25 20:37:28 INFO  LogIn:36 - Start work ....
+2022-03-25 20:37:28 INFO  MenuServices:303 - Start work as Admin
+2022-03-25 20:37:28 INFO  MenuServices:306 - 1.Work with floors
+2022-03-25 20:37:28 INFO  MenuServices:307 - 2.Work with rooms
+2022-03-25 20:37:28 INFO  MenuServices:308 - 3.Start work as manager
+2022-03-25 20:37:28 INFO  MenuServices:309 - 4.Start work as service employee
+2022-03-25 20:37:28 INFO  MenuServices:310 - 111.UTILIZE HOTEL
+2022-03-25 20:37:28 INFO  MenuServices:311 - 666.Exit
+2022-03-25 20:37:28 INFO  MenuServices:312 - Choose a number of menu:
+2022-03-25 20:37:47 INFO  MenuServices:47 - Start work with floors
+2022-03-25 20:37:47 INFO  MenuServices:51 - 1.Display all floors
+2022-03-25 20:37:47 INFO  MenuServices:52 - 2.Search floor(Num)
+2022-03-25 20:37:47 INFO  MenuServices:53 - 3.Add floor
+2022-03-25 20:37:47 INFO  MenuServices:54 - 4.Delete floor(Num)
+2022-03-25 20:37:47 INFO  MenuServices:55 - 5.Change floor(Num)
+2022-03-25 20:37:47 INFO  MenuServices:56 - 666.Back to previous menu
+2022-03-25 20:37:54 INFO  FloorCRUD:35 - <Start searching floors....
+2022-03-25 20:37:54 INFO  FloorService:87 - _______________________
+2022-03-25 20:37:54 INFO  FloorCRUD:137 - <Start searching file name of floor...
+2022-03-25 20:37:54 INFO  FloorCRUD:151 - File name of floor was found>
+2022-03-25 20:37:54 INFO  FloorService:88 - 0dff6168-dc57-4719-801e-8005d0a2f8da-floor.txt
+2022-03-25 20:37:54 INFO  FloorService:89 - Номер этажа : 6
+2022-03-25 20:37:54 INFO  FloorService:90 - Количество комнат : 1
+2022-03-25 20:37:54 INFO  FloorService:91 - Номера комнат : 
+2022-03-25 20:37:54 INFO  RoomsCRUD:118 - <Start searching room....
+2022-03-25 20:37:54 INFO  RoomsCRUD:133 - Room was found>
+2022-03-25 20:37:54 INFO  FloorService:95 - 3
+2022-03-25 20:37:54 INFO  FloorService:97 - _______________________
+2022-03-25 20:37:54 INFO  FloorService:87 - _______________________
+2022-03-25 20:37:54 INFO  FloorCRUD:137 - <Start searching file name of floor...
+2022-03-25 20:37:54 INFO  FloorCRUD:151 - File name of floor was found>
+2022-03-25 20:37:54 INFO  FloorService:88 - 3c4bbea5-36b7-4aeb-b574-70701cefe1fe-floor.txt
+2022-03-25 20:37:54 INFO  FloorService:89 - Номер этажа : 1
+2022-03-25 20:37:54 INFO  FloorService:90 - Количество комнат : 1
+2022-03-25 20:37:54 INFO  FloorService:91 - Номера комнат : 
+2022-03-25 20:37:54 INFO  RoomsCRUD:118 - <Start searching room....
+2022-03-25 20:37:54 INFO  RoomsCRUD:133 - Room was found>
+2022-03-25 20:37:54 INFO  FloorService:95 - 4
+2022-03-25 20:37:54 INFO  FloorService:97 - _______________________
+2022-03-25 20:37:54 INFO  FloorService:87 - _______________________
+2022-03-25 20:37:54 INFO  FloorCRUD:137 - <Start searching file name of floor...
+2022-03-25 20:37:54 INFO  FloorCRUD:151 - File name of floor was found>
+2022-03-25 20:37:54 INFO  FloorService:88 - 4239a11e-b899-477a-883d-4e7a1aebf464-floor.txt
+2022-03-25 20:37:54 INFO  FloorService:89 - Номер этажа : 3
+2022-03-25 20:37:54 INFO  FloorService:90 - Количество комнат : 0
+2022-03-25 20:37:54 INFO  FloorService:91 - Номера комнат : 
+2022-03-25 20:37:54 INFO  FloorService:97 - _______________________
+2022-03-25 20:37:54 INFO  FloorService:87 - _______________________
+2022-03-25 20:37:54 INFO  FloorCRUD:137 - <Start searching file name of floor...
+2022-03-25 20:37:54 INFO  FloorCRUD:151 - File name of floor was found>
+2022-03-25 20:37:54 INFO  FloorService:88 - 449c36ce-981e-46ed-9310-b0bcb1fbd8c8-floor.txt
+2022-03-25 20:37:54 INFO  FloorService:89 - Номер этажа : 5
+2022-03-25 20:37:54 INFO  FloorService:90 - Количество комнат : 0
+2022-03-25 20:37:54 INFO  FloorService:91 - Номера комнат : 
+2022-03-25 20:37:54 INFO  FloorService:97 - _______________________
+2022-03-25 20:37:54 INFO  FloorService:87 - _______________________
+2022-03-25 20:37:54 INFO  FloorCRUD:137 - <Start searching file name of floor...
+2022-03-25 20:37:54 INFO  FloorCRUD:151 - File name of floor was found>
+2022-03-25 20:37:54 INFO  FloorService:88 - 5fa0e7f3-435f-4b0c-8899-a15f7b453bb8-floor.txt
+2022-03-25 20:37:54 INFO  FloorService:89 - Номер этажа : 9
+2022-03-25 20:37:54 INFO  FloorService:90 - Количество комнат : 0
+2022-03-25 20:37:54 INFO  FloorService:91 - Номера комнат : 
+2022-03-25 20:37:54 INFO  FloorService:97 - _______________________
+2022-03-25 20:37:54 INFO  FloorService:87 - _______________________
+2022-03-25 20:37:54 INFO  FloorCRUD:137 - <Start searching file name of floor...
+2022-03-25 20:37:54 INFO  FloorCRUD:151 - File name of floor was found>
+2022-03-25 20:37:54 INFO  FloorService:88 - 95e5772c-0355-4a3d-ac60-0b6921ea4f62-floor.txt
+2022-03-25 20:37:54 INFO  FloorService:89 - Номер этажа : 7
+2022-03-25 20:37:54 INFO  FloorService:90 - Количество комнат : 0
+2022-03-25 20:37:54 INFO  FloorService:91 - Номера комнат : 
+2022-03-25 20:37:54 INFO  FloorService:97 - _______________________
+2022-03-25 20:37:54 INFO  FloorService:87 - _______________________
+2022-03-25 20:37:54 INFO  FloorCRUD:137 - <Start searching file name of floor...
+2022-03-25 20:37:54 INFO  FloorCRUD:151 - File name of floor was found>
+2022-03-25 20:37:54 INFO  FloorService:88 - a95570bb-9702-4e92-9bbd-c5bc01034ee3-floor.txt
+2022-03-25 20:37:54 INFO  FloorService:89 - Номер этажа : 4
+2022-03-25 20:37:54 INFO  FloorService:90 - Количество комнат : 0
+2022-03-25 20:37:54 INFO  FloorService:91 - Номера комнат : 
+2022-03-25 20:37:54 INFO  FloorService:97 - _______________________
+2022-03-25 20:37:54 INFO  FloorService:87 - _______________________
+2022-03-25 20:37:54 INFO  FloorCRUD:137 - <Start searching file name of floor...
+2022-03-25 20:37:54 INFO  FloorCRUD:151 - File name of floor was found>
+2022-03-25 20:37:54 INFO  FloorService:88 - b05fdab0-de44-420d-8b86-6e70179dcc0c-floor.txt
+2022-03-25 20:37:54 INFO  FloorService:89 - Номер этажа : 8
+2022-03-25 20:37:54 INFO  FloorService:90 - Количество комнат : 0
+2022-03-25 20:37:54 INFO  FloorService:91 - Номера комнат : 
+2022-03-25 20:37:54 INFO  FloorService:97 - _______________________
+2022-03-25 20:37:54 INFO  FloorService:87 - _______________________
+2022-03-25 20:37:54 INFO  FloorCRUD:137 - <Start searching file name of floor...
+2022-03-25 20:37:54 INFO  FloorCRUD:151 - File name of floor was found>
+2022-03-25 20:37:54 INFO  FloorService:88 - d4f91d5d-81c6-4941-8b1e-f1e168a5ac91-floor.txt
+2022-03-25 20:37:54 INFO  FloorService:89 - Номер этажа : 2
+2022-03-25 20:37:54 INFO  FloorService:90 - Количество комнат : 2
+2022-03-25 20:37:54 INFO  FloorService:91 - Номера комнат : 
+2022-03-25 20:37:54 INFO  RoomsCRUD:118 - <Start searching room....
+2022-03-25 20:37:54 INFO  RoomsCRUD:133 - Room was found>
+2022-03-25 20:37:54 INFO  FloorService:95 - 2
+2022-03-25 20:37:54 INFO  RoomsCRUD:118 - <Start searching room....
+2022-03-25 20:37:54 INFO  RoomsCRUD:133 - Room was found>
+2022-03-25 20:37:54 INFO  FloorService:95 - 1
+2022-03-25 20:37:54 INFO  FloorService:97 - _______________________
+2022-03-25 20:37:54 INFO  MenuServices:51 - 1.Display all floors
+2022-03-25 20:37:54 INFO  MenuServices:52 - 2.Search floor(Num)
+2022-03-25 20:37:54 INFO  MenuServices:53 - 3.Add floor
+2022-03-25 20:37:54 INFO  MenuServices:54 - 4.Delete floor(Num)
+2022-03-25 20:37:54 INFO  MenuServices:55 - 5.Change floor(Num)
+2022-03-25 20:37:54 INFO  MenuServices:56 - 666.Back to previous menu
+2022-03-25 20:39:13 INFO  FloorService:36 - <Start creating floor...
+2022-03-25 20:39:13 INFO  HotelCRUD:43 - <Start searching hotel...
+2022-03-25 20:39:13 INFO  HotelCRUD:60 - Hotel was found>
+2022-03-25 20:39:13 INFO  FloorCRUD:205 - <Start saving floor...
+2022-03-25 20:39:13 INFO  FloorCRUD:214 - Success saving floor>
+2022-03-25 20:39:13 INFO  HotelCRUD:133 - <Start saving hotel...
+2022-03-25 20:39:13 INFO  HotelCRUD:140 - Success saving hotel>
+2022-03-25 20:39:13 INFO  FloorService:56 - End creating floor>
+2022-03-25 20:39:13 INFO  MenuServices:51 - 1.Display all floors
+2022-03-25 20:39:13 INFO  MenuServices:52 - 2.Search floor(Num)
+2022-03-25 20:39:13 INFO  MenuServices:53 - 3.Add floor
+2022-03-25 20:39:13 INFO  MenuServices:54 - 4.Delete floor(Num)
+2022-03-25 20:39:13 INFO  MenuServices:55 - 5.Change floor(Num)
+2022-03-25 20:39:13 INFO  MenuServices:56 - 666.Back to previous menu
+2022-03-25 20:39:15 INFO  FloorCRUD:35 - <Start searching floors....
+2022-03-25 20:39:15 INFO  FloorService:87 - _______________________
+2022-03-25 20:39:15 INFO  FloorCRUD:137 - <Start searching file name of floor...
+2022-03-25 20:39:15 INFO  FloorCRUD:151 - File name of floor was found>
+2022-03-25 20:39:15 INFO  FloorService:88 - 0dff6168-dc57-4719-801e-8005d0a2f8da-floor.txt
+2022-03-25 20:39:15 INFO  FloorService:89 - Номер этажа : 6
+2022-03-25 20:39:15 INFO  FloorService:90 - Количество комнат : 1
+2022-03-25 20:39:15 INFO  FloorService:91 - Номера комнат : 
+2022-03-25 20:39:15 INFO  RoomsCRUD:118 - <Start searching room....
+2022-03-25 20:39:15 INFO  RoomsCRUD:133 - Room was found>
+2022-03-25 20:39:15 INFO  FloorService:95 - 3
+2022-03-25 20:39:15 INFO  FloorService:97 - _______________________
+2022-03-25 20:39:15 INFO  FloorService:87 - _______________________
+2022-03-25 20:39:15 INFO  FloorCRUD:137 - <Start searching file name of floor...
+2022-03-25 20:39:15 INFO  FloorCRUD:151 - File name of floor was found>
+2022-03-25 20:39:15 INFO  FloorService:88 - 3c4bbea5-36b7-4aeb-b574-70701cefe1fe-floor.txt
+2022-03-25 20:39:15 INFO  FloorService:89 - Номер этажа : 1
+2022-03-25 20:39:15 INFO  FloorService:90 - Количество комнат : 1
+2022-03-25 20:39:15 INFO  FloorService:91 - Номера комнат : 
+2022-03-25 20:39:15 INFO  RoomsCRUD:118 - <Start searching room....
+2022-03-25 20:39:15 INFO  RoomsCRUD:133 - Room was found>
+2022-03-25 20:39:15 INFO  FloorService:95 - 4
+2022-03-25 20:39:15 INFO  FloorService:97 - _______________________
+2022-03-25 20:39:15 INFO  FloorService:87 - _______________________
+2022-03-25 20:39:15 INFO  FloorCRUD:137 - <Start searching file name of floor...
+2022-03-25 20:39:15 INFO  FloorCRUD:151 - File name of floor was found>
+2022-03-25 20:39:15 INFO  FloorService:88 - 4239a11e-b899-477a-883d-4e7a1aebf464-floor.txt
+2022-03-25 20:39:15 INFO  FloorService:89 - Номер этажа : 3
+2022-03-25 20:39:15 INFO  FloorService:90 - Количество комнат : 0
+2022-03-25 20:39:15 INFO  FloorService:91 - Номера комнат : 
+2022-03-25 20:39:15 INFO  FloorService:97 - _______________________
+2022-03-25 20:39:15 INFO  FloorService:87 - _______________________
+2022-03-25 20:39:15 INFO  FloorCRUD:137 - <Start searching file name of floor...
+2022-03-25 20:39:15 INFO  FloorCRUD:151 - File name of floor was found>
+2022-03-25 20:39:15 INFO  FloorService:88 - 449c36ce-981e-46ed-9310-b0bcb1fbd8c8-floor.txt
+2022-03-25 20:39:15 INFO  FloorService:89 - Номер этажа : 5
+2022-03-25 20:39:15 INFO  FloorService:90 - Количество комнат : 0
+2022-03-25 20:39:15 INFO  FloorService:91 - Номера комнат : 
+2022-03-25 20:39:15 INFO  FloorService:97 - _______________________
+2022-03-25 20:39:15 INFO  FloorService:87 - _______________________
+2022-03-25 20:39:15 INFO  FloorCRUD:137 - <Start searching file name of floor...
+2022-03-25 20:39:15 INFO  FloorCRUD:151 - File name of floor was found>
+2022-03-25 20:39:15 INFO  FloorService:88 - 5fa0e7f3-435f-4b0c-8899-a15f7b453bb8-floor.txt
+2022-03-25 20:39:15 INFO  FloorService:89 - Номер этажа : 9
+2022-03-25 20:39:15 INFO  FloorService:90 - Количество комнат : 0
+2022-03-25 20:39:15 INFO  FloorService:91 - Номера комнат : 
+2022-03-25 20:39:15 INFO  FloorService:97 - _______________________
+2022-03-25 20:39:15 INFO  FloorService:87 - _______________________
+2022-03-25 20:39:15 INFO  FloorCRUD:137 - <Start searching file name of floor...
+2022-03-25 20:39:15 INFO  FloorCRUD:151 - File name of floor was found>
+2022-03-25 20:39:15 INFO  FloorService:88 - 95e5772c-0355-4a3d-ac60-0b6921ea4f62-floor.txt
+2022-03-25 20:39:15 INFO  FloorService:89 - Номер этажа : 7
+2022-03-25 20:39:15 INFO  FloorService:90 - Количество комнат : 0
+2022-03-25 20:39:15 INFO  FloorService:91 - Номера комнат : 
+2022-03-25 20:39:15 INFO  FloorService:97 - _______________________
+2022-03-25 20:39:15 INFO  FloorService:87 - _______________________
+2022-03-25 20:39:15 INFO  FloorCRUD:137 - <Start searching file name of floor...
+2022-03-25 20:39:15 INFO  FloorCRUD:151 - File name of floor was found>
+2022-03-25 20:39:15 INFO  FloorService:88 - a1bbc020-fec4-452f-9730-b9c0685ddace-floor.txt
+2022-03-25 20:39:15 INFO  FloorService:89 - Номер этажа : 10
+2022-03-25 20:39:15 INFO  FloorService:90 - Количество комнат : 0
+2022-03-25 20:39:15 INFO  FloorService:91 - Номера комнат : 
+2022-03-25 20:39:15 INFO  FloorService:97 - _______________________
+2022-03-25 20:39:15 INFO  FloorService:87 - _______________________
+2022-03-25 20:39:15 INFO  FloorCRUD:137 - <Start searching file name of floor...
+2022-03-25 20:39:15 INFO  FloorCRUD:151 - File name of floor was found>
+2022-03-25 20:39:15 INFO  FloorService:88 - a95570bb-9702-4e92-9bbd-c5bc01034ee3-floor.txt
+2022-03-25 20:39:15 INFO  FloorService:89 - Номер этажа : 4
+2022-03-25 20:39:15 INFO  FloorService:90 - Количество комнат : 0
+2022-03-25 20:39:15 INFO  FloorService:91 - Номера комнат : 
+2022-03-25 20:39:15 INFO  FloorService:97 - _______________________
+2022-03-25 20:39:15 INFO  FloorService:87 - _______________________
+2022-03-25 20:39:15 INFO  FloorCRUD:137 - <Start searching file name of floor...
+2022-03-25 20:39:15 INFO  FloorCRUD:151 - File name of floor was found>
+2022-03-25 20:39:15 INFO  FloorService:88 - b05fdab0-de44-420d-8b86-6e70179dcc0c-floor.txt
+2022-03-25 20:39:15 INFO  FloorService:89 - Номер этажа : 8
+2022-03-25 20:39:15 INFO  FloorService:90 - Количество комнат : 0
+2022-03-25 20:39:15 INFO  FloorService:91 - Номера комнат : 
+2022-03-25 20:39:15 INFO  FloorService:97 - _______________________
+2022-03-25 20:39:15 INFO  FloorService:87 - _______________________
+2022-03-25 20:39:15 INFO  FloorCRUD:137 - <Start searching file name of floor...
+2022-03-25 20:39:15 INFO  FloorCRUD:151 - File name of floor was found>
+2022-03-25 20:39:15 INFO  FloorService:88 - d4f91d5d-81c6-4941-8b1e-f1e168a5ac91-floor.txt
+2022-03-25 20:39:15 INFO  FloorService:89 - Номер этажа : 2
+2022-03-25 20:39:15 INFO  FloorService:90 - Количество комнат : 2
+2022-03-25 20:39:15 INFO  FloorService:91 - Номера комнат : 
+2022-03-25 20:39:15 INFO  RoomsCRUD:118 - <Start searching room....
+2022-03-25 20:39:15 INFO  RoomsCRUD:133 - Room was found>
+2022-03-25 20:39:15 INFO  FloorService:95 - 2
+2022-03-25 20:39:15 INFO  RoomsCRUD:118 - <Start searching room....
+2022-03-25 20:39:15 INFO  RoomsCRUD:133 - Room was found>
+2022-03-25 20:39:15 INFO  FloorService:95 - 1
+2022-03-25 20:39:15 INFO  FloorService:97 - _______________________
+2022-03-25 20:39:15 INFO  MenuServices:51 - 1.Display all floors
+2022-03-25 20:39:15 INFO  MenuServices:52 - 2.Search floor(Num)
+2022-03-25 20:39:15 INFO  MenuServices:53 - 3.Add floor
+2022-03-25 20:39:15 INFO  MenuServices:54 - 4.Delete floor(Num)
+2022-03-25 20:39:15 INFO  MenuServices:55 - 5.Change floor(Num)
+2022-03-25 20:39:15 INFO  MenuServices:56 - 666.Back to previous menu
+2022-03-25 20:41:04 INFO  MenuServices:95 - see u!
+2022-03-25 20:41:04 INFO  MenuServices:306 - 1.Work with floors
+2022-03-25 20:41:04 INFO  MenuServices:307 - 2.Work with rooms
+2022-03-25 20:41:04 INFO  MenuServices:308 - 3.Start work as manager
+2022-03-25 20:41:04 INFO  MenuServices:309 - 4.Start work as service employee
+2022-03-25 20:41:04 INFO  MenuServices:310 - 111.UTILIZE HOTEL
+2022-03-25 20:41:04 INFO  MenuServices:311 - 666.Exit
+2022-03-25 20:41:04 INFO  MenuServices:312 - Choose a number of menu:
+2022-03-25 20:41:07 INFO  MenuServices:106 - Start work with rooms
+2022-03-25 20:41:07 INFO  MenuServices:110 - 1.Display all rooms
+2022-03-25 20:41:07 INFO  MenuServices:111 - 2.Search room(Num)
+2022-03-25 20:41:07 INFO  MenuServices:112 - 3.Add room
+2022-03-25 20:41:07 INFO  MenuServices:113 - 4.Delete room(Num)
+2022-03-25 20:41:07 INFO  MenuServices:114 - 5.Change room(Num)
+2022-03-25 20:41:07 INFO  MenuServices:115 - 666.Back to previous menu
+2022-03-25 20:41:09 INFO  RoomsCRUD:40 - <Start searching rooms....
+2022-03-25 20:41:09 INFO  RoomService:122 - _______________________
+2022-03-25 20:41:09 INFO  RoomService:123 - _______________________
+2022-03-25 20:41:09 INFO  RoomsCRUD:157 - <Start searching file name of room...
+2022-03-25 20:41:09 INFO  RoomsCRUD:172 - File name of room was found>
+2022-03-25 20:41:09 INFO  RoomService:124 - 3cf976e9-ee2e-4b60-b597-5ac1a8a7b876-room.txt
+2022-03-25 20:41:09 INFO  RoomService:125 - Номер комнаты : 1
+2022-03-25 20:41:09 INFO  RoomService:126 - _______________________
+2022-03-25 20:41:09 INFO  RoomService:127 - Количество гостей : 0
+2022-03-25 20:41:09 INFO  RoomService:128 - Гости : 
+2022-03-25 20:41:09 INFO  RoomService:133 - _______________________
+2022-03-25 20:41:09 INFO  RoomService:134 - Количество работников : 0
+2022-03-25 20:41:09 INFO  RoomService:135 - Работники : 
+2022-03-25 20:41:09 INFO  RoomService:140 - _______________________
+2022-03-25 20:41:09 INFO  RoomService:141 - _______________________
+2022-03-25 20:41:09 INFO  RoomService:122 - _______________________
+2022-03-25 20:41:09 INFO  RoomService:123 - _______________________
+2022-03-25 20:41:09 INFO  RoomsCRUD:157 - <Start searching file name of room...
+2022-03-25 20:41:09 INFO  RoomsCRUD:172 - File name of room was found>
+2022-03-25 20:41:09 INFO  RoomService:124 - 597bf2a6-ac82-4443-a36b-840cdd51abd1-room.txt
+2022-03-25 20:41:09 INFO  RoomService:125 - Номер комнаты : 3
+2022-03-25 20:41:09 INFO  RoomService:126 - _______________________
+2022-03-25 20:41:09 INFO  RoomService:127 - Количество гостей : 0
+2022-03-25 20:41:09 INFO  RoomService:128 - Гости : 
+2022-03-25 20:41:09 INFO  RoomService:133 - _______________________
+2022-03-25 20:41:09 INFO  RoomService:134 - Количество работников : 0
+2022-03-25 20:41:09 INFO  RoomService:135 - Работники : 
+2022-03-25 20:41:09 INFO  RoomService:140 - _______________________
+2022-03-25 20:41:09 INFO  RoomService:141 - _______________________
+2022-03-25 20:41:09 INFO  RoomService:122 - _______________________
+2022-03-25 20:41:09 INFO  RoomService:123 - _______________________
+2022-03-25 20:41:09 INFO  RoomsCRUD:157 - <Start searching file name of room...
+2022-03-25 20:41:09 INFO  RoomsCRUD:172 - File name of room was found>
+2022-03-25 20:41:09 INFO  RoomService:124 - e9eb02bc-10d4-4111-bdca-151b5de5980d-room.txt
+2022-03-25 20:41:09 INFO  RoomService:125 - Номер комнаты : 4
+2022-03-25 20:41:09 INFO  RoomService:126 - _______________________
+2022-03-25 20:41:09 INFO  RoomService:127 - Количество гостей : 0
+2022-03-25 20:41:09 INFO  RoomService:128 - Гости : 
+2022-03-25 20:41:09 INFO  RoomService:133 - _______________________
+2022-03-25 20:41:09 INFO  RoomService:134 - Количество работников : 0
+2022-03-25 20:41:09 INFO  RoomService:135 - Работники : 
+2022-03-25 20:41:09 INFO  RoomService:140 - _______________________
+2022-03-25 20:41:09 INFO  RoomService:141 - _______________________
+2022-03-25 20:41:09 INFO  RoomService:122 - _______________________
+2022-03-25 20:41:09 INFO  RoomService:123 - _______________________
+2022-03-25 20:41:09 INFO  RoomsCRUD:157 - <Start searching file name of room...
+2022-03-25 20:41:09 INFO  RoomsCRUD:172 - File name of room was found>
+2022-03-25 20:41:09 INFO  RoomService:124 - f35810ec-8c96-4123-8a6a-ffc10b477b45-room.txt
+2022-03-25 20:41:09 INFO  RoomService:125 - Номер комнаты : 2
+2022-03-25 20:41:09 INFO  RoomService:126 - _______________________
+2022-03-25 20:41:09 INFO  RoomService:127 - Количество гостей : 0
+2022-03-25 20:41:09 INFO  RoomService:128 - Гости : 
+2022-03-25 20:41:09 INFO  RoomService:133 - _______________________
+2022-03-25 20:41:09 INFO  RoomService:134 - Количество работников : 0
+2022-03-25 20:41:09 INFO  RoomService:135 - Работники : 
+2022-03-25 20:41:09 INFO  RoomService:140 - _______________________
+2022-03-25 20:41:09 INFO  RoomService:141 - _______________________
+2022-03-25 20:41:09 INFO  MenuServices:110 - 1.Display all rooms
+2022-03-25 20:41:09 INFO  MenuServices:111 - 2.Search room(Num)
+2022-03-25 20:41:09 INFO  MenuServices:112 - 3.Add room
+2022-03-25 20:41:09 INFO  MenuServices:113 - 4.Delete room(Num)
+2022-03-25 20:41:09 INFO  MenuServices:114 - 5.Change room(Num)
+2022-03-25 20:41:09 INFO  MenuServices:115 - 666.Back to previous menu
+2022-03-25 20:41:51 INFO  MenuServices:154 - see u!
+2022-03-25 20:41:51 INFO  MenuServices:306 - 1.Work with floors
+2022-03-25 20:41:51 INFO  MenuServices:307 - 2.Work with rooms
+2022-03-25 20:41:51 INFO  MenuServices:308 - 3.Start work as manager
+2022-03-25 20:41:51 INFO  MenuServices:309 - 4.Start work as service employee
+2022-03-25 20:41:51 INFO  MenuServices:310 - 111.UTILIZE HOTEL
+2022-03-25 20:41:51 INFO  MenuServices:311 - 666.Exit
+2022-03-25 20:41:51 INFO  MenuServices:312 - Choose a number of menu:
+2022-03-25 20:41:55 INFO  HotelCRUD:43 - <Start searching hotel...
+2022-03-25 20:41:55 INFO  HotelCRUD:60 - Hotel was found>
+2022-03-25 20:41:55 INFO  HotelCRUD:107 - <Start delete hotel...
+2022-03-25 20:41:55 INFO  FloorCRUD:102 - <Start searching floor....
+2022-03-25 20:41:55 INFO  FloorCRUD:115 - Floor was found>
+2022-03-25 20:41:55 INFO  FloorCRUD:173 - <Start delete floor...
+2022-03-25 20:41:55 INFO  FloorCRUD:67 - <Start searching floor....
+2022-03-25 20:41:55 INFO  FloorCRUD:80 - Floor was found>
+2022-03-25 20:41:55 INFO  HotelCRUD:43 - <Start searching hotel...
+2022-03-25 20:41:55 INFO  HotelCRUD:60 - Hotel was found>
+2022-03-25 20:41:55 INFO  HotelCRUD:133 - <Start saving hotel...
+2022-03-25 20:41:55 INFO  HotelCRUD:140 - Success saving hotel>
+2022-03-25 20:41:55 INFO  FloorCRUD:67 - <Start searching floor....
+2022-03-25 20:41:55 INFO  FloorCRUD:80 - Floor was found>
+2022-03-25 20:41:55 INFO  FloorCRUD:137 - <Start searching file name of floor...
+2022-03-25 20:41:55 INFO  FloorCRUD:151 - File name of floor was found>
+2022-03-25 20:41:55 INFO  FloorCRUD:196 - Floor was successfully deleted>
+2022-03-25 20:41:55 INFO  FloorCRUD:102 - <Start searching floor....
+2022-03-25 20:41:55 INFO  FloorCRUD:115 - Floor was found>
+2022-03-25 20:41:55 INFO  FloorCRUD:173 - <Start delete floor...
+2022-03-25 20:41:55 INFO  FloorCRUD:67 - <Start searching floor....
+2022-03-25 20:41:55 INFO  FloorCRUD:80 - Floor was found>
+2022-03-25 20:41:55 INFO  HotelCRUD:43 - <Start searching hotel...
+2022-03-25 20:41:55 INFO  HotelCRUD:60 - Hotel was found>
+2022-03-25 20:41:55 INFO  HotelCRUD:133 - <Start saving hotel...
+2022-03-25 20:41:55 INFO  HotelCRUD:140 - Success saving hotel>
+2022-03-25 20:41:55 INFO  FloorCRUD:67 - <Start searching floor....
+2022-03-25 20:41:55 INFO  FloorCRUD:80 - Floor was found>
+2022-03-25 20:41:55 INFO  FloorCRUD:137 - <Start searching file name of floor...
+2022-03-25 20:41:55 INFO  FloorCRUD:151 - File name of floor was found>
+2022-03-25 20:41:55 INFO  FloorCRUD:196 - Floor was successfully deleted>
+2022-03-25 20:41:55 INFO  FloorCRUD:102 - <Start searching floor....
+2022-03-25 20:41:55 INFO  FloorCRUD:115 - Floor was found>
+2022-03-25 20:41:55 INFO  FloorCRUD:173 - <Start delete floor...
+2022-03-25 20:41:55 INFO  FloorCRUD:67 - <Start searching floor....
+2022-03-25 20:41:55 INFO  FloorCRUD:80 - Floor was found>
+2022-03-25 20:41:55 INFO  HotelCRUD:43 - <Start searching hotel...
+2022-03-25 20:41:55 INFO  HotelCRUD:60 - Hotel was found>
+2022-03-25 20:41:55 INFO  HotelCRUD:133 - <Start saving hotel...
+2022-03-25 20:41:55 INFO  HotelCRUD:140 - Success saving hotel>
+2022-03-25 20:41:55 INFO  FloorCRUD:67 - <Start searching floor....
+2022-03-25 20:41:55 INFO  FloorCRUD:80 - Floor was found>
+2022-03-25 20:41:55 INFO  FloorCRUD:137 - <Start searching file name of floor...
+2022-03-25 20:41:55 INFO  FloorCRUD:151 - File name of floor was found>
+2022-03-25 20:41:55 INFO  FloorCRUD:196 - Floor was successfully deleted>
+2022-03-25 20:41:55 INFO  FloorCRUD:102 - <Start searching floor....
+2022-03-25 20:41:55 INFO  FloorCRUD:115 - Floor was found>
+2022-03-25 20:41:55 INFO  FloorCRUD:173 - <Start delete floor...
+2022-03-25 20:41:55 INFO  FloorCRUD:67 - <Start searching floor....
+2022-03-25 20:41:55 INFO  FloorCRUD:80 - Floor was found>
+2022-03-25 20:41:55 INFO  HotelCRUD:43 - <Start searching hotel...
+2022-03-25 20:41:55 INFO  HotelCRUD:60 - Hotel was found>
+2022-03-25 20:41:55 INFO  HotelCRUD:133 - <Start saving hotel...
+2022-03-25 20:41:55 INFO  HotelCRUD:140 - Success saving hotel>
+2022-03-25 20:41:55 INFO  RoomsCRUD:118 - <Start searching room....
+2022-03-25 20:41:55 INFO  RoomsCRUD:133 - Room was found>
+2022-03-25 20:41:55 INFO  RoomsCRUD:196 - <Start delete room...
+2022-03-25 20:41:55 INFO  RoomsCRUD:76 - <Start searching room....
+2022-03-25 20:41:55 INFO  RoomsCRUD:92 - Room was found>
+2022-03-25 20:41:55 INFO  FloorCRUD:102 - <Start searching floor....
+2022-03-25 20:41:55 INFO  FloorCRUD:115 - Floor was found>
+2022-03-25 20:41:55 INFO  FloorCRUD:205 - <Start saving floor...
+2022-03-25 20:41:55 INFO  FloorCRUD:214 - Success saving floor>
+2022-03-25 20:41:55 INFO  RoomsCRUD:76 - <Start searching room....
+2022-03-25 20:41:55 INFO  RoomsCRUD:92 - Room was found>
+2022-03-25 20:41:55 INFO  RoomsCRUD:157 - <Start searching file name of room...
+2022-03-25 20:41:55 INFO  RoomsCRUD:172 - File name of room was found>
+2022-03-25 20:41:55 INFO  RoomsCRUD:222 - Room was successfully deleted>
+2022-03-25 20:41:55 INFO  FloorCRUD:67 - <Start searching floor....
+2022-03-25 20:41:55 INFO  FloorCRUD:80 - Floor was found>
+2022-03-25 20:41:55 INFO  FloorCRUD:137 - <Start searching file name of floor...
+2022-03-25 20:41:55 INFO  FloorCRUD:151 - File name of floor was found>
+2022-03-25 20:41:55 INFO  FloorCRUD:196 - Floor was successfully deleted>
+2022-03-25 20:41:55 INFO  FloorCRUD:102 - <Start searching floor....
+2022-03-25 20:41:55 INFO  FloorCRUD:115 - Floor was found>
+2022-03-25 20:41:55 INFO  FloorCRUD:173 - <Start delete floor...
+2022-03-25 20:41:55 INFO  FloorCRUD:67 - <Start searching floor....
+2022-03-25 20:41:55 INFO  FloorCRUD:80 - Floor was found>
+2022-03-25 20:41:55 INFO  HotelCRUD:43 - <Start searching hotel...
+2022-03-25 20:41:55 INFO  HotelCRUD:60 - Hotel was found>
+2022-03-25 20:41:55 INFO  HotelCRUD:133 - <Start saving hotel...
+2022-03-25 20:41:55 INFO  HotelCRUD:140 - Success saving hotel>
+2022-03-25 20:41:55 INFO  RoomsCRUD:118 - <Start searching room....
+2022-03-25 20:41:55 INFO  RoomsCRUD:133 - Room was found>
+2022-03-25 20:41:55 INFO  RoomsCRUD:196 - <Start delete room...
+2022-03-25 20:41:55 INFO  RoomsCRUD:76 - <Start searching room....
+2022-03-25 20:41:55 INFO  RoomsCRUD:92 - Room was found>
+2022-03-25 20:41:55 INFO  FloorCRUD:102 - <Start searching floor....
+2022-03-25 20:41:55 INFO  FloorCRUD:115 - Floor was found>
+2022-03-25 20:41:55 INFO  FloorCRUD:205 - <Start saving floor...
+2022-03-25 20:41:55 INFO  FloorCRUD:214 - Success saving floor>
+2022-03-25 20:41:55 INFO  RoomsCRUD:76 - <Start searching room....
+2022-03-25 20:41:55 INFO  RoomsCRUD:92 - Room was found>
+2022-03-25 20:41:55 INFO  RoomsCRUD:157 - <Start searching file name of room...
+2022-03-25 20:41:55 INFO  RoomsCRUD:172 - File name of room was found>
+2022-03-25 20:41:55 INFO  RoomsCRUD:222 - Room was successfully deleted>
+2022-03-25 20:41:55 INFO  RoomsCRUD:118 - <Start searching room....
+2022-03-25 20:41:55 INFO  RoomsCRUD:133 - Room was found>
+2022-03-25 20:41:55 INFO  RoomsCRUD:196 - <Start delete room...
+2022-03-25 20:41:55 INFO  RoomsCRUD:76 - <Start searching room....
+2022-03-25 20:41:55 INFO  RoomsCRUD:92 - Room was found>
+2022-03-25 20:41:55 INFO  FloorCRUD:102 - <Start searching floor....
+2022-03-25 20:41:55 INFO  FloorCRUD:115 - Floor was found>
+2022-03-25 20:41:55 INFO  FloorCRUD:205 - <Start saving floor...
+2022-03-25 20:41:55 INFO  FloorCRUD:214 - Success saving floor>
+2022-03-25 20:41:55 INFO  RoomsCRUD:76 - <Start searching room....
+2022-03-25 20:41:55 INFO  RoomsCRUD:92 - Room was found>
+2022-03-25 20:41:55 INFO  RoomsCRUD:157 - <Start searching file name of room...
+2022-03-25 20:41:55 INFO  RoomsCRUD:172 - File name of room was found>
+2022-03-25 20:41:55 INFO  RoomsCRUD:222 - Room was successfully deleted>
+2022-03-25 20:41:55 INFO  FloorCRUD:67 - <Start searching floor....
+2022-03-25 20:41:55 INFO  FloorCRUD:80 - Floor was found>
+2022-03-25 20:41:55 INFO  FloorCRUD:137 - <Start searching file name of floor...
+2022-03-25 20:41:55 INFO  FloorCRUD:151 - File name of floor was found>
+2022-03-25 20:41:55 INFO  FloorCRUD:196 - Floor was successfully deleted>
+2022-03-25 20:41:55 INFO  FloorCRUD:102 - <Start searching floor....
+2022-03-25 20:41:55 INFO  FloorCRUD:115 - Floor was found>
+2022-03-25 20:41:55 INFO  FloorCRUD:173 - <Start delete floor...
+2022-03-25 20:41:55 INFO  FloorCRUD:67 - <Start searching floor....
+2022-03-25 20:41:55 INFO  FloorCRUD:80 - Floor was found>
+2022-03-25 20:41:55 INFO  HotelCRUD:43 - <Start searching hotel...
+2022-03-25 20:41:55 INFO  HotelCRUD:60 - Hotel was found>
+2022-03-25 20:41:55 INFO  HotelCRUD:133 - <Start saving hotel...
+2022-03-25 20:41:55 INFO  HotelCRUD:140 - Success saving hotel>
+2022-03-25 20:41:55 INFO  RoomsCRUD:118 - <Start searching room....
+2022-03-25 20:41:55 INFO  RoomsCRUD:133 - Room was found>
+2022-03-25 20:41:55 INFO  RoomsCRUD:196 - <Start delete room...
+2022-03-25 20:41:55 INFO  RoomsCRUD:76 - <Start searching room....
+2022-03-25 20:41:55 INFO  RoomsCRUD:92 - Room was found>
+2022-03-25 20:41:55 INFO  FloorCRUD:102 - <Start searching floor....
+2022-03-25 20:41:55 INFO  FloorCRUD:115 - Floor was found>
+2022-03-25 20:41:55 INFO  FloorCRUD:205 - <Start saving floor...
+2022-03-25 20:41:55 INFO  FloorCRUD:214 - Success saving floor>
+2022-03-25 20:41:55 INFO  RoomsCRUD:76 - <Start searching room....
+2022-03-25 20:41:55 INFO  RoomsCRUD:92 - Room was found>
+2022-03-25 20:41:55 INFO  RoomsCRUD:157 - <Start searching file name of room...
+2022-03-25 20:41:55 INFO  RoomsCRUD:172 - File name of room was found>
+2022-03-25 20:41:55 INFO  RoomsCRUD:222 - Room was successfully deleted>
+2022-03-25 20:41:55 INFO  FloorCRUD:67 - <Start searching floor....
+2022-03-25 20:41:55 INFO  FloorCRUD:80 - Floor was found>
+2022-03-25 20:41:55 INFO  FloorCRUD:137 - <Start searching file name of floor...
+2022-03-25 20:41:55 INFO  FloorCRUD:151 - File name of floor was found>
+2022-03-25 20:41:55 INFO  FloorCRUD:196 - Floor was successfully deleted>
+2022-03-25 20:41:55 INFO  FloorCRUD:102 - <Start searching floor....
+2022-03-25 20:41:55 INFO  FloorCRUD:115 - Floor was found>
+2022-03-25 20:41:55 INFO  FloorCRUD:173 - <Start delete floor...
+2022-03-25 20:41:55 INFO  FloorCRUD:67 - <Start searching floor....
+2022-03-25 20:41:55 INFO  FloorCRUD:80 - Floor was found>
+2022-03-25 20:41:55 INFO  HotelCRUD:43 - <Start searching hotel...
+2022-03-25 20:41:56 INFO  HotelCRUD:60 - Hotel was found>
+2022-03-25 20:41:56 INFO  HotelCRUD:133 - <Start saving hotel...
+2022-03-25 20:41:56 INFO  HotelCRUD:140 - Success saving hotel>
+2022-03-25 20:41:56 INFO  FloorCRUD:67 - <Start searching floor....
+2022-03-25 20:41:56 INFO  FloorCRUD:80 - Floor was found>
+2022-03-25 20:41:56 INFO  FloorCRUD:137 - <Start searching file name of floor...
+2022-03-25 20:41:56 INFO  FloorCRUD:151 - File name of floor was found>
+2022-03-25 20:41:56 INFO  FloorCRUD:196 - Floor was successfully deleted>
+2022-03-25 20:41:56 INFO  FloorCRUD:102 - <Start searching floor....
+2022-03-25 20:41:56 INFO  FloorCRUD:115 - Floor was found>
+2022-03-25 20:41:56 INFO  FloorCRUD:173 - <Start delete floor...
+2022-03-25 20:41:56 INFO  FloorCRUD:67 - <Start searching floor....
+2022-03-25 20:41:56 INFO  FloorCRUD:80 - Floor was found>
+2022-03-25 20:41:56 INFO  HotelCRUD:43 - <Start searching hotel...
+2022-03-25 20:41:56 INFO  HotelCRUD:60 - Hotel was found>
+2022-03-25 20:41:56 INFO  HotelCRUD:133 - <Start saving hotel...
+2022-03-25 20:41:56 INFO  HotelCRUD:140 - Success saving hotel>
+2022-03-25 20:41:56 INFO  FloorCRUD:67 - <Start searching floor....
+2022-03-25 20:41:56 INFO  FloorCRUD:80 - Floor was found>
+2022-03-25 20:41:56 INFO  FloorCRUD:137 - <Start searching file name of floor...
+2022-03-25 20:41:56 INFO  FloorCRUD:151 - File name of floor was found>
+2022-03-25 20:41:56 INFO  FloorCRUD:196 - Floor was successfully deleted>
+2022-03-25 20:41:56 INFO  FloorCRUD:102 - <Start searching floor....
+2022-03-25 20:41:56 INFO  FloorCRUD:115 - Floor was found>
+2022-03-25 20:41:56 INFO  FloorCRUD:173 - <Start delete floor...
+2022-03-25 20:41:56 INFO  FloorCRUD:67 - <Start searching floor....
+2022-03-25 20:41:56 INFO  FloorCRUD:80 - Floor was found>
+2022-03-25 20:41:56 INFO  HotelCRUD:43 - <Start searching hotel...
+2022-03-25 20:41:56 INFO  HotelCRUD:60 - Hotel was found>
+2022-03-25 20:41:56 INFO  HotelCRUD:133 - <Start saving hotel...
+2022-03-25 20:41:56 INFO  HotelCRUD:140 - Success saving hotel>
+2022-03-25 20:41:56 INFO  FloorCRUD:67 - <Start searching floor....
+2022-03-25 20:41:56 INFO  FloorCRUD:80 - Floor was found>
+2022-03-25 20:41:56 INFO  FloorCRUD:137 - <Start searching file name of floor...
+2022-03-25 20:41:56 INFO  FloorCRUD:151 - File name of floor was found>
+2022-03-25 20:41:56 INFO  FloorCRUD:196 - Floor was successfully deleted>
+2022-03-25 20:41:56 INFO  FloorCRUD:102 - <Start searching floor....
+2022-03-25 20:41:56 INFO  FloorCRUD:115 - Floor was found>
+2022-03-25 20:41:56 INFO  FloorCRUD:173 - <Start delete floor...
+2022-03-25 20:41:56 INFO  FloorCRUD:67 - <Start searching floor....
+2022-03-25 20:41:56 INFO  FloorCRUD:80 - Floor was found>
+2022-03-25 20:41:56 INFO  HotelCRUD:43 - <Start searching hotel...
+2022-03-25 20:41:56 INFO  HotelCRUD:60 - Hotel was found>
+2022-03-25 20:41:56 INFO  HotelCRUD:133 - <Start saving hotel...
+2022-03-25 20:41:56 INFO  HotelCRUD:140 - Success saving hotel>
+2022-03-25 20:41:56 INFO  FloorCRUD:67 - <Start searching floor....
+2022-03-25 20:41:56 INFO  FloorCRUD:80 - Floor was found>
+2022-03-25 20:41:56 INFO  FloorCRUD:137 - <Start searching file name of floor...
+2022-03-25 20:41:56 INFO  FloorCRUD:151 - File name of floor was found>
+2022-03-25 20:41:56 INFO  FloorCRUD:196 - Floor was successfully deleted>
+2022-03-25 20:41:56 INFO  HotelCRUD:43 - <Start searching hotel...
+2022-03-25 20:41:56 INFO  HotelCRUD:60 - Hotel was found>
+2022-03-25 20:41:56 INFO  HotelCRUD:88 - <Start searching file name of hotel...
+2022-03-25 20:41:56 INFO  HotelCRUD:96 - File name of hotel was found>
+2022-03-25 20:41:56 INFO  HotelCRUD:123 - hotel was successfully deleted>
+2022-03-25 20:41:56 WARN  MenuServices:329 - AFTER UTILIZING HOTEL PROGRAM CANNOT WORK, REBOOT IT
+2022-03-25 20:41:56 INFO  MenuServices:306 - 1.Work with floors
+2022-03-25 20:41:56 INFO  MenuServices:307 - 2.Work with rooms
+2022-03-25 20:41:56 INFO  MenuServices:308 - 3.Start work as manager
+2022-03-25 20:41:56 INFO  MenuServices:309 - 4.Start work as service employee
+2022-03-25 20:41:56 INFO  MenuServices:310 - 111.UTILIZE HOTEL
+2022-03-25 20:41:56 INFO  MenuServices:311 - 666.Exit
+2022-03-25 20:41:56 INFO  MenuServices:312 - Choose a number of menu:
+2022-03-25 20:42:03 INFO  MenuServices:332 - see u!
+2022-03-25 20:42:03 INFO  LogIn:53 - see u!
+2022-03-25 20:42:03 INFO  LogIn:28 - Start LogIn....
+2022-03-25 20:42:03 INFO  LogIn:29 - Hello AdminAdmin
+2022-03-25 20:42:03 INFO  LogIn:30 - 1.Start work as ADMIN
+2022-03-25 20:42:03 INFO  LogIn:31 - 666 Back to main menu
+2022-03-25 20:42:03 INFO  LogIn:32 - Choose a number of menu:
+2022-03-25 20:42:04 INFO  LogIn:53 - see u!
+2022-03-25 20:42:04 INFO  Console:23 - Hello Guest, please logIn to start work with hotel
+2022-03-25 20:42:04 INFO  Console:24 - 1.Start LogIn
+2022-03-25 20:42:04 INFO  Console:25 - 2.Registration
+2022-03-25 20:42:04 INFO  Console:26 - 666 Exit
+2022-03-25 20:42:04 INFO  Console:27 - Choose a number of menu:
+2022-03-25 20:42:06 INFO  Console:37 - see u!

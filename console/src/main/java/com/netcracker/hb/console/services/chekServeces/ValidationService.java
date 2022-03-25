@@ -122,10 +122,6 @@ public class ValidationService {
     return role;
   }
 
-  public void validationGuestRoleCheck() {
-
-  }
-
   public String validationName() {
     int correctChoice;
     char ch;

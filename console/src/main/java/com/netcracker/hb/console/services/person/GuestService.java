@@ -4,12 +4,10 @@ import com.netcracker.hb.Dao.CRUD.CRUD;
 import com.netcracker.hb.Dao.CRUD.Person.GuestCRUD;
 import com.netcracker.hb.Dao.CRUD.Person.IGuestCRUD;
 import com.netcracker.hb.Dao.CRUD.Person.PersonalCardCRUD;
-import com.netcracker.hb.Dao.CRUD.hotel.RoomsCRUD;
 import com.netcracker.hb.console.services.IPersonalCard;
 import com.netcracker.hb.console.services.Service;
 import com.netcracker.hb.console.services.chekServeces.ValidationService;
 import com.netcracker.hb.entities.Role;
-import com.netcracker.hb.entities.hotel.Room;
 import com.netcracker.hb.entities.persons.Guest;
 import com.netcracker.hb.entities.persons.PersonalCard;
 import java.util.UUID;
@@ -30,7 +28,6 @@ public class GuestService implements Service<Guest> {
 
   private static final ValidationService validationService = ValidationService.getValidationService();
   private static final IPersonalCard<PersonalCard> personalCardService = PersonalCardService.getPersonalCardService();
-  private static final CRUD<Room> roomCRUD = RoomsCRUD.getRoomsCRUD();
   private static final CRUD<Guest> guestCRUD = GuestCRUD.getGuestCRUD();
   private static final IGuestCRUD<PersonalCard> personalCardCRUD = PersonalCardCRUD.getPersonalCardCRUD();
 

@@ -3,7 +3,6 @@ package com.netcracker.hb.console.services.chekServeces;
 import com.netcracker.hb.console.services.MenuServices;
 import com.netcracker.hb.entities.persons.Employee;
 import lombok.extern.log4j.Log4j;
-import java.util.Scanner;
 
 @Log4j
 public class LogIn {
@@ -19,9 +18,6 @@ public class LogIn {
 
   private static final ValidationService validationService = ValidationService.getValidationService();
   private static final MenuServices menuServices = MenuServices.getMenuServices();
-
-  Scanner in = new Scanner(System.in);
-
 
   public void startLogIn() {
     int userChoice;

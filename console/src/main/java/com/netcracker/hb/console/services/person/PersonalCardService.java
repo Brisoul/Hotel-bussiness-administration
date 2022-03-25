@@ -1,9 +1,6 @@
 package com.netcracker.hb.console.services.person;
 
 import com.netcracker.hb.Dao.CRUD.CRUD;
-import com.netcracker.hb.Dao.CRUD.Person.IEmployeeCRUD;
-import com.netcracker.hb.Dao.CRUD.Person.EmployeeCRUD;
-import com.netcracker.hb.Dao.CRUD.Person.GuestCRUD;
 import com.netcracker.hb.Dao.CRUD.Person.PersonalCardCRUD;
 import com.netcracker.hb.console.services.IPersonalCard;
 import com.netcracker.hb.console.services.chekServeces.ValidationService;
@@ -29,8 +26,6 @@ public class PersonalCardService implements IPersonalCard<PersonalCard> {
 
   private static int cardNum;
   private static final ValidationService validationService = ValidationService.getValidationService();
-  private static final CRUD<Guest> guestCRUD = GuestCRUD.getGuestCRUD();
-  private static final IEmployeeCRUD<Employee> employeeCRUD = EmployeeCRUD.getIEmployeeCRUD();
   private static final CRUD<PersonalCard> personalCardCRUD = PersonalCardCRUD.getPersonalCardCRUD();
 
   @Override

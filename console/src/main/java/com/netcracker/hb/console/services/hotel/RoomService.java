@@ -15,7 +15,6 @@ import com.netcracker.hb.entities.hotel.Room;
 import com.netcracker.hb.entities.persons.Employee;
 import com.netcracker.hb.entities.persons.Guest;
 import java.util.HashSet;
-import java.util.Scanner;
 import java.util.Set;
 import java.util.UUID;
 import lombok.extern.log4j.Log4j;
@@ -31,8 +30,6 @@ public class RoomService implements Service<Room> {
   }
 
 
-
-  Scanner in = new Scanner(System.in);
   public ValidationService validationService = ValidationService.getValidationService();
   public static final CRUD<Floor> floorCRUD = FloorCRUD.getFloorCRUD();
   public static final CRUD<Room> roomsCRUD = RoomsCRUD.getRoomsCRUD();

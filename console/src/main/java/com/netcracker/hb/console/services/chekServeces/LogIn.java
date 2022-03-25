@@ -1,16 +1,8 @@
 package com.netcracker.hb.console.services.chekServeces;
 
 import com.netcracker.hb.console.services.MenuServices;
-import com.netcracker.hb.console.services.Service;
-import com.netcracker.hb.console.services.person.EmployeeService;
-import com.netcracker.hb.entities.Role;
 import com.netcracker.hb.entities.persons.Employee;
-import com.netcracker.hb.entities.persons.Guest;
-import com.netcracker.hb.entities.persons.Person;
-import java.util.HashMap;
-import java.util.UUID;
 import lombok.extern.log4j.Log4j;
-import lombok.extern.slf4j.Slf4j;
 import java.util.Scanner;
 
 @Log4j

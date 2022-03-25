@@ -3,7 +3,6 @@ package com.netcracker.hb.console.services.hotel;
 import com.netcracker.hb.Dao.CRUD.CRUD;
 import com.netcracker.hb.Dao.CRUD.hotel.HotelCRUD;
 import com.netcracker.hb.console.services.Service;
-import com.netcracker.hb.entities.hotel.Floor;
 import com.netcracker.hb.entities.hotel.Hotel;
 import java.util.HashSet;
 import java.util.UUID;

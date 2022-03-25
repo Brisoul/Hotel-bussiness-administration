@@ -2,7 +2,6 @@ package com.netcracker.hb.console;
 
 import com.netcracker.hb.console.services.chekServeces.LogIn;
 import com.netcracker.hb.console.services.chekServeces.ValidationService;
-import java.util.Scanner;
 import lombok.extern.log4j.Log4j;
 
 

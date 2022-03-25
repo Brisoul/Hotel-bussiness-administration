@@ -7,7 +7,6 @@ import com.netcracker.hb.Dao.CRUD.Person.IEmployeeCRUD;
 import com.netcracker.hb.Dao.CRUD.Person.EmployeeCRUD;
 import com.netcracker.hb.Dao.CRUD.Person.GuestCRUD;
 import com.netcracker.hb.Dao.CRUD.Person.IGuestCRUD;
-import com.netcracker.hb.Dao.CRUD.Person.PersonCRUD;
 import com.netcracker.hb.entities.Role;
 import com.netcracker.hb.entities.persons.Employee;
 import com.netcracker.hb.entities.persons.Guest;

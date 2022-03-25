@@ -3,11 +3,14 @@ package com.netcracker.hb.console.services.chekServeces;
 import static java.lang.Character.isLetter;
 import static java.lang.Character.isLetterOrDigit;
 
+import com.netcracker.hb.Dao.CRUD.CRUD;
 import com.netcracker.hb.Dao.CRUD.Person.IEmployeeCRUD;
 import com.netcracker.hb.Dao.CRUD.Person.EmployeeCRUD;
 import com.netcracker.hb.Dao.CRUD.Person.GuestCRUD;
 import com.netcracker.hb.Dao.CRUD.Person.IGuestCRUD;
+import com.netcracker.hb.Dao.CRUD.hotel.FloorCRUD;
 import com.netcracker.hb.entities.Role;
+import com.netcracker.hb.entities.hotel.Floor;
 import com.netcracker.hb.entities.persons.Employee;
 import com.netcracker.hb.entities.persons.Guest;
 import com.netcracker.hb.entities.persons.Person;
@@ -28,6 +31,7 @@ public class ValidationService {
 
   private final IGuestCRUD<Guest> guestCRUD = GuestCRUD.getGuestCRUD();
   private final IEmployeeCRUD<Employee> employeeCRUD = EmployeeCRUD.getIEmployeeCRUD();
+  private static final CRUD<Floor> floorCRUD = FloorCRUD.getFloorCRUD();
 
 
   Scanner in = new Scanner(System.in);
@@ -259,6 +263,20 @@ public class ValidationService {
     } while (employee== null);
     return employee;
   }
+
+
+  public boolean validationMaxNumber(int num){
+    if(floorCRUD.searchObjects()!= null){
+      if(floorCRUD.searchObjects().size()>=num){
+        return true;
+      } else{
+        return false;
+      }
+    } else {
+      return false;
+    }
+  }
+
 
 
 }

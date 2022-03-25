@@ -22,6 +22,7 @@ import lombok.extern.log4j.Log4j;
 public class GuestCRUD implements IGuestCRUD<Guest> {
 
   private static final IGuestCRUD<Guest> guestCRUD = new GuestCRUD();
+
   private GuestCRUD() {
   }
 
@@ -30,7 +31,7 @@ public class GuestCRUD implements IGuestCRUD<Guest> {
   }
 
   private static final CRUD<Room> roomCRUD = RoomsCRUD.getRoomsCRUD();
-  private static final CRUD<PersonalCard> personalCardCRUD = PersonalCardCRUD.getPersonalCardCRUD();
+  private static final IGuestCRUD<PersonalCard> personalCardCRUD = PersonalCardCRUD.getPersonalCardCRUD();
 
   @Override
   public Guest searchObjectNameSurname(String name, String surname) {
@@ -114,7 +115,7 @@ public class GuestCRUD implements IGuestCRUD<Guest> {
     //TODO можно добавить выбор пользователя по найденным в комнате людям
     if (guest == null || uuid == null) {
       log.error("GUEST NOT FOUND>");
-    } else{
+    } else {
       log.info("guest was found>");
     }
     return guest;
@@ -133,9 +134,11 @@ public class GuestCRUD implements IGuestCRUD<Guest> {
         ObjectInputStream objectGuestIn = new ObjectInputStream(fileGuestIn);
         Guest object = (Guest) objectGuestIn.readObject();
         //
-        if (object.getUuid().equals(uuid)) {
-          log.info("guest was found>");
-          guest = object;
+        if (object != null && uuid !=null) {
+          if (object.getUuid().equals(uuid)) {
+            log.info("guest was found>");
+            guest = object;
+          }
         }
         objectGuestIn.close();
       }
@@ -189,21 +192,31 @@ public class GuestCRUD implements IGuestCRUD<Guest> {
   @Override
   public void deleteObject(Guest object) {
     //удаляем персональную карту
-    PersonalCard personalCard = personalCardCRUD.searchUUIDObject(object.getCardID());
-    personalCardCRUD.deleteObject(personalCard);
+    if (object.getCardID() !=null) {
+      PersonalCard personalCard = personalCardCRUD.searchUUIDObject(object.getCardID());
+      if (personalCard != null) {
+        personalCardCRUD.deleteObject(personalCard);
+      } else {
+        log.warn("CARD NOT FOUND");
+      }
+    }
 
     //убираем из комнаты
     Room room = roomCRUD.searchUUIDObject(object.getRoomID());
-    room.deleteGuest(object.getUuid());
-    roomCRUD.saveObject(room);
+    if (room != null) {
+      room.deleteGuest(object.getUuid());
+      roomCRUD.saveObject(room);
+    } else {
+      log.warn("Room not found");
+    }
     // удаляем
     Guest guest = searchUUIDObject(object.getUuid());
 
-    File deleteFile = new File("entSAVE/guest_entities/"+ searchFileName(guest));
+    File deleteFile = new File("entSAVE/guest_entities/" + searchFileName(guest));
     if (deleteFile != null) {
-      log.info("Guest was successfully deleted>" );
+      log.info("Guest was successfully deleted>");
       deleteFile.delete();
-    } else{
+    } else {
       log.warn("NOTHING WAS DELETED, FILE GUEST NOT FOUND>");
     }
   }

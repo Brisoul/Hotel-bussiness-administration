@@ -165,12 +165,11 @@ public class EmployeeService implements Service<Employee> {
             }
           }
 
-
-
           log.info("Card was found start changing...");
           personalCardService.changeObject(myCard);
           employeeCRUD.saveObject(object);
           break;
+
         case 9:
           Contract myContract = null;
           if (object.getContractID() == null) {

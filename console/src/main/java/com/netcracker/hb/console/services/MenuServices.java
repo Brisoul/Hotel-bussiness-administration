@@ -224,7 +224,7 @@ public class MenuServices {
       log.info("1.Display all guests");
       log.info("2.Search employee(Name Surname, roomNum)");
       log.info("3.Add guests");
-      log.info("4.Delete guests(Name Surname)");
+      log.info("4.Delete guests(Name Surname)");//не работает
       log.info("5.Change guest(Name Surname)");
       log.info("666.Back to previous menu");
       userChoice = validationService.validationNumberChoice();
@@ -261,33 +261,6 @@ public class MenuServices {
             log.error("UNDEFINED GUEST ");
           }
           break;
-        case 666:
-          log.info("see u!");
-          break;
-        default:
-          log.error("Choose correct num");
-          break;
-      }
-
-    } while (userChoice != 666);
-  }
-
-
-  public void contractWorkMenu() {
-    log.info("Start work with contract");
-    int userChoice;
-    do {
-      log.info("1.Display contract");
-      log.info("3.Add contract");
-      log.info("4.Delete contract");
-      log.info("666.Back to previous menu");
-      userChoice = validationService.validationNumberChoice();
-      switch (userChoice) {
-        case 1:
-        case 2:
-        case 3:
-        case 4:
-        case 5:
         case 666:
           log.info("see u!");
           break;

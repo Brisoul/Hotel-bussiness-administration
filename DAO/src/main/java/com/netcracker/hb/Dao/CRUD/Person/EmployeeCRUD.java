@@ -25,8 +25,10 @@ public class EmployeeCRUD implements IEmployeeCRUD<Employee> {
 
 
   private static final IEmployeeCRUD<Employee> employeeCRUD = new EmployeeCRUD();
+
   private EmployeeCRUD() {
   }
+
   public static IEmployeeCRUD<Employee> getIEmployeeCRUD() {
     return employeeCRUD;
   }
@@ -204,9 +206,11 @@ public class EmployeeCRUD implements IEmployeeCRUD<Employee> {
         ObjectInputStream objectEmployeeIn = new ObjectInputStream(fileEmployeeIn);
         Employee object = (Employee) objectEmployeeIn.readObject();
         //
-        if (object.getUuid().equals(uuid)) {
-          log.info("employee was found>");
-          employee = object;
+        if (object != null && uuid !=null) {
+          if (object.getUuid().equals(uuid)) {
+            log.info("employee was found>");
+            employee = object;
+          }
         }
         objectEmployeeIn.close();
       }
@@ -261,8 +265,15 @@ public class EmployeeCRUD implements IEmployeeCRUD<Employee> {
   @Override
   public void deleteObject(Employee object) {
     //удаляем персональную карту
-    PersonalCard personalCard = personalCardCRUD.searchUUIDObject(object.getCardID());
-    personalCardCRUD.deleteObject(personalCard);
+
+    if (object.getCardID() !=null) {
+      PersonalCard personalCard = personalCardCRUD.searchUUIDObject(object.getCardID());
+      if (personalCard != null) {
+        personalCardCRUD.deleteObject(personalCard);
+      } else {
+        log.warn("CARD NOT FOUND");
+      }
+    }
 
     //убираем из всех комнат за которыми закреплен
     for (UUID roomID : object.getRoomsID()) {

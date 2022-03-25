@@ -44,7 +44,9 @@ public class GuestService implements Service<Guest> {
         .build();
     guest.setRole(Role.GUEST);
     guest.setUuid(UUID.randomUUID());
+    log.info("Write name");
     guest.setName(validationService.validationName());
+    log.info("Write surname");
     guest.setSurname(validationService.validationName());
     guestCRUD.saveObject(guest);
 
@@ -91,22 +93,22 @@ public class GuestService implements Service<Guest> {
               }
             }
             if (myCard == null) {
-              personalCardService.addObjectPerson(object);
               log.info("Card not found, start creating card");
+              personalCardService.addObjectPerson(object);
+
               for (PersonalCard personalCard : personalCardCRUD.searchObjects()) {
                 if (personalCard.getPersonID().equals(object.getUuid())) {
                   myCard = personalCard;
                   log.info("we find card with user uuid");
                 }
               }
-              object.setCardID(myCard.getUuid());
-              guestCRUD.saveObject(object);
             } else {
               log.info("Card was found");
               object.setCardID(myCard.getUuid());
               guestCRUD.saveObject(object);
             }
           }
+
           for (PersonalCard personalCard : personalCardCRUD.searchObjects()) {
             if (personalCard.getPersonID().equals(object.getUuid())) {
               myCard = personalCard;

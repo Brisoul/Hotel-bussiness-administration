@@ -68,8 +68,7 @@ public class PersonalCardCRUD implements IGuestCRUD<PersonalCard> {
   public List<PersonalCard> searchObjects() {
     log.info("<Start searching personal cards....");
 
-    File personalCardFolderDirectory = new File(
-        "entSAVE/personalcard_entities");
+    File personalCardFolderDirectory = new File("entSAVE/personalcard_entities");
     String[] personalCardList = personalCardFolderDirectory.list();
     List personalCards = new ArrayList();
     try {
@@ -143,7 +142,7 @@ public class PersonalCardCRUD implements IGuestCRUD<PersonalCard> {
     File personalCardFolderDirectory = new File(
         "entSAVE/personalcard_entities");
     String[] personalCardList = personalCardFolderDirectory.list();
-    Object personalCard = null;
+    PersonalCard personalCard = null;
     try {
       for (String personalCardFolderName : personalCardList) {
 
@@ -151,11 +150,13 @@ public class PersonalCardCRUD implements IGuestCRUD<PersonalCard> {
             "entSAVE/personalcard_entities/" + personalCardFolderName);
         ObjectInputStream objectPersonalCardIn = new ObjectInputStream(filePersonalCardIn);
         PersonalCard object = (PersonalCard) objectPersonalCardIn.readObject();
-        if (object.getUuid().equals(uuid)) {
-          log.info("Personal card was found>");
-          personalCard = object;
+        if (object != null && uuid !=null) {
+          if (object.getUuid().equals(uuid)) {
+            log.info("Personal card was found>");
+            personalCard = object;
+          }
+          objectPersonalCardIn.close();
         }
-        objectPersonalCardIn.close();
 
 
       }
@@ -169,7 +170,7 @@ public class PersonalCardCRUD implements IGuestCRUD<PersonalCard> {
       if (personalCard == null) {
         log.error("PERSONAL CARD NOT FOUND>");
       }
-      return (PersonalCard) personalCard;
+      return personalCard;
     }
   }
 

@@ -24,8 +24,11 @@ import lombok.extern.log4j.Log4j;
 public class RoomService implements Service<Room> {
 
   private static final Service<Room> roomService = new RoomService();
-  private RoomService(){}
-  public static Service<Room> getRoomService(){
+
+  private RoomService() {
+  }
+
+  public static Service<Room> getRoomService() {
     return roomService;
   }
 
@@ -37,6 +40,7 @@ public class RoomService implements Service<Room> {
   private static final IEmployeeCRUD<Employee> employeeCRUD = EmployeeCRUD.getIEmployeeCRUD();
 
   private static int roomNum;
+
   @Override
   public void addObject() {
 
@@ -47,30 +51,34 @@ public class RoomService implements Service<Room> {
     //Выбрали этаж
     log.info("Enter floor on which the room is located ");
     int floorNum = validationService.validationNumberChoice();
-    Floor floor = floorCRUD.searchObjectNum(floorNum);
-    // TODO: 21.03.2022 можно ввести несуществующий этаж
+    if (validationService.validationMaxNumber(floorNum)) {
+      Floor floor = floorCRUD.searchObjectNum(floorNum);
+      // TODO: 21.03.2022 можно ввести несуществующий этаж
 
-    //Выбрали номер комнаты
-    roomNum +=1;
+      //Выбрали номер комнаты
+      roomNum += 1;
 
-    //Создали комнату
-    Room room = Room.builder()
-        .floorId(floor.getUuid())
-        .roomNum(roomNum)
-        .guestID(new HashSet<>())
-        .employeeID(new HashSet<>())
-        .role(role)
-        .uuid(UUID.randomUUID())
-        .build();
-    roomsCRUD.saveObject(room);
+      //Создали комнату
+      Room room = Room.builder()
+          .floorId(floor.getUuid())
+          .roomNum(roomNum)
+          .guestID(new HashSet<>())
+          .employeeID(new HashSet<>())
+          .role(role)
+          .uuid(UUID.randomUUID())
+          .build();
+      roomsCRUD.saveObject(room);
 
-    //закидываем в хешсет флура этаж
-    Set roomsID = floor.getRoomsID();
-    roomsID.add(room.getUuid());
-    floor.setRoomsID(roomsID);
-    floorCRUD.saveObject(floor);
+      //закидываем в хешсет флура этаж
+      Set roomsID = floor.getRoomsID();
+      roomsID.add(room.getUuid());
+      floor.setRoomsID(roomsID);
+      floorCRUD.saveObject(floor);
 
-    log.info("End creating room>");
+      log.info("End creating room>");
+    } else {
+      log.error("ERROR CREATING ROOM>");
+    }
 
   }
 
@@ -92,12 +100,12 @@ public class RoomService implements Service<Room> {
           log.info("U CANT CHANGE FLOOR NUM, BUILD ANOTHER ROOM");
           break;
         case 3:
-          for(UUID uuidEmployee : object.getEmployeeID()){
+          for (UUID uuidEmployee : object.getEmployeeID()) {
             Employee employee = employeeCRUD.searchUUIDObject(uuidEmployee);
             employee.deleteRoomsID(object.getUuid());
             employeeCRUD.saveObject(employee);
           }
-          for(UUID uuidGuest : object.getGuestID()){
+          for (UUID uuidGuest : object.getGuestID()) {
             Guest guest = guestCRUD.searchUUIDObject(uuidGuest);
             guest.setRoomID(null);
             guestCRUD.saveObject(guest);
@@ -126,14 +134,14 @@ public class RoomService implements Service<Room> {
     log.info("_______________________");
     log.info("Количество гостей : " + object.getEmployeeID().size());
     log.info("Гости : ");
-    for(UUID uuid : object.getGuestID()){
+    for (UUID uuid : object.getGuestID()) {
       Guest guest = guestCRUD.searchUUIDObject(uuid);
       log.info(guest.getSurname() + " " + guest.getName());
     }
     log.info("_______________________");
     log.info("Количество работников : " + object.getEmployeeID().size());
     log.info("Работники : ");
-    for(UUID uuid : object.getEmployeeID()){
+    for (UUID uuid : object.getEmployeeID()) {
       Employee employee = employeeCRUD.searchUUIDObject(uuid);
       log.info(employee.getSurname() + " " + employee.getName());
     }

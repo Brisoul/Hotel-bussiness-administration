@@ -1,6 +1,10 @@
 package com.netcracker.hb.console.services.person;
 
 import com.netcracker.hb.Dao.CRUD.CRUD;
+import com.netcracker.hb.Dao.CRUD.Person.EmployeeCRUD;
+import com.netcracker.hb.Dao.CRUD.Person.GuestCRUD;
+import com.netcracker.hb.Dao.CRUD.Person.IEmployeeCRUD;
+import com.netcracker.hb.Dao.CRUD.Person.IGuestCRUD;
 import com.netcracker.hb.Dao.CRUD.Person.PersonalCardCRUD;
 import com.netcracker.hb.console.services.IPersonalCard;
 import com.netcracker.hb.console.services.chekServeces.ValidationService;
@@ -27,29 +31,36 @@ public class PersonalCardService implements IPersonalCard<PersonalCard> {
   private static int cardNum;
   private static final ValidationService validationService = ValidationService.getValidationService();
   private static final CRUD<PersonalCard> personalCardCRUD = PersonalCardCRUD.getPersonalCardCRUD();
+  private static final IEmployeeCRUD<Employee> employeeCRUD = EmployeeCRUD.getIEmployeeCRUD();
+  private static final IGuestCRUD<Guest> guestCRUD = GuestCRUD.getGuestCRUD();
 
   @Override
   public void addObjectPerson(Person person) {
 
     cardNum += 1;
-    UUID ID = null;
-    Role role = null;
+
+
+    PersonalCard personalCard = PersonalCard.builder()
+        .uuid(UUID.randomUUID())
+        .num(cardNum)
+        .build();
+    UUID ID ;
+    Role role ;
     if (person instanceof Guest){
       Guest guest = (Guest)person;
       ID = guest.getUuid();
       role = Role.GUEST;
+      guest.setCardID(personalCard.getUuid());
+      guestCRUD.saveObject(guest);
     } else{
       Employee employee = (Employee) person;
       ID = employee.getUuid();
       role = employee.getRole();
+      employee.setCardID(personalCard.getUuid());
+      employeeCRUD.saveObject(employee);
     }
-
-    PersonalCard personalCard = PersonalCard.builder()
-        .personID(ID)
-        .role(role)
-        .uuid(UUID.randomUUID())
-        .num(cardNum)
-        .build();
+    personalCard.setRole(role);
+    personalCard.setPersonID(ID);
 
     personalCardCRUD.saveObject(personalCard);
   }

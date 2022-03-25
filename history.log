@@ -8692,3 +8692,341 @@
 2022-03-26 01:26:47 INFO  ValidationService:243 - Surname
 2022-03-26 01:26:47 INFO  GuestCRUD:38 - <Start searching guest....
 2022-03-26 01:26:47 INFO  GuestCRUD:51 - guest was found>
+2022-03-26 01:28:18 INFO  HotelCRUD:43 - <Start searching hotel...
+2022-03-26 01:28:18 INFO  HotelCRUD:60 - Hotel was found>
+2022-03-26 01:28:18 INFO  InitializationManager:59 - hotel is already created
+2022-03-26 01:28:18 INFO  EmployeeCRUD:110 - <Start searching employee by role....ADMIN
+2022-03-26 01:28:18 INFO  EmployeeCRUD:123 - employee with that role was found>
+2022-03-26 01:28:18 INFO  EmployeeCRUD:123 - employee with that role was found>
+2022-03-26 01:28:18 INFO  InitializationManager:71 - Admin already created u can start work
+2022-03-26 01:28:18 INFO  EmployeeCRUD:110 - <Start searching employee by role....ADMIN
+2022-03-26 01:28:18 INFO  EmployeeCRUD:123 - employee with that role was found>
+2022-03-26 01:28:18 INFO  EmployeeCRUD:123 - employee with that role was found>
+2022-03-26 01:28:18 INFO  Console:20 - Start work...
+2022-03-26 01:28:18 INFO  Console:23 - Hello Guest, please logIn to start work with hotel
+2022-03-26 01:28:18 INFO  Console:24 - 1.Start LogIn
+2022-03-26 01:28:18 INFO  Console:25 - 2.Registration
+2022-03-26 01:28:18 INFO  Console:26 - 666 Exit
+2022-03-26 01:28:18 INFO  Console:27 - Choose a number of menu:
+2022-03-26 01:28:21 INFO  LogIn:25 - Start LogIn....
+2022-03-26 01:28:21 INFO  ValidationService:252 - Username 
+2022-03-26 01:28:25 INFO  ValidationService:254 - Password
+2022-03-26 01:28:27 INFO  EmployeeCRUD:76 - <Start searching employee....
+2022-03-26 01:28:27 ERROR EmployeeCRUD:102 - EMPLOYEE NOT FOUND>
+2022-03-26 01:28:27 INFO  ValidationService:259 - User not found, try again
+2022-03-26 01:28:27 INFO  ValidationService:252 - Username 
+2022-03-26 01:28:29 INFO  ValidationService:254 - Password
+2022-03-26 01:28:29 INFO  EmployeeCRUD:76 - <Start searching employee....
+2022-03-26 01:28:29 INFO  EmployeeCRUD:89 - employee was found>
+2022-03-26 01:28:29 INFO  ValidationService:261 - U successfully logged in
+2022-03-26 01:28:29 INFO  LogIn:28 - Start LogIn....
+2022-03-26 01:28:29 INFO  LogIn:29 - Hello aa
+2022-03-26 01:28:29 INFO  LogIn:30 - 1.Start work as ADMIN
+2022-03-26 01:28:29 INFO  LogIn:31 - 666 Back to main menu
+2022-03-26 01:28:29 INFO  LogIn:32 - Choose a number of menu:
+2022-03-26 01:28:31 INFO  LogIn:36 - Start work ....
+2022-03-26 01:28:31 INFO  MenuServices:276 - Start work as Admin
+2022-03-26 01:28:31 INFO  MenuServices:279 - 1.Work with floors
+2022-03-26 01:28:31 INFO  MenuServices:280 - 2.Work with rooms
+2022-03-26 01:28:31 INFO  MenuServices:281 - 3.Start work as manager
+2022-03-26 01:28:31 INFO  MenuServices:282 - 4.Start work as service employee
+2022-03-26 01:28:31 INFO  MenuServices:283 - 111.UTILIZE HOTEL
+2022-03-26 01:28:31 INFO  MenuServices:284 - 666.Exit
+2022-03-26 01:28:31 INFO  MenuServices:285 - Choose a number of menu:
+2022-03-26 01:28:34 INFO  MenuServices:317 - Start work as manager
+2022-03-26 01:28:34 INFO  MenuServices:320 - 1.Work with employers
+2022-03-26 01:28:34 INFO  MenuServices:321 - 2.Start work as service employee
+2022-03-26 01:28:34 INFO  MenuServices:322 - 666 Exit
+2022-03-26 01:28:34 INFO  MenuServices:323 - Choose a number of menu:
+2022-03-26 01:28:36 INFO  MenuServices:165 - Start work with employee
+2022-03-26 01:28:36 INFO  MenuServices:169 - 1.Display all employee
+2022-03-26 01:28:36 INFO  MenuServices:170 - 2.Search employee(Name Surname)
+2022-03-26 01:28:36 INFO  MenuServices:171 - 3.Add employee
+2022-03-26 01:28:36 INFO  MenuServices:172 - 4.Delete employee(Name Surname)
+2022-03-26 01:28:36 INFO  MenuServices:173 - 5.Change employee(Name Surname)
+2022-03-26 01:28:36 INFO  MenuServices:174 - 666.Back to previous menu
+2022-03-26 01:28:39 INFO  EmployeeService:47 - Enter username
+2022-03-26 01:28:41 INFO  EmployeeService:49 - Enter password
+2022-03-26 01:28:42 INFO  EmployeeService:51 - <Start creating employee...
+2022-03-26 01:28:42 INFO  ValidationService:95 - Enter usage(Role)
+2022-03-26 01:28:42 INFO  ValidationService:96 - 1.Employee
+2022-03-26 01:28:42 INFO  ValidationService:97 - 2.Manager
+2022-03-26 01:28:42 INFO  ValidationService:98 - 3.Admin
+2022-03-26 01:28:46 INFO  EmployeeService:60 - Enter Name
+2022-03-26 01:28:48 INFO  EmployeeService:62 - Enter Surname
+2022-03-26 01:28:49 INFO  EmployeeCRUD:298 - <Start saving employee...
+2022-03-26 01:28:49 INFO  EmployeeCRUD:307 - Success saving employee>
+2022-03-26 01:28:49 INFO  EmployeeService:66 - End creating employee>
+2022-03-26 01:28:49 INFO  MenuServices:169 - 1.Display all employee
+2022-03-26 01:28:49 INFO  MenuServices:170 - 2.Search employee(Name Surname)
+2022-03-26 01:28:49 INFO  MenuServices:171 - 3.Add employee
+2022-03-26 01:28:49 INFO  MenuServices:172 - 4.Delete employee(Name Surname)
+2022-03-26 01:28:49 INFO  MenuServices:173 - 5.Change employee(Name Surname)
+2022-03-26 01:28:49 INFO  MenuServices:174 - 666.Back to previous menu
+2022-03-26 01:28:52 INFO  EmployeeCRUD:144 - <Start searching employee....
+2022-03-26 01:28:52 INFO  EmployeeService:249 - _______________________
+2022-03-26 01:28:52 INFO  EmployeeService:250 - _______________________
+2022-03-26 01:28:52 INFO  EmployeeCRUD:233 - <Start searching file name of employee...
+2022-03-26 01:28:52 INFO  EmployeeCRUD:246 - File name of employee was found>
+2022-03-26 01:28:52 INFO  EmployeeService:251 - 1168bbf9-8120-4c67-a95a-ddf1508d5c9f-employee.txt
+2022-03-26 01:28:52 INFO  EmployeeService:252 - Admin  Admin
+2022-03-26 01:28:52 INFO  EmployeeService:253 - Возраст 0
+2022-03-26 01:28:52 INFO  EmployeeService:254 - Пол null
+2022-03-26 01:28:52 INFO  EmployeeService:255 - Должность ADMIN
+2022-03-26 01:28:52 INFO  EmployeeService:256 - _______________________
+2022-03-26 01:28:52 INFO  EmployeeService:257 - Доступно комнат 0
+2022-03-26 01:28:52 INFO  EmployeeService:258 - Номера доступных комнат 
+2022-03-26 01:28:52 INFO  EmployeeService:263 - _______________________
+2022-03-26 01:28:52 INFO  EmployeeService:265 - Контракт : не задан
+2022-03-26 01:28:52 INFO  EmployeeService:270 - _______________________
+2022-03-26 01:28:52 INFO  EmployeeService:272 - Карта : не задана
+2022-03-26 01:28:52 INFO  EmployeeService:277 - _______________________
+2022-03-26 01:28:52 INFO  EmployeeService:278 - _______________________
+2022-03-26 01:28:52 INFO  EmployeeService:249 - _______________________
+2022-03-26 01:28:52 INFO  EmployeeService:250 - _______________________
+2022-03-26 01:28:52 INFO  EmployeeCRUD:233 - <Start searching file name of employee...
+2022-03-26 01:28:52 INFO  EmployeeCRUD:246 - File name of employee was found>
+2022-03-26 01:28:52 INFO  EmployeeService:251 - 2427db47-b3d7-4d2b-a1be-9a4511d22e1d-employee.txt
+2022-03-26 01:28:52 INFO  EmployeeService:252 - w  w
+2022-03-26 01:28:52 INFO  EmployeeService:253 - Возраст 0
+2022-03-26 01:28:52 INFO  EmployeeService:254 - Пол null
+2022-03-26 01:28:52 INFO  EmployeeService:255 - Должность SERVICE_EMPLOYEE
+2022-03-26 01:28:52 INFO  EmployeeService:256 - _______________________
+2022-03-26 01:28:52 INFO  EmployeeService:257 - Доступно комнат 0
+2022-03-26 01:28:52 INFO  EmployeeService:258 - Номера доступных комнат 
+2022-03-26 01:28:52 INFO  EmployeeService:263 - _______________________
+2022-03-26 01:28:52 INFO  EmployeeService:265 - Контракт : не задан
+2022-03-26 01:28:52 INFO  EmployeeService:270 - _______________________
+2022-03-26 01:28:52 INFO  EmployeeService:272 - Карта : не задана
+2022-03-26 01:28:52 INFO  EmployeeService:277 - _______________________
+2022-03-26 01:28:52 INFO  EmployeeService:278 - _______________________
+2022-03-26 01:28:52 INFO  EmployeeService:249 - _______________________
+2022-03-26 01:28:52 INFO  EmployeeService:250 - _______________________
+2022-03-26 01:28:52 INFO  EmployeeCRUD:233 - <Start searching file name of employee...
+2022-03-26 01:28:52 INFO  EmployeeCRUD:246 - File name of employee was found>
+2022-03-26 01:28:52 INFO  EmployeeService:251 - c47de2d5-1781-49c3-af9b-409962b13801-employee.txt
+2022-03-26 01:28:52 INFO  EmployeeService:252 - a  a
+2022-03-26 01:28:52 INFO  EmployeeService:253 - Возраст 0
+2022-03-26 01:28:52 INFO  EmployeeService:254 - Пол null
+2022-03-26 01:28:52 INFO  EmployeeService:255 - Должность ADMIN
+2022-03-26 01:28:52 INFO  EmployeeService:256 - _______________________
+2022-03-26 01:28:52 INFO  EmployeeService:257 - Доступно комнат 0
+2022-03-26 01:28:52 INFO  EmployeeService:258 - Номера доступных комнат 
+2022-03-26 01:28:52 INFO  EmployeeService:263 - _______________________
+2022-03-26 01:28:52 INFO  EmployeeService:265 - Контракт : не задан
+2022-03-26 01:28:52 INFO  EmployeeService:270 - _______________________
+2022-03-26 01:28:52 INFO  EmployeeService:272 - Карта : не задана
+2022-03-26 01:28:52 INFO  EmployeeService:277 - _______________________
+2022-03-26 01:28:52 INFO  EmployeeService:278 - _______________________
+2022-03-26 01:28:52 INFO  MenuServices:169 - 1.Display all employee
+2022-03-26 01:28:52 INFO  MenuServices:170 - 2.Search employee(Name Surname)
+2022-03-26 01:28:52 INFO  MenuServices:171 - 3.Add employee
+2022-03-26 01:28:52 INFO  MenuServices:172 - 4.Delete employee(Name Surname)
+2022-03-26 01:28:52 INFO  MenuServices:173 - 5.Change employee(Name Surname)
+2022-03-26 01:28:52 INFO  MenuServices:174 - 666.Back to previous menu
+2022-03-26 01:28:57 INFO  ValidationService:232 - Name
+2022-03-26 01:28:58 INFO  ValidationService:234 - Surname
+2022-03-26 01:28:58 INFO  EmployeeCRUD:42 - <Start searching employee....
+2022-03-26 01:28:58 INFO  EmployeeCRUD:55 - employee was found>
+2022-03-26 01:28:58 INFO  EmployeeCRUD:233 - <Start searching file name of employee...
+2022-03-26 01:28:58 INFO  EmployeeCRUD:246 - File name of employee was found>
+2022-03-26 01:28:58 INFO  EmployeeService:72 - Start changing employee 2427db47-b3d7-4d2b-a1be-9a4511d22e1d-employee.txt
+2022-03-26 01:28:58 INFO  EmployeeService:75 - 1.Set name
+2022-03-26 01:28:58 INFO  EmployeeService:76 - 2.Set surname
+2022-03-26 01:28:58 INFO  EmployeeService:77 - 3.Set age
+2022-03-26 01:28:58 INFO  EmployeeService:78 - 4.Set sex
+2022-03-26 01:28:58 INFO  EmployeeService:79 - 5.Set role(this will delete all room connections and personal card))
+2022-03-26 01:28:58 INFO  EmployeeService:80 - 6.Set username
+2022-03-26 01:28:58 INFO  EmployeeService:81 - 7.Set password
+2022-03-26 01:28:58 INFO  EmployeeService:82 - 8.Change card
+2022-03-26 01:28:58 INFO  EmployeeService:83 - 9.Change contract
+2022-03-26 01:28:58 INFO  EmployeeService:84 - 10.Change roomlist
+2022-03-26 01:28:58 INFO  EmployeeService:85 - 666.Back to previous menu
+2022-03-26 01:29:02 INFO  PersonalCardCRUD:69 - <Start searching personal cards....
+2022-03-26 01:29:02 INFO  EmployeeCRUD:298 - <Start saving employee...
+2022-03-26 01:29:02 INFO  EmployeeCRUD:307 - Success saving employee>
+2022-03-26 01:29:02 INFO  PersonalCardCRUD:242 - <Start saving personal card...
+2022-03-26 01:29:02 INFO  PersonalCardCRUD:251 - Success saving card>
+2022-03-26 01:29:02 INFO  EmployeeService:143 - Card not found, start creating card
+2022-03-26 01:29:02 INFO  PersonalCardCRUD:69 - <Start searching personal cards....
+2022-03-26 01:29:02 INFO  EmployeeService:147 - we find card with user uuid
+2022-03-26 01:29:02 INFO  EmployeeService:150 - Card was found
+2022-03-26 01:29:02 INFO  EmployeeCRUD:298 - <Start saving employee...
+2022-03-26 01:29:02 INFO  EmployeeCRUD:307 - Success saving employee>
+2022-03-26 01:29:02 INFO  PersonalCardCRUD:69 - <Start searching personal cards....
+2022-03-26 01:29:02 INFO  EmployeeService:164 - we find card with user uuid
+2022-03-26 01:29:02 INFO  EmployeeService:168 - Card was found start changing...
+2022-03-26 01:29:02 INFO  PersonalCardCRUD:179 - <Start searching file name of personal card...
+2022-03-26 01:29:02 INFO  PersonalCardCRUD:192 - File name of personal card was found>
+2022-03-26 01:29:02 INFO  PersonalCardService:99 - Start changing personal card a38e2ed8-d356-4db9-9360-0cda142fb126-personalCard.txt
+2022-03-26 01:29:02 INFO  PersonalCardService:102 - 1.Set expire Date
+2022-03-26 01:29:02 INFO  PersonalCardService:103 - 666.Back to previous menu
+2022-03-26 01:29:08 INFO  PersonalCardService:107 - write how many years do u wonna add to date expire(from 1970 :В)
+2022-03-26 01:29:11 INFO  PersonalCardCRUD:242 - <Start saving personal card...
+2022-03-26 01:29:11 INFO  PersonalCardCRUD:251 - Success saving card>
+2022-03-26 01:29:11 INFO  PersonalCardService:102 - 1.Set expire Date
+2022-03-26 01:29:11 INFO  PersonalCardService:103 - 666.Back to previous menu
+2022-03-26 01:29:15 INFO  PersonalCardService:115 - see u!
+2022-03-26 01:29:15 INFO  EmployeeCRUD:298 - <Start saving employee...
+2022-03-26 01:29:15 INFO  EmployeeCRUD:307 - Success saving employee>
+2022-03-26 01:29:15 INFO  EmployeeService:75 - 1.Set name
+2022-03-26 01:29:15 INFO  EmployeeService:76 - 2.Set surname
+2022-03-26 01:29:15 INFO  EmployeeService:77 - 3.Set age
+2022-03-26 01:29:15 INFO  EmployeeService:78 - 4.Set sex
+2022-03-26 01:29:15 INFO  EmployeeService:79 - 5.Set role(this will delete all room connections and personal card))
+2022-03-26 01:29:15 INFO  EmployeeService:80 - 6.Set username
+2022-03-26 01:29:15 INFO  EmployeeService:81 - 7.Set password
+2022-03-26 01:29:15 INFO  EmployeeService:82 - 8.Change card
+2022-03-26 01:29:15 INFO  EmployeeService:83 - 9.Change contract
+2022-03-26 01:29:15 INFO  EmployeeService:84 - 10.Change roomlist
+2022-03-26 01:29:15 INFO  EmployeeService:85 - 666.Back to previous menu
+2022-03-26 01:29:27 INFO  EmployeeService:235 - see u!
+2022-03-26 01:29:27 INFO  MenuServices:169 - 1.Display all employee
+2022-03-26 01:29:27 INFO  MenuServices:170 - 2.Search employee(Name Surname)
+2022-03-26 01:29:27 INFO  MenuServices:171 - 3.Add employee
+2022-03-26 01:29:27 INFO  MenuServices:172 - 4.Delete employee(Name Surname)
+2022-03-26 01:29:27 INFO  MenuServices:173 - 5.Change employee(Name Surname)
+2022-03-26 01:29:27 INFO  MenuServices:174 - 666.Back to previous menu
+2022-03-26 01:29:29 INFO  EmployeeCRUD:144 - <Start searching employee....
+2022-03-26 01:29:29 INFO  EmployeeService:249 - _______________________
+2022-03-26 01:29:29 INFO  EmployeeService:250 - _______________________
+2022-03-26 01:29:29 INFO  EmployeeCRUD:233 - <Start searching file name of employee...
+2022-03-26 01:29:29 INFO  EmployeeCRUD:246 - File name of employee was found>
+2022-03-26 01:29:29 INFO  EmployeeService:251 - 1168bbf9-8120-4c67-a95a-ddf1508d5c9f-employee.txt
+2022-03-26 01:29:29 INFO  EmployeeService:252 - Admin  Admin
+2022-03-26 01:29:29 INFO  EmployeeService:253 - Возраст 0
+2022-03-26 01:29:29 INFO  EmployeeService:254 - Пол null
+2022-03-26 01:29:29 INFO  EmployeeService:255 - Должность ADMIN
+2022-03-26 01:29:29 INFO  EmployeeService:256 - _______________________
+2022-03-26 01:29:29 INFO  EmployeeService:257 - Доступно комнат 0
+2022-03-26 01:29:29 INFO  EmployeeService:258 - Номера доступных комнат 
+2022-03-26 01:29:29 INFO  EmployeeService:263 - _______________________
+2022-03-26 01:29:29 INFO  EmployeeService:265 - Контракт : не задан
+2022-03-26 01:29:29 INFO  EmployeeService:270 - _______________________
+2022-03-26 01:29:29 INFO  EmployeeService:272 - Карта : не задана
+2022-03-26 01:29:29 INFO  EmployeeService:277 - _______________________
+2022-03-26 01:29:29 INFO  EmployeeService:278 - _______________________
+2022-03-26 01:29:29 INFO  EmployeeService:249 - _______________________
+2022-03-26 01:29:29 INFO  EmployeeService:250 - _______________________
+2022-03-26 01:29:29 INFO  EmployeeCRUD:233 - <Start searching file name of employee...
+2022-03-26 01:29:29 INFO  EmployeeCRUD:246 - File name of employee was found>
+2022-03-26 01:29:29 INFO  EmployeeService:251 - 2427db47-b3d7-4d2b-a1be-9a4511d22e1d-employee.txt
+2022-03-26 01:29:29 INFO  EmployeeService:252 - w  w
+2022-03-26 01:29:29 INFO  EmployeeService:253 - Возраст 0
+2022-03-26 01:29:29 INFO  EmployeeService:254 - Пол null
+2022-03-26 01:29:29 INFO  EmployeeService:255 - Должность SERVICE_EMPLOYEE
+2022-03-26 01:29:29 INFO  EmployeeService:256 - _______________________
+2022-03-26 01:29:29 INFO  EmployeeService:257 - Доступно комнат 0
+2022-03-26 01:29:29 INFO  EmployeeService:258 - Номера доступных комнат 
+2022-03-26 01:29:29 INFO  EmployeeService:263 - _______________________
+2022-03-26 01:29:29 INFO  EmployeeService:265 - Контракт : не задан
+2022-03-26 01:29:29 INFO  EmployeeService:270 - _______________________
+2022-03-26 01:29:29 INFO  EmployeeService:274 - Карта : 
+2022-03-26 01:29:29 INFO  PersonalCardCRUD:140 - <Start searching personal card....
+2022-03-26 01:29:29 INFO  PersonalCardCRUD:155 - Personal card was found>
+2022-03-26 01:29:29 INFO  PersonalCardService:130 - _______________________
+2022-03-26 01:29:29 INFO  PersonalCardService:131 - _______________________
+2022-03-26 01:29:29 INFO  PersonalCardCRUD:179 - <Start searching file name of personal card...
+2022-03-26 01:29:29 INFO  PersonalCardCRUD:192 - File name of personal card was found>
+2022-03-26 01:29:29 INFO  PersonalCardService:132 - a38e2ed8-d356-4db9-9360-0cda142fb126-personalCard.txt
+2022-03-26 01:29:29 INFO  PersonalCardService:133 - Card number 1
+2022-03-26 01:29:29 INFO  PersonalCardService:134 - Date expire Sat Mar 05 08:52:51 MSK 1983
+2022-03-26 01:29:29 INFO  PersonalCardService:135 - Role SERVICE_EMPLOYEE
+2022-03-26 01:29:29 INFO  PersonalCardService:136 - _______________________
+2022-03-26 01:29:29 INFO  PersonalCardService:137 - _______________________
+2022-03-26 01:29:29 INFO  EmployeeService:277 - _______________________
+2022-03-26 01:29:29 INFO  EmployeeService:278 - _______________________
+2022-03-26 01:29:29 INFO  EmployeeService:249 - _______________________
+2022-03-26 01:29:29 INFO  EmployeeService:250 - _______________________
+2022-03-26 01:29:29 INFO  EmployeeCRUD:233 - <Start searching file name of employee...
+2022-03-26 01:29:29 INFO  EmployeeCRUD:246 - File name of employee was found>
+2022-03-26 01:29:29 INFO  EmployeeService:251 - c47de2d5-1781-49c3-af9b-409962b13801-employee.txt
+2022-03-26 01:29:29 INFO  EmployeeService:252 - a  a
+2022-03-26 01:29:29 INFO  EmployeeService:253 - Возраст 0
+2022-03-26 01:29:29 INFO  EmployeeService:254 - Пол null
+2022-03-26 01:29:29 INFO  EmployeeService:255 - Должность ADMIN
+2022-03-26 01:29:29 INFO  EmployeeService:256 - _______________________
+2022-03-26 01:29:29 INFO  EmployeeService:257 - Доступно комнат 0
+2022-03-26 01:29:29 INFO  EmployeeService:258 - Номера доступных комнат 
+2022-03-26 01:29:29 INFO  EmployeeService:263 - _______________________
+2022-03-26 01:29:29 INFO  EmployeeService:265 - Контракт : не задан
+2022-03-26 01:29:29 INFO  EmployeeService:270 - _______________________
+2022-03-26 01:29:29 INFO  EmployeeService:272 - Карта : не задана
+2022-03-26 01:29:29 INFO  EmployeeService:277 - _______________________
+2022-03-26 01:29:29 INFO  EmployeeService:278 - _______________________
+2022-03-26 01:29:29 INFO  MenuServices:169 - 1.Display all employee
+2022-03-26 01:29:29 INFO  MenuServices:170 - 2.Search employee(Name Surname)
+2022-03-26 01:29:29 INFO  MenuServices:171 - 3.Add employee
+2022-03-26 01:29:29 INFO  MenuServices:172 - 4.Delete employee(Name Surname)
+2022-03-26 01:29:29 INFO  MenuServices:173 - 5.Change employee(Name Surname)
+2022-03-26 01:29:29 INFO  MenuServices:174 - 666.Back to previous menu
+2022-03-26 01:29:46 INFO  ValidationService:232 - Name
+2022-03-26 01:29:47 ERROR ValidationService:177 - Word must have only letters
+2022-03-26 01:29:48 ERROR ValidationService:177 - Word must have only letters
+2022-03-26 01:29:52 INFO  ValidationService:234 - Surname
+2022-03-26 01:29:53 INFO  EmployeeCRUD:42 - <Start searching employee....
+2022-03-26 01:29:53 INFO  EmployeeCRUD:55 - employee was found>
+2022-03-26 01:29:53 INFO  PersonalCardCRUD:140 - <Start searching personal card....
+2022-03-26 01:29:53 INFO  PersonalCardCRUD:155 - Personal card was found>
+2022-03-26 01:29:53 INFO  GuestCRUD:126 - <Start searching guest....
+2022-03-26 01:29:53 ERROR GuestCRUD:153 - GUEST NOT FOUND>
+2022-03-26 01:29:53 INFO  EmployeeCRUD:197 - <Start searching employee....
+2022-03-26 01:29:53 ERROR EmployeeCRUD:225 - EMPLOYEE NOT FOUND>
+2022-03-26 01:29:53 ERROR PersonalCardCRUD:221 - PERSON NOT FOUND
+2022-03-26 01:29:53 INFO  PersonalCardCRUD:179 - <Start searching file name of personal card...
+2022-03-26 01:29:53 INFO  PersonalCardCRUD:192 - File name of personal card was found>
+2022-03-26 01:29:53 INFO  PersonalCardCRUD:233 - Guest was successfully deleted>
+2022-03-26 01:29:53 INFO  EmployeeCRUD:197 - <Start searching employee....
+2022-03-26 01:29:53 INFO  EmployeeCRUD:211 - employee was found>
+2022-03-26 01:29:53 INFO  EmployeeCRUD:233 - <Start searching file name of employee...
+2022-03-26 01:29:53 INFO  EmployeeCRUD:246 - File name of employee was found>
+2022-03-26 01:29:53 INFO  EmployeeCRUD:288 - Employee was successfully deleted>
+2022-03-26 01:29:53 INFO  MenuServices:169 - 1.Display all employee
+2022-03-26 01:29:53 INFO  MenuServices:170 - 2.Search employee(Name Surname)
+2022-03-26 01:29:53 INFO  MenuServices:171 - 3.Add employee
+2022-03-26 01:29:53 INFO  MenuServices:172 - 4.Delete employee(Name Surname)
+2022-03-26 01:29:53 INFO  MenuServices:173 - 5.Change employee(Name Surname)
+2022-03-26 01:29:53 INFO  MenuServices:174 - 666.Back to previous menu
+2022-03-26 01:31:15 INFO  EmployeeCRUD:144 - <Start searching employee....
+2022-03-26 01:31:15 INFO  EmployeeService:249 - _______________________
+2022-03-26 01:31:15 INFO  EmployeeService:250 - _______________________
+2022-03-26 01:31:15 INFO  EmployeeCRUD:233 - <Start searching file name of employee...
+2022-03-26 01:31:15 INFO  EmployeeCRUD:246 - File name of employee was found>
+2022-03-26 01:31:15 INFO  EmployeeService:251 - 1168bbf9-8120-4c67-a95a-ddf1508d5c9f-employee.txt
+2022-03-26 01:31:15 INFO  EmployeeService:252 - Admin  Admin
+2022-03-26 01:31:15 INFO  EmployeeService:253 - Возраст 0
+2022-03-26 01:31:15 INFO  EmployeeService:254 - Пол null
+2022-03-26 01:31:15 INFO  EmployeeService:255 - Должность ADMIN
+2022-03-26 01:31:15 INFO  EmployeeService:256 - _______________________
+2022-03-26 01:31:15 INFO  EmployeeService:257 - Доступно комнат 0
+2022-03-26 01:31:15 INFO  EmployeeService:258 - Номера доступных комнат 
+2022-03-26 01:31:15 INFO  EmployeeService:263 - _______________________
+2022-03-26 01:31:15 INFO  EmployeeService:265 - Контракт : не задан
+2022-03-26 01:31:15 INFO  EmployeeService:270 - _______________________
+2022-03-26 01:31:15 INFO  EmployeeService:272 - Карта : не задана
+2022-03-26 01:31:15 INFO  EmployeeService:277 - _______________________
+2022-03-26 01:31:15 INFO  EmployeeService:278 - _______________________
+2022-03-26 01:31:15 INFO  EmployeeService:249 - _______________________
+2022-03-26 01:31:15 INFO  EmployeeService:250 - _______________________
+2022-03-26 01:31:15 INFO  EmployeeCRUD:233 - <Start searching file name of employee...
+2022-03-26 01:31:15 INFO  EmployeeCRUD:246 - File name of employee was found>
+2022-03-26 01:31:15 INFO  EmployeeService:251 - c47de2d5-1781-49c3-af9b-409962b13801-employee.txt
+2022-03-26 01:31:15 INFO  EmployeeService:252 - a  a
+2022-03-26 01:31:15 INFO  EmployeeService:253 - Возраст 0
+2022-03-26 01:31:15 INFO  EmployeeService:254 - Пол null
+2022-03-26 01:31:15 INFO  EmployeeService:255 - Должность ADMIN
+2022-03-26 01:31:15 INFO  EmployeeService:256 - _______________________
+2022-03-26 01:31:15 INFO  EmployeeService:257 - Доступно комнат 0
+2022-03-26 01:31:15 INFO  EmployeeService:258 - Номера доступных комнат 
+2022-03-26 01:31:15 INFO  EmployeeService:263 - _______________________
+2022-03-26 01:31:15 INFO  EmployeeService:265 - Контракт : не задан
+2022-03-26 01:31:15 INFO  EmployeeService:270 - _______________________
+2022-03-26 01:31:15 INFO  EmployeeService:272 - Карта : не задана
+2022-03-26 01:31:15 INFO  EmployeeService:277 - _______________________
+2022-03-26 01:31:15 INFO  EmployeeService:278 - _______________________
+2022-03-26 01:31:15 INFO  MenuServices:169 - 1.Display all employee
+2022-03-26 01:31:15 INFO  MenuServices:170 - 2.Search employee(Name Surname)
+2022-03-26 01:31:15 INFO  MenuServices:171 - 3.Add employee
+2022-03-26 01:31:15 INFO  MenuServices:172 - 4.Delete employee(Name Surname)
+2022-03-26 01:31:15 INFO  MenuServices:173 - 5.Change employee(Name Surname)
+2022-03-26 01:31:15 INFO  MenuServices:174 - 666.Back to previous menu

@@ -1,12 +1,9 @@
 package com.netcracker.hb.Dao.CRUD.Person;
 
 import com.netcracker.hb.Dao.CRUD.CRUD;
-import com.netcracker.hb.Dao.CRUD.PersonCRUD;
 import com.netcracker.hb.entities.Role;
-import com.netcracker.hb.entities.hotel.Room;
 import com.netcracker.hb.entities.persons.Employee;
 import com.netcracker.hb.entities.persons.Guest;
-import com.netcracker.hb.entities.persons.Person;
 import com.netcracker.hb.entities.persons.PersonalCard;
 import java.io.File;
 import java.io.FileInputStream;
@@ -15,33 +12,33 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 import lombok.extern.log4j.Log4j;
 
 
 @Log4j
-public class PersonalCardCRUD implements CRUD<PersonalCard>, PersonCRUD<PersonalCard> {
+public class PersonalCardCRUD implements IGuestCRUD<PersonalCard> {
 
-  private static final CRUD<PersonalCard> personalCardCRUD = new PersonalCardCRUD();
+  private static final IGuestCRUD<PersonalCard> personalCardCRUD = new PersonalCardCRUD();
   private PersonalCardCRUD() {
   }
-  public static CRUD<PersonalCard> getPersonalCardCRUD() {
+  public static IGuestCRUD<PersonalCard> getPersonalCardCRUD() {
     return personalCardCRUD;
   }
 
-  private final CRUD<Guest> guestCRUD = GuestCRUD.getGuestCRUD();
-  private final CRUD<Employee> employeeCRUD = EmployeeCRUD.getEmployeeCRUD();
+  private final IGuestCRUD<Guest> guestCRUD = GuestCRUD.getGuestCRUD();
+  private final IEmployeeCRUD<Employee> employeeCRUD = EmployeeCRUD.getIEmployeeCRUD();
 
-  private final PersonCRUD<Guest> guestPersonCRUD = GuestCRUD.getGuestPersonCRUD();
-  private final PersonCRUD<Employee> employeePersonCRUD = EmployeeCRUD.getEmployeePersonCRUD();
 
 
   @Override
   public PersonalCard searchObjectNameSurname(String name, String surname) {
     log.info("<Start searching card....");
     PersonalCard personalCard = null;
-    Guest guest = guestPersonCRUD.searchObjectNameSurname(name, surname);
-    Employee employee = employeePersonCRUD.searchObjectNameSurname(name, surname);
+    Guest guest = guestCRUD.searchObjectNameSurname(name, surname);
+    Employee employee = employeeCRUD.searchObjectNameSurname(name, surname);
     if (guest == null && employee == null) {
       log.error("PERSON NOT FOUND");
     } else if (employee == null) {
@@ -64,6 +61,41 @@ public class PersonalCardCRUD implements CRUD<PersonalCard>, PersonCRUD<Personal
   @Override
   public boolean searchObjectRole(Role role) {
     return false;
+  }
+
+  //не должно работать
+  @Override
+  public List<PersonalCard> searchObjects() {
+    log.info("<Start searching personal cards....");
+
+    File personalCardFolderDirectory = new File(
+        "entSAVE/personalcard_entities");
+    String[] personalCardList = personalCardFolderDirectory.list();
+    List personalCards = new ArrayList();
+    try {
+      for (String personalCardFolderName : personalCardList) {
+
+        FileInputStream filePersonalCardIn = new FileInputStream(
+            "entSAVE/personalcard_entities/" + personalCardFolderName);
+        ObjectInputStream objectPersonalCardIn = new ObjectInputStream(filePersonalCardIn);
+        PersonalCard object = (PersonalCard) objectPersonalCardIn.readObject();
+        personalCards.add(object);
+        objectPersonalCardIn.close();
+
+
+      }
+    } catch (FileNotFoundException exception) {
+      exception.printStackTrace();
+    } catch (IOException e) {
+      e.printStackTrace();
+    } catch (ClassNotFoundException e) {
+      e.printStackTrace();
+    } finally {
+      if (personalCards == null) {
+        log.error("PERSONAL CARD NOT FOUND>");
+      }
+      return personalCards;
+    }
   }
 
   @Override

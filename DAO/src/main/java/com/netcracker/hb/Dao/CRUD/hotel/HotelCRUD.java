@@ -11,6 +11,8 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 import lombok.extern.log4j.Log4j;
 
@@ -28,6 +30,13 @@ public class HotelCRUD implements CRUD<Hotel> {
 
   private static final CRUD<Floor> floorCRUD = FloorCRUD.getFloorCRUD();
 
+
+  @Override
+  public List<Hotel> searchObjects() {
+    List hotels = new ArrayList();
+    hotels.add(searchObjectNum(1));
+    return hotels;
+  }
 
   @Override
   public Hotel searchObjectNum(int hotelNum) {

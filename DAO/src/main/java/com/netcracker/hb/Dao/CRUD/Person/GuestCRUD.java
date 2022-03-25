@@ -1,12 +1,10 @@
 package com.netcracker.hb.Dao.CRUD.Person;
 
 import com.netcracker.hb.Dao.CRUD.CRUD;
-import com.netcracker.hb.Dao.CRUD.PersonCRUD;
 import com.netcracker.hb.Dao.CRUD.hotel.RoomsCRUD;
 import com.netcracker.hb.entities.Role;
 import com.netcracker.hb.entities.hotel.Room;
 import com.netcracker.hb.entities.persons.Guest;
-import com.netcracker.hb.entities.persons.Person;
 import com.netcracker.hb.entities.persons.PersonalCard;
 import java.io.File;
 import java.io.FileInputStream;
@@ -15,21 +13,20 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 import lombok.extern.log4j.Log4j;
 
 @Log4j
-public class GuestCRUD implements CRUD<Guest>, PersonCRUD<Guest> {
+public class GuestCRUD implements IGuestCRUD<Guest> {
 
-  private static final CRUD<Guest> guestCRUD = new GuestCRUD();
-  private static final PersonCRUD<Guest> guestPersonCRUD = new GuestCRUD();
+  private static final IGuestCRUD<Guest> guestCRUD = new GuestCRUD();
   private GuestCRUD() {
   }
-  public static CRUD<Guest> getGuestCRUD() {
+
+  public static IGuestCRUD<Guest> getGuestCRUD() {
     return guestCRUD;
-  }
-  public static PersonCRUD<Guest> getGuestPersonCRUD(){
-    return guestPersonCRUD;
   }
 
   private static final CRUD<Room> roomCRUD = RoomsCRUD.getRoomsCRUD();
@@ -72,6 +69,36 @@ public class GuestCRUD implements CRUD<Guest>, PersonCRUD<Guest> {
   @Override
   public boolean searchObjectRole(Role role) {
     return false;
+  }
+
+  @Override
+  public List<Guest> searchObjects() {
+    log.info("<Start searching guests....");
+    File guestFolderDirectory = new File("entSAVE/guest_entities");
+    String[] guestList = guestFolderDirectory.list();
+    List guests = new ArrayList();
+    try {
+      for (String guestFolderName : guestList) {
+        FileInputStream fileGuestIn = new FileInputStream("entSAVE/guest_entities/"
+            + guestFolderName);
+        ObjectInputStream objectGuestIn = new ObjectInputStream(fileGuestIn);
+        Guest object = (Guest) objectGuestIn.readObject();
+        //
+        guests.add(object);
+        objectGuestIn.close();
+      }
+    } catch (FileNotFoundException exception) {
+      exception.printStackTrace();
+    } catch (IOException e) {
+      e.printStackTrace();
+    } catch (ClassNotFoundException e) {
+      e.printStackTrace();
+    } finally {
+      if (guests.isEmpty()) {
+        log.error("GUESTS NOT FOUND>");
+      }
+      return guests;
+    }
   }
 
   @Override

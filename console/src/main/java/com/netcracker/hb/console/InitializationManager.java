@@ -1,9 +1,9 @@
 package com.netcracker.hb.console;
 
 import com.netcracker.hb.Dao.CRUD.CRUD;
+import com.netcracker.hb.Dao.CRUD.Person.IEmployeeCRUD;
 import com.netcracker.hb.Dao.CRUD.Person.EmployeeCRUD;
 import com.netcracker.hb.Dao.CRUD.Person.GuestCRUD;
-import com.netcracker.hb.Dao.CRUD.PersonCRUD;
 import com.netcracker.hb.Dao.CRUD.hotel.HotelCRUD;
 
 import com.netcracker.hb.Dao.CRUD.hotel.RoomsCRUD;
@@ -27,8 +27,7 @@ public class InitializationManager {
   private static final CRUD<Hotel> hotelCRUD = HotelCRUD.getHotelCRUD();
   private static final CRUD<Room> roomsCRUD = RoomsCRUD.getRoomsCRUD();
   private static final CRUD<Guest> guestCRUD = GuestCRUD.getGuestCRUD();
-  private static final CRUD<Employee> employeeCRUD = EmployeeCRUD.getEmployeeCRUD();
-  private static final PersonCRUD<Employee> employeePersonCRUD = EmployeeCRUD.getEmployeePersonCRUD();
+  private static final IEmployeeCRUD<Employee> employeeCRUD = EmployeeCRUD.getIEmployeeCRUD();
 
   private static final Service<Room> roomService = RoomService.getRoomService();
   private static final Service<Hotel> hotelService = HotelService.getHotelService();
@@ -73,13 +72,13 @@ public class InitializationManager {
     //если нет создаем недостающее количество
 
     do {
-      if (employeePersonCRUD.searchObjectRole(Role.ADMIN)) {
+      if (employeeCRUD.searchObjectRole(Role.ADMIN)) {
         log.info("Admin already created u can start work");
       } else {
         log.info("Admin role was not created please create Admin. Start creating");
         employeeService.addObject();
       }
-    }while (!employeePersonCRUD.searchObjectRole(Role.ADMIN));
+    }while (!employeeCRUD.searchObjectRole(Role.ADMIN));
 
   }
 

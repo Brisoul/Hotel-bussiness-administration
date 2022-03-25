@@ -45,12 +45,7 @@ public class HotelService implements Service<Hotel> {
     log.info("_______________________");
     log.info(hotelCRUD.searchFileName(object));
     log.info("_______________________");
-    log.info("Hotel have" + object.getFloorsID().size() + "Floors");
-    //всего комнат
-    //всего работников
-    //всего гостей
-    //всего менеджеров
-    //всего администраторов
+    log.info("Hotel have " + object.getFloorsID().size() + "Floors");
     log.info("_______________________");
   }
 

@@ -1,12 +1,9 @@
 package com.netcracker.hb.Dao.CRUD.Person;
 
 import com.netcracker.hb.Dao.CRUD.CRUD;
-import com.netcracker.hb.Dao.CRUD.PersonCRUD;
 import com.netcracker.hb.entities.Role;
-import com.netcracker.hb.entities.hotel.Room;
 import com.netcracker.hb.entities.persons.Contract;
 import com.netcracker.hb.entities.persons.Employee;
-import com.netcracker.hb.entities.persons.Guest;
 import com.netcracker.hb.entities.persons.PersonalCard;
 import java.io.File;
 import java.io.FileInputStream;
@@ -15,15 +12,25 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
+import lombok.Builder;
 import lombok.extern.log4j.Log4j;
 
 
 @Log4j
-public class ContractCRUD implements CRUD<Contract>, PersonCRUD<Contract> {
+public class ContractCRUD implements IGuestCRUD<Contract> {
 
-  private static final CRUD<Employee> employeeCRUD = EmployeeCRUD.getEmployeeCRUD();
-  private static final PersonCRUD<Employee> employeePersonCRUD = EmployeeCRUD.getEmployeePersonCRUD();
+
+  private static final IGuestCRUD<Contract> contractCRUD = new ContractCRUD();
+  private ContractCRUD() {
+  }
+  public static IGuestCRUD<Contract> getContractCRUD() {
+    return contractCRUD;
+  }
+
+  private static final IEmployeeCRUD<Employee> employeeCRUD = EmployeeCRUD.getIEmployeeCRUD();
 
   @Override
   public Contract searchObjectNameSurname(String name, String surname) {
@@ -38,7 +45,7 @@ public class ContractCRUD implements CRUD<Contract>, PersonCRUD<Contract> {
             + contractFolderName);
         ObjectInputStream objectContractIn = new ObjectInputStream(fileContractIn);
         Contract object = (Contract) objectContractIn.readObject();
-        Employee employee = employeePersonCRUD.searchObjectNameSurname(name, surname);
+        Employee employee = employeeCRUD.searchObjectNameSurname(name, surname);
 
         if (employee.getContractID().equals(object.getUuid())) {
           log.info("employee contract was found>");
@@ -65,6 +72,37 @@ public class ContractCRUD implements CRUD<Contract>, PersonCRUD<Contract> {
   public boolean searchObjectRole(Role role) {
     return false;
   }
+
+  @Override
+  public List<Contract> searchObjects() {
+    log.info("<Start searching employee contractы....");
+
+    File contractFolderDirectory = new File("entSAVE/contract_entities");
+    String[] contractList = contractFolderDirectory.list();
+    List contracts = new ArrayList();
+    try {
+      for (String contractFolderName : contractList) {
+        FileInputStream fileContractIn = new FileInputStream("entSAVE/contract_entities/"
+            + contractFolderName);
+        ObjectInputStream objectContractIn = new ObjectInputStream(fileContractIn);
+        Contract object = (Contract) objectContractIn.readObject();
+        contracts.add(object);
+        objectContractIn.close();
+      }
+    } catch (FileNotFoundException exception) {
+      exception.printStackTrace();
+    } catch (IOException e) {
+      e.printStackTrace();
+    } catch (ClassNotFoundException e) {
+      e.printStackTrace();
+    } finally {
+      if (contracts == null) {
+        log.error("EMPLOYEE CONTRACT NOT FOUND>");
+      }
+      return contracts;
+    }
+  }
+
   //не должно работать
   @Override
   public Contract searchObjectNum(int num) {

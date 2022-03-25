@@ -2,12 +2,10 @@ package com.netcracker.hb.Dao.CRUD.Person;
 
 
 import com.netcracker.hb.Dao.CRUD.CRUD;
-import com.netcracker.hb.Dao.CRUD.PersonCRUD;
 import com.netcracker.hb.Dao.CRUD.hotel.RoomsCRUD;
 import com.netcracker.hb.entities.Role;
 import com.netcracker.hb.entities.hotel.Room;
 import com.netcracker.hb.entities.persons.Employee;
-import com.netcracker.hb.entities.persons.Guest;
 import com.netcracker.hb.entities.persons.PersonalCard;
 import java.io.File;
 import java.io.FileInputStream;
@@ -16,27 +14,23 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 import lombok.extern.log4j.Log4j;
 
 
 @Log4j
-public class EmployeeCRUD implements CRUD<Employee>, PersonCRUD<Employee> {
+public class EmployeeCRUD implements IEmployeeCRUD<Employee> {
 
-  private static final CRUD<Employee> employeeCRUD = new EmployeeCRUD();
-  private static final PersonCRUD<Employee> employeePersonCRUD = new EmployeeCRUD();
-  private static final EmployeeCRUD employeeLogIn = new EmployeeCRUD();
+
+  private static final IEmployeeCRUD<Employee> employeeCRUD = new EmployeeCRUD();
   private EmployeeCRUD() {
   }
-  public static CRUD<Employee> getEmployeeCRUD() {
+  public static IEmployeeCRUD<Employee> getIEmployeeCRUD() {
     return employeeCRUD;
   }
-  public static PersonCRUD<Employee> getEmployeePersonCRUD() {
-    return employeePersonCRUD;
-  }
-  public static EmployeeCRUD getEmployeeLogIn() {
-    return employeeLogIn;
-  }
+
 
   private static final CRUD<Room> roomCRUD = RoomsCRUD.getRoomsCRUD();
   private static final CRUD<PersonalCard> personalCardCRUD = PersonalCardCRUD.getPersonalCardCRUD();
@@ -75,6 +69,7 @@ public class EmployeeCRUD implements CRUD<Employee>, PersonCRUD<Employee> {
     }
   }
 
+  @Override
   public Employee searchObjectLogIn(String username, String password) {
     log.info("<Start searching employee....");
 
@@ -143,21 +138,53 @@ public class EmployeeCRUD implements CRUD<Employee>, PersonCRUD<Employee> {
   }
 
   @Override
+  public List<Employee> searchObjects() {
+    log.info("<Start searching employee....");
+
+    File employeeFolderDirectory = new File("entSAVE/employee_entities");
+    String[] employeeList = employeeFolderDirectory.list();
+    List employers = new ArrayList();
+    try {
+      for (String employeeFolderName : employeeList) {
+        FileInputStream fileEmployeeIn = new FileInputStream("entSAVE/employee_entities/"
+            + employeeFolderName);
+        ObjectInputStream objectEmployeeIn = new ObjectInputStream(fileEmployeeIn);
+        Employee object = (Employee) objectEmployeeIn.readObject();
+        //
+        employers.add(object);
+        objectEmployeeIn.close();
+      }
+    } catch (FileNotFoundException exception) {
+      exception.printStackTrace();
+    } catch (IOException e) {
+      e.printStackTrace();
+    } catch (ClassNotFoundException e) {
+      e.printStackTrace();
+    } finally {
+      if (employers.isEmpty()) {
+        log.error("EMPLOYEE NOT FOUND>");
+      }
+      return employers;
+    }
+  }
+
+  @Override
   public Employee searchObjectNum(int roomNum) {
     log.info("<Start searching employee....");
     //Ищем ююайдиник работников которые есть в данной комнате
     Room room = roomCRUD.searchObjectNum(roomNum);
     UUID uuid = null;
     for (UUID uuidStrange : room.getEmployeeID()) {
+      //TODO можно добавить выбор пользователя по найденным в комнате людям
       uuid = uuidStrange;
     }
 
     //По ююайдишнику находим и самого работника
     Employee employee = searchUUIDObject(uuid);
-    //TODO можно добавить выбор пользователя по найденным в комнате людям
+
     if (employee == null || uuid == null) {
       log.error("EMPLOYEE NOT FOUND>");
-    } else{
+    } else {
       log.info("employee was found>");
     }
     return employee;
@@ -238,18 +265,18 @@ public class EmployeeCRUD implements CRUD<Employee>, PersonCRUD<Employee> {
     personalCardCRUD.deleteObject(personalCard);
 
     //убираем из всех комнат за которыми закреплен
-    for(UUID roomID : object.getRoomsID()) {
+    for (UUID roomID : object.getRoomsID()) {
       Room room = roomCRUD.searchUUIDObject(roomID);
       room.deleteEmployee(object.getUuid());
       roomCRUD.saveObject(room);
     }
     // удаляем
     Employee employee = searchUUIDObject(object.getUuid());
-    File deleteFile = new File("entSAVE/employee_entities/"+ searchFileName(employee));
+    File deleteFile = new File("entSAVE/employee_entities/" + searchFileName(employee));
     if (deleteFile != null) {
-      log.info("Employee was successfully deleted>" );
+      log.info("Employee was successfully deleted>");
       deleteFile.delete();
-    } else{
+    } else {
       log.warn("NOTHING WAS DELETED, FILE EMPLOYEE NOT FOUND>");
     }
 

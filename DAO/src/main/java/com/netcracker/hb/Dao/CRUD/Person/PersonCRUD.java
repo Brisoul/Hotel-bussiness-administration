@@ -1,4 +1,4 @@
-package com.netcracker.hb.Dao.CRUD;
+package com.netcracker.hb.Dao.CRUD.Person;
 
 import com.netcracker.hb.entities.Role;
 

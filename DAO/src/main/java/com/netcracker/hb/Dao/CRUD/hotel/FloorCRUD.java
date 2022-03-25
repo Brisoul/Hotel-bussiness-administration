@@ -11,6 +11,8 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 import lombok.extern.log4j.Log4j;
 
@@ -28,6 +30,36 @@ public class FloorCRUD implements CRUD<Floor> {
   private static final CRUD<Room> roomsCRUD = RoomsCRUD.getRoomsCRUD();
 
 
+  @Override
+  public List<Floor> searchObjects() {
+    log.info("<Start searching floors....");
+    File floorFolderDirectory = new File("entSAVE/floor_entities");
+    String[] floorList = floorFolderDirectory.list();
+    List floors = new ArrayList();
+    try {
+      for (String floorFolderName : floorList) {
+
+        FileInputStream fileFloorIn = new FileInputStream("entSAVE/floor_entities/"
+            + floorFolderName);
+        ObjectInputStream objectFloorIn = new ObjectInputStream(fileFloorIn);
+        Floor object = (Floor) objectFloorIn.readObject();
+        //если номер этажа совпадает то передаем
+        floors.add(object);
+        objectFloorIn.close();
+      }
+    } catch (FileNotFoundException exception) {
+      exception.printStackTrace();
+    } catch (IOException e) {
+      e.printStackTrace();
+    } catch (ClassNotFoundException e) {
+      e.printStackTrace();
+    } finally {
+      if(floors.isEmpty()){
+        log.error("FLOORS NOT FOUND>");
+      }
+      return floors;
+    }
+  }
 
   @Override
   public Floor searchObjectNum(int floorNum) {

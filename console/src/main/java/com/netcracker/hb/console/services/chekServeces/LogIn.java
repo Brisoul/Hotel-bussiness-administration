@@ -1,5 +1,6 @@
 package com.netcracker.hb.console.services.chekServeces;
 
+import com.netcracker.hb.console.services.MenuServices;
 import com.netcracker.hb.console.services.Service;
 import com.netcracker.hb.console.services.person.EmployeeService;
 import com.netcracker.hb.entities.Role;
@@ -16,15 +17,16 @@ import java.util.Scanner;
 public class LogIn {
 
   private static final LogIn logIn = new LogIn();
+
   private LogIn() {
   }
+
   public static LogIn getLogIn() {
     return logIn;
   }
 
   private static final ValidationService validationService = ValidationService.getValidationService();
-  private static final Service<Employee> employeeService = EmployeeService.getEmployeeService();
-  private static final EmployeeService employeeServiceMenu = EmployeeService.getEmployeeServiceMenu();
+  private static final MenuServices menuServices = MenuServices.getMenuServices();
 
   Scanner in = new Scanner(System.in);
 
@@ -36,23 +38,23 @@ public class LogIn {
     Employee employee = validationService.validationLogIn();
     do {
       log.info("Start LogIn....");
-      log.info("Hello "+ employee.getName() + employee.getSurname()+"");
+      log.info("Hello " + employee.getName() + employee.getSurname() + "");
       log.info("1.Start work as " + employee.getRole());
       log.info("666 Back to main menu");
       log.info("Choose a number of menu:");
       userChoice = validationService.validationNumberChoice();
       switch (userChoice) {
         case 1:
-          log.info("1.Start work ....");
-          switch (employee.getRole()){
+          log.info("Start work ....");
+          switch (employee.getRole()) {
             case ADMIN:
-              employeeServiceMenu.adminMenu();
+              menuServices.adminMenu();
               break;
             case MANAGER:
-              employeeServiceMenu.managerMenu();
+              menuServices.managerMenu();
               break;
             case SERVICE_EMPLOYEE:
-              employeeServiceMenu.employeeMenu();
+              menuServices.employeeMenu();
               break;
             case GUEST:
               log.error("guest cant use it");

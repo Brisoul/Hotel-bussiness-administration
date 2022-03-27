@@ -10,6 +10,7 @@ import com.netcracker.hb.Dao.CRUD.hotel.RoomsCRUD;
 import com.netcracker.hb.console.services.IPersonalCard;
 import com.netcracker.hb.console.services.Service;
 import com.netcracker.hb.console.services.chekServeces.ValidationService;
+import com.netcracker.hb.console.services.hotel.RoomService;
 import com.netcracker.hb.entities.hotel.Room;
 import com.netcracker.hb.entities.persons.Contract;
 import com.netcracker.hb.entities.persons.Employee;
@@ -29,7 +30,7 @@ public class EmployeeService implements Service<Employee> {
   }
 
   public static synchronized Service<Employee> getEmployeeService() {
-    if(employeeService ==null){
+    if (employeeService == null) {
       employeeService = new EmployeeService();
     }
     return employeeService;
@@ -38,6 +39,7 @@ public class EmployeeService implements Service<Employee> {
   public static final ValidationService validationService = ValidationService.getValidationService();
   private static final IPersonalCard<PersonalCard> personalCardService = PersonalCardService.getPersonalCardService();
   private static final CRUD<Room> roomCRUD = RoomsCRUD.getRoomsCRUD();
+  private static final Service<Room> roomService = RoomService.getRoomService();
   private static final IEmployeeCRUD<Employee> employeeCRUD = EmployeeCRUD.getIEmployeeCRUD();
   private static final IGuestCRUD<Contract> contractCRUD = ContractCRUD.getContractCRUD();
   private static final IGuestCRUD<PersonalCard> personalCardCRUD = PersonalCardCRUD.getPersonalCardCRUD();
@@ -83,7 +85,7 @@ public class EmployeeService implements Service<Employee> {
       log.info("7.Set password");
       log.info("8.Change card");
       log.info("9.Change contract");
-      log.info("10.Change roomlist");
+      log.info("10.Change room list");
       log.info("666.Back to previous menu");
       userChoice = validationService.validationNumberChoice();
       switch (userChoice) {
@@ -199,24 +201,7 @@ public class EmployeeService implements Service<Employee> {
           employeeCRUD.saveObject(object);
           break;
         case 10:
-          log.info("Write room num");
-          int roomNum = validationService.validationNumberChoice();
-          Room room = roomCRUD.searchObjectNum(roomNum);
-          if (validationService.validationRole(room.getRole(), object.getRole())) {
-            log.info("access is allowed");
-            Set<UUID> employers = room.getEmployeeID();
-            employers.add(object.getUuid());
-            room.setEmployeeID(employers);
-            roomCRUD.saveObject(room);
-
-            Set<UUID> roomSet = object.getRoomsID();
-            roomSet.add(room.getUuid());
-            object.setRoomsID(roomSet);
-            employeeCRUD.saveObject(object);
-          } else {
-            log.error("access is denied");
-            log.error("Error adding room");
-          }
+          changeRoomList(object);
           break;
         case 666:
           log.info("see u!");
@@ -266,5 +251,72 @@ public class EmployeeService implements Service<Employee> {
 
   }
 
+
+  private void changeRoomList(Employee object) {
+    log.info("Start changing room List ");
+    int userChoice;
+    int roomNum;
+    Room room;
+    do {
+      log.info("1.Display room list");
+      log.info("2.Add room");
+      log.info("3.Delete room");
+      log.info("666.Back to previous menu");
+      userChoice = validationService.validationNumberChoice();
+      switch (userChoice) {
+        case 1:
+          if(!object.getRoomsID().isEmpty()) {
+            for (UUID uuid : object.getRoomsID()) {
+              room = roomCRUD.searchUUIDObject(uuid);
+              roomService.displayObject(room);
+            }
+          }else{
+            log.info("Undefined room");
+          }
+          break;
+        case 2:
+          log.info("Write room num");
+          roomNum = validationService.validationNumberChoice();
+          room = roomCRUD.searchObjectNum(roomNum);
+          if (room != null && validationService.validationRole(room.getRole(), object.getRole())) {
+            log.info("access is allowed");
+            Set<UUID> employers = room.getEmployeeID();
+            employers.add(object.getUuid());
+            room.setEmployeeID(employers);
+            roomCRUD.saveObject(room);
+
+            Set<UUID> roomSet = object.getRoomsID();
+            roomSet.add(room.getUuid());
+            object.setRoomsID(roomSet);
+            employeeCRUD.saveObject(object);
+          } else {
+            log.error("access is denied");
+            log.error("Error adding room");
+          }
+          break;
+        case 3:
+          log.info("Write room num");
+          roomNum = validationService.validationNumberChoice();
+          room = roomCRUD.searchObjectNum(roomNum);
+          if (room != null) {
+            //удаляем айдишник комнаты из списка работника
+            object.deleteRoomsID(room.getUuid());
+            employeeCRUD.saveObject(object);
+
+            //удаляем айдишник работника из списка комнаты
+            room.deleteEmployee(object.getUuid());
+            roomCRUD.saveObject(room);
+
+          } else {
+            log.error("Room not found error removing room");
+          }
+          break;
+        default:
+          log.error("Choose correct num");
+          break;
+      }
+    } while (userChoice != 666);
+
+  }
 
 }

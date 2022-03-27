@@ -8,6 +8,7 @@ import com.netcracker.hb.Dao.CRUD.hotel.RoomsCRUD;
 import com.netcracker.hb.console.services.IPersonalCard;
 import com.netcracker.hb.console.services.Service;
 import com.netcracker.hb.console.services.chekServeces.ValidationService;
+import com.netcracker.hb.console.services.hotel.RoomService;
 import com.netcracker.hb.entities.Role;
 import com.netcracker.hb.entities.hotel.Room;
 import com.netcracker.hb.entities.persons.Guest;
@@ -37,6 +38,7 @@ public class GuestService implements Service<Guest> {
   private static final CRUD<Guest> guestCRUD = GuestCRUD.getGuestCRUD();
   private static final IGuestCRUD<PersonalCard> personalCardCRUD = PersonalCardCRUD.getPersonalCardCRUD();
   private static final CRUD<Room> roomCRUD = RoomsCRUD.getRoomsCRUD();
+  private static final Service<Room> roomService = RoomService.getRoomService();
 
   @Override
   public void addObject() {
@@ -67,7 +69,7 @@ public class GuestService implements Service<Guest> {
       log.info("2.Set surname");
       log.info("3.Set sex");
       log.info("4.Change card");
-      log.info("5.Set room");
+      log.info("5.Change room");
       log.info("666.Back to previous menu");
       userChoice = validationService.validationNumberChoice();
       switch (userChoice) {
@@ -117,21 +119,7 @@ public class GuestService implements Service<Guest> {
           guestCRUD.saveObject(object);
           break;
         case 5:
-          log.info("Write room num");
-          int roomNum = validationService.validationNumberChoice();
-          Room room = roomCRUD.searchObjectNum(roomNum);
-          if(validationService.validationRole(room.getRole(), object.getRole())){
-            log.info("access is allowed");
-            Set<UUID> guests = room.getGuestID();
-            guests.add(object.getUuid());
-            room.setGuestID(guests);
-            roomCRUD.saveObject(room);
-            object.setRoomID(room.getUuid());
-            guestCRUD.saveObject(object);
-          } else{
-            log.error("access is denied");
-            log.error("Error adding room");
-          }
+          changeRoom(object);
           break;
         case 666:
           log.info("see u!");
@@ -171,6 +159,68 @@ public class GuestService implements Service<Guest> {
     }
     log.info("_______________________");
     log.info("_______________________");
+
+  }
+
+  private void changeRoom(Guest object) {
+    log.info("Start changing room ");
+    int userChoice;
+    int roomNum;
+    Room room;
+    do {
+      log.info("1.Display room");
+      log.info("2.Add room");
+      log.info("3.Delete room");
+      log.info("666.Back to previous menu");
+      userChoice = validationService.validationNumberChoice();
+      switch (userChoice) {
+        case 1:
+            room = roomCRUD.searchUUIDObject(object.getRoomID());
+            if(room != null) {
+              roomService.displayObject(room);
+            } else{
+              log.info("Undefined room");
+            }
+          break;
+        case 2:
+          log.info("Write room num");
+          roomNum = validationService.validationNumberChoice();
+          room = roomCRUD.searchObjectNum(roomNum);
+          if (room!=null && validationService.validationRole(room.getRole(), object.getRole())) {
+
+            log.info("access is allowed");
+            object.setRoomID(room.getUuid());
+            guestCRUD.saveObject(object);
+
+            Set<UUID> roomSet = room.getGuestID();
+            roomSet.add(object.getUuid());
+            room.setGuestID(roomSet);
+            roomCRUD.saveObject(room);
+          } else {
+            log.error("access is denied");
+            log.error("Error adding room");
+          }
+          break;
+        case 3:
+          room = roomCRUD.searchUUIDObject(object.getRoomID());
+          if (room != null) {
+            //удаляем айдишник комнаты из списка работника
+            object.setRoomID(null);
+            guestCRUD.saveObject(object);
+
+            //удаляем айдишник работника из списка комнаты
+            room.deleteEmployee(object.getUuid());
+            roomCRUD.saveObject(room);
+
+          } else {
+            log.error("Room not found error removing room");
+          }
+          break;
+        default:
+          log.error("Choose correct num");
+          break;
+      }
+    } while (userChoice != 666);
 
   }
 }

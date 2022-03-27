@@ -225,7 +225,7 @@ public class MenuServices {
     int userChoice;
     do {
       log.info("1.Display all guests");
-      log.info("2.Search employee(Name Surname, roomNum)");
+      log.info("2.Search guest(Name Surname)");
       log.info("3.Add guests");
       log.info("4.Delete guests(Name Surname)");//не работает
       log.info("5.Change guest(Name Surname)");

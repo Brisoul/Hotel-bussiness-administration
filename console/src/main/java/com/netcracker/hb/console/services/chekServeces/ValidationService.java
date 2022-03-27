@@ -4,9 +4,9 @@ import static java.lang.Character.isLetter;
 import static java.lang.Character.isLetterOrDigit;
 
 import com.netcracker.hb.Dao.CRUD.CRUD;
-import com.netcracker.hb.Dao.CRUD.Person.IEmployeeCRUD;
 import com.netcracker.hb.Dao.CRUD.Person.EmployeeCRUD;
 import com.netcracker.hb.Dao.CRUD.Person.GuestCRUD;
+import com.netcracker.hb.Dao.CRUD.Person.IEmployeeCRUD;
 import com.netcracker.hb.Dao.CRUD.Person.IGuestCRUD;
 import com.netcracker.hb.Dao.CRUD.hotel.FloorCRUD;
 import com.netcracker.hb.entities.Role;
@@ -21,10 +21,13 @@ import lombok.extern.log4j.Log4j;
 @Log4j
 public class ValidationService {
 
-  private static final ValidationService validationService = new ValidationService();
+  private static ValidationService validationService;
   private ValidationService() {
   }
-  public static ValidationService getValidationService() {
+  public static synchronized ValidationService getValidationService() {
+    if(validationService ==null){
+      validationService = new ValidationService();
+    }
     return validationService;
   }
 
@@ -34,26 +37,25 @@ public class ValidationService {
   private static final CRUD<Floor> floorCRUD = FloorCRUD.getFloorCRUD();
 
 
-  Scanner in = new Scanner(System.in);
-
 
   public int validationNumberChoice() {
 
-    int Num, correctChoice;
+    int num;
+    int correctChoice;
     Scanner in = new Scanner(System.in);
     do {
-      Num = in.nextInt();
-      if (Num <= 0) {
+      num = in.nextInt();
+      if (num <= 0) {
         log.info("0 is not a good choice");
         correctChoice = 1;
-      } else if (Num > 10000) {
+      } else if (num > 10000) {
         log.info("Dear user, our builders cant make it so big");
         correctChoice = 1;
       } else {
         correctChoice = 0;
       }
     } while (correctChoice != 0);
-    return Num;
+    return num;
 
   }
 
@@ -63,23 +65,11 @@ public class ValidationService {
       case GUEST:
         return true;
       case SERVICE_EMPLOYEE:
-        if(addedRole == Role.GUEST){
-          return false;
-        } else{
-          return true;
-        }
+        return addedRole != Role.GUEST;
       case MANAGER:
-        if(addedRole == Role.SERVICE_EMPLOYEE){
-          return false;
-        } else{
-          return true;
-        }
+        return addedRole != Role.SERVICE_EMPLOYEE;
       case ADMIN:
-        if(addedRole == Role.MANAGER){
-          return false;
-        } else{
-          return true;
-        }
+        return addedRole != Role.MANAGER;
       default:
         break;
     }
@@ -90,12 +80,14 @@ public class ValidationService {
 
   public Role validationRoleEmployeeChoice() {
     Role role;
-    int i, userChoice;
+    int i;
+    int userChoice;
     do {
       log.info("Enter usage(Role)");
       log.info("1.Employee");
       log.info("2.Manager");
       log.info("3.Admin");
+      Scanner in = new Scanner(System.in);
       userChoice = in.nextInt();
       switch (userChoice) {
         case 1:
@@ -122,13 +114,15 @@ public class ValidationService {
 
   public Role validationRoleChoice() {
     Role role;
-    int i, userChoice;
+    int i;
+    int userChoice;
     do {
       log.info("Enter usage(Role)");
       log.info("1.Guest");
       log.info("2.Employee");
       log.info("3.Manager");
       log.info("4.Admin");
+      Scanner in = new Scanner(System.in);
       userChoice = in.nextInt();
       switch (userChoice) {
         case 1:
@@ -161,14 +155,14 @@ public class ValidationService {
     int correctChoice;
     char ch;
 
-    String wordWithoutNums;
+    String wordWithoutNumbers;
     Scanner in = new Scanner(System.in);
     do {
       correctChoice = 0;
-      wordWithoutNums = in.nextLine();
+      wordWithoutNumbers = in.nextLine();
 
-      for (int i = 0; i < wordWithoutNums.length(); i++) {
-        ch = wordWithoutNums.charAt(i);
+      for (int i = 0; i < wordWithoutNumbers.length(); i++) {
+        ch = wordWithoutNumbers.charAt(i);
         if (!isLetter(ch)) {
           correctChoice = 1;
         }
@@ -178,21 +172,21 @@ public class ValidationService {
       }
 
     } while (correctChoice != 0);
-    return wordWithoutNums;
+    return wordWithoutNumbers;
   }
 
   public String validationNameNum() {
     int correctChoice;
     char ch;
 
-    String wordWithoutNums;
+    String wordWithoutNumbers;
     Scanner in = new Scanner(System.in);
     do {
       correctChoice = 0;
-      wordWithoutNums = in.nextLine();
+      wordWithoutNumbers = in.nextLine();
 
-      for (int i = 0; i < wordWithoutNums.length(); i++) {
-        ch = wordWithoutNums.charAt(i);
+      for (int i = 0; i < wordWithoutNumbers.length(); i++) {
+        ch = wordWithoutNumbers.charAt(i);
         if (!isLetterOrDigit(ch)) {
           correctChoice = 1;
         }
@@ -202,7 +196,7 @@ public class ValidationService {
       }
 
     } while (correctChoice != 0);
-    return wordWithoutNums;
+    return wordWithoutNumbers;
   }
 
   public Person validationSearchPerson() {
@@ -233,8 +227,7 @@ public class ValidationService {
     String name = validationService.validationName();
     log.info("Surname");
     String surname = validationService.validationName();
-    Employee employee = employeeCRUD.searchObjectNameSurname(name, surname);
-    return employee;
+    return employeeCRUD.searchObjectNameSurname(name, surname);
   }
 
   public Guest validationSearchGuestNameSurname(){
@@ -242,8 +235,7 @@ public class ValidationService {
     String name = validationService.validationName();
     log.info("Surname");
     String surname = validationService.validationName();
-    Guest guest = guestCRUD.searchObjectNameSurname(name, surname);
-    return guest;
+    return guestCRUD.searchObjectNameSurname(name, surname);
   }
 
   public Employee validationLogIn(){
@@ -266,17 +258,11 @@ public class ValidationService {
 
 
   public boolean validationMaxNumber(int num){
-    if(floorCRUD.searchObjects()!= null){
-      if(floorCRUD.searchObjects().size()>=num){
-        return true;
+      if(!floorCRUD.searchObjects().isEmpty()){
+        return floorCRUD.searchObjects().size()>=num;
       } else{
         return false;
       }
-    } else {
-      return false;
-    }
   }
-
-
 
 }

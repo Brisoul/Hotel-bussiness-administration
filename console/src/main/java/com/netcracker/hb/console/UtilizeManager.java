@@ -5,11 +5,14 @@ import com.netcracker.hb.Dao.CRUD.hotel.HotelCRUD;
 import com.netcracker.hb.entities.hotel.Hotel;
 
 public class UtilizeManager {
-  private static final UtilizeManager utilizeManager = new UtilizeManager();
+  private static UtilizeManager utilizeManager;
   private UtilizeManager(){
   }
 
-  public static UtilizeManager getUtilizeManager() {
+  public static synchronized UtilizeManager getUtilizeManager() {
+    if(utilizeManager ==null){
+      utilizeManager = new UtilizeManager();
+    }
     return utilizeManager;
   }
 

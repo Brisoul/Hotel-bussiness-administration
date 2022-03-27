@@ -4,7 +4,6 @@ import lombok.Builder;
 import lombok.Data;
 
 import java.io.Serializable;
-import java.util.HashSet;
 import java.util.Set;
 import java.util.UUID;
 
@@ -24,6 +23,7 @@ public class Floor implements Serializable {
   public void deleteRooms(UUID roomN) {
     roomsID.remove(roomN);
   }
+
 
 }
 

@@ -7,12 +7,15 @@ import lombok.extern.log4j.Log4j;
 @Log4j
 public class LogIn {
 
-  private static final LogIn logIn = new LogIn();
+  private static LogIn logIn;
 
   private LogIn() {
   }
 
-  public static LogIn getLogIn() {
+  public static synchronized LogIn getLogIn() {
+    if(logIn == null){
+      logIn = new LogIn();
+    }
     return logIn;
   }
 
@@ -49,6 +52,7 @@ public class LogIn {
               userChoice = 666;
               break;
           }
+          break;
         case 666:
           log.info("see u!");
           break;

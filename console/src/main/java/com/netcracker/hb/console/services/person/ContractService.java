@@ -16,9 +16,16 @@ import lombok.extern.log4j.Log4j;
 
 @Log4j
 public class ContractService implements IPersonalCard<Contract> {
-  private static final IPersonalCard<Contract> contractService = new ContractService();
-  private ContractService(){}
-  public static IPersonalCard<Contract> getContractService() {
+
+  private static IPersonalCard<Contract> contractService ;
+
+  private ContractService() {
+  }
+
+  public static synchronized IPersonalCard<Contract> getContractService() {
+    if(contractService ==null){
+      contractService = new ContractService();
+    }
     return contractService;
   }
 
@@ -44,7 +51,7 @@ public class ContractService implements IPersonalCard<Contract> {
   public void changeObject(Contract object) {
     log.info("Start work with contract");
     int userChoice;
-    Long years;
+    long years;
     Date date;
     do {
       log.info("1.set begin contract date");
@@ -56,31 +63,36 @@ public class ContractService implements IPersonalCard<Contract> {
       userChoice = validationService.validationNumberChoice();
       switch (userChoice) {
         case 1:
-          log.info("write how many years do u wonna add to date begin(from 1970 :В)");
-          years = Long.valueOf(validationService.validationNumberChoice());
-          years *= 360*86400000;
+          log.info("write how many years do u wanna add to date begin(from 1970 :В)");
+          years = validationService.validationNumberChoice();
+          years *= 360L * 86400000L;
           date = new Date(years);
           object.setBeginContract(date);
           contractCRUD.saveObject(object);
+          break;
         case 2:
-          log.info("write how many years do u wonna add to date end(from 1970 :В)");
-          years = Long.valueOf(validationService.validationNumberChoice());
-          years *= 360*86400000;
+          log.info("write how many years do u wanna add to date end(from 1970 :В)");
+          years = validationService.validationNumberChoice();
+          years *= 360L * 86400000L;
           date = new Date(years);
           object.setBeginContract(date);
           contractCRUD.saveObject(object);
+          break;
         case 3:
           log.info("Enter Experience in years");
           object.setExperience(validationService.validationNumberChoice());
           contractCRUD.saveObject(object);
+          break;
         case 4:
           log.info("Enter salary in dollars");
           object.setSalary(validationService.validationNumberChoice());
           contractCRUD.saveObject(object);
+          break;
         case 5:
           log.info("Enter work time in hours");
           object.setWorkTime(validationService.validationNumberChoice());
           contractCRUD.saveObject(object);
+          break;
         case 666:
           log.info("see u!");
           break;
@@ -100,7 +112,7 @@ public class ContractService implements IPersonalCard<Contract> {
     log.info("_______________________");
     log.info(contractCRUD.searchFileName(object));
     log.info("BeginContract " + object.getBeginContract());
-    log.info("EndContract "+object.getEndContract());
+    log.info("EndContract " + object.getEndContract());
     log.info("Experience (years)" + object.getExperience());
     log.info("Salary (three hundred bucks)" + object.getSalary());
     log.info("WorkTime (hours)" + object.getWorkTime());
@@ -111,7 +123,7 @@ public class ContractService implements IPersonalCard<Contract> {
 
   @Override
   public void addObjectPerson(Person person) {
-    Employee employee = (Employee)person;
+    Employee employee = (Employee) person;
 
     Contract contract = Contract.builder()
         .uuid(UUID.randomUUID())

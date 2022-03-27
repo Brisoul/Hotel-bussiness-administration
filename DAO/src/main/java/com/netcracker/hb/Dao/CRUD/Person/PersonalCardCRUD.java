@@ -1,13 +1,12 @@
 package com.netcracker.hb.Dao.CRUD.Person;
 
-import com.netcracker.hb.Dao.CRUD.CRUD;
+import com.netcracker.hb.Dao.CRUD.DatabaseProperties;
 import com.netcracker.hb.entities.Role;
 import com.netcracker.hb.entities.persons.Employee;
 import com.netcracker.hb.entities.persons.Guest;
 import com.netcracker.hb.entities.persons.PersonalCard;
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
@@ -21,219 +20,217 @@ import lombok.extern.log4j.Log4j;
 @Log4j
 public class PersonalCardCRUD implements IGuestCRUD<PersonalCard> {
 
-  private static final IGuestCRUD<PersonalCard> personalCardCRUD = new PersonalCardCRUD();
+  private static IGuestCRUD<PersonalCard> personalCardCRUD;
+
   private PersonalCardCRUD() {
   }
-  public static IGuestCRUD<PersonalCard> getPersonalCardCRUD() {
+
+  public static synchronized IGuestCRUD<PersonalCard> getPersonalCardCRUD() {
+    if (personalCardCRUD == null) {
+      personalCardCRUD = new PersonalCardCRUD();
+    }
     return personalCardCRUD;
   }
+
+  private static final String START = "<Start searching personal card....";
+  private static final String END = "Personal card was found>";
+  private static final String ERROR = "Personal card was not found>";
 
   private final IGuestCRUD<Guest> guestCRUD = GuestCRUD.getGuestCRUD();
   private final IEmployeeCRUD<Employee> employeeCRUD = EmployeeCRUD.getIEmployeeCRUD();
 
 
-
   @Override
   public PersonalCard searchObjectNameSurname(String name, String surname) {
-    log.info("<Start searching card....");
+    log.info(START);
+
+    File personalCardFolderDirectory = new File(
+        DatabaseProperties.getPersonalCardCrudEntitiesPath());
+    String[] personalCardList = personalCardFolderDirectory.list();
     PersonalCard personalCard = null;
-    Guest guest = guestCRUD.searchObjectNameSurname(name, surname);
-    Employee employee = employeeCRUD.searchObjectNameSurname(name, surname);
-    if (guest == null && employee == null) {
-      log.error("PERSON NOT FOUND");
-    } else if (employee == null) {
-      personalCard = searchUUIDObject(guest.getCardID());
-      log.info("Person Guest with this card was found");
-    } else if (guest == null) {
-      personalCard = searchUUIDObject(employee.getCardID());
-      log.info("Person Employee with this card was found");
+    assert personalCardList != null;
+    for (String personalCardFolderName : personalCardList) {
+      try (
+          FileInputStream filePersonalCardIn = new FileInputStream(
+              DatabaseProperties.getPersonalCardCrudEntitiesPath() + personalCardFolderName);
+          ObjectInputStream objectPersonalCardIn = new ObjectInputStream(filePersonalCardIn);
+      ) {
+        PersonalCard object = (PersonalCard) objectPersonalCardIn.readObject();
+        if (object != null) {
+          if (object.getRole() == Role.GUEST) {
+            Guest guest = guestCRUD.searchUUIDObject(object.getPersonID());
+            if (guest.getName().equals(name) && guest.getSurname().equals(surname)) {
+              log.info(END);
+              personalCard = object;
+            }
+          } else {
+            Employee employee = employeeCRUD.searchUUIDObject(object.getPersonID());
+            if (employee.getName().equals(name) && employee.getSurname().equals(surname)) {
+              log.info(END);
+              personalCard = object;
+            }
+          }
+        }
+      } catch (IOException | ClassNotFoundException exception) {
+        exception.printStackTrace();
+      }
     }
-    //todo чето там про опшнл
     if (personalCard == null) {
-      log.error("CARD NOT FOUND>");
-    } else {
-      log.info("card was found>");
+      log.error(ERROR);
     }
     return personalCard;
+
   }
 
-  //Оно не должно работать
+
   @Override
   public boolean searchObjectRole(Role role) {
-    return false;
+    return guestCRUD.searchObjectRole(role);
   }
 
-  //не должно работать
   @Override
   public List<PersonalCard> searchObjects() {
-    log.info("<Start searching personal cards....");
+    log.info(START);
 
-    File personalCardFolderDirectory = new File("entSAVE/personalcard_entities");
+    File personalCardFolderDirectory = new File(
+        DatabaseProperties.getPersonalCardCrudEntitiesPath());
     String[] personalCardList = personalCardFolderDirectory.list();
-    List personalCards = new ArrayList();
-    try {
-      for (String personalCardFolderName : personalCardList) {
-
-        FileInputStream filePersonalCardIn = new FileInputStream(
-            "entSAVE/personalcard_entities/" + personalCardFolderName);
-        ObjectInputStream objectPersonalCardIn = new ObjectInputStream(filePersonalCardIn);
+    List<PersonalCard> personalCards = new ArrayList<>();
+    assert personalCardList != null;
+    for (String personalCardFolderName : personalCardList) {
+      try (
+          FileInputStream filePersonalCardIn = new FileInputStream(
+              DatabaseProperties.getPersonalCardCrudEntitiesPath() + personalCardFolderName);
+          ObjectInputStream objectPersonalCardIn = new ObjectInputStream(filePersonalCardIn)
+      ) {
         PersonalCard object = (PersonalCard) objectPersonalCardIn.readObject();
         personalCards.add(object);
-        objectPersonalCardIn.close();
-
-
+      } catch (ClassNotFoundException | IOException exception) {
+        exception.printStackTrace();
       }
-    } catch (FileNotFoundException exception) {
-      exception.printStackTrace();
-    } catch (IOException e) {
-      e.printStackTrace();
-    } catch (ClassNotFoundException e) {
-      e.printStackTrace();
-    } finally {
-      if (personalCards == null) {
-        log.error("PERSONAL CARD NOT FOUND>");
-      }
-      return personalCards;
     }
+    if (personalCards.isEmpty()) {
+      log.error(ERROR);
+    }
+    return personalCards;
   }
 
   @Override
   public PersonalCard searchObjectNum(int personalCardNum) {
-    log.info("<Start searching personal card....");
-
+    log.info(START);
     File personalCardFolderDirectory = new File(
-        "entSAVE/personalcard_entities");
+        DatabaseProperties.getPersonalCardCrudEntitiesPath());
     String[] personalCardList = personalCardFolderDirectory.list();
-    Object personalCard = null;
-    try {
-      for (String personalCardFolderName : personalCardList) {
-
-        FileInputStream filePersonalCardIn = new FileInputStream(
-            "entSAVE/personalcard_entities/" + personalCardFolderName);
-        ObjectInputStream objectPersonalCardIn = new ObjectInputStream(filePersonalCardIn);
+    PersonalCard personalCard = null;
+    assert personalCardList != null;
+    for (String personalCardFolderName : personalCardList) {
+      try (
+          FileInputStream filePersonalCardIn = new FileInputStream(
+              DatabaseProperties.getPersonalCardCrudEntitiesPath() + personalCardFolderName);
+          ObjectInputStream objectPersonalCardIn = new ObjectInputStream(filePersonalCardIn);
+      ) {
         PersonalCard object = (PersonalCard) objectPersonalCardIn.readObject();
         if (object.getNum() == personalCardNum) {
-          log.info("Personal card was found>");
+          log.info(END);
           personalCard = object;
         }
-        objectPersonalCardIn.close();
-
-
+      } catch (IOException | ClassNotFoundException exception) {
+        exception.printStackTrace();
       }
-    } catch (FileNotFoundException exception) {
-      exception.printStackTrace();
-    } catch (IOException e) {
-      e.printStackTrace();
-    } catch (ClassNotFoundException e) {
-      e.printStackTrace();
-    } finally {
-      if (personalCard == null) {
-        log.error("PERSONAL CARD NOT FOUND>");
-      }
-      return (PersonalCard) personalCard;
     }
+    if (personalCard == null) {
+      log.error(ERROR);
+    }
+    return personalCard;
 
   }
 
   @Override
   public PersonalCard searchUUIDObject(UUID uuid) {
-    log.info("<Start searching personal card....");
+    log.info(START);
+    if (uuid == null) {
+      return null;
+    }
 
     File personalCardFolderDirectory = new File(
-        "entSAVE/personalcard_entities");
+        DatabaseProperties.getPersonalCardCrudEntitiesPath());
     String[] personalCardList = personalCardFolderDirectory.list();
     PersonalCard personalCard = null;
-    try {
-      for (String personalCardFolderName : personalCardList) {
-
-        FileInputStream filePersonalCardIn = new FileInputStream(
-            "entSAVE/personalcard_entities/" + personalCardFolderName);
-        ObjectInputStream objectPersonalCardIn = new ObjectInputStream(filePersonalCardIn);
+    assert personalCardList != null;
+    for (String personalCardFolderName : personalCardList) {
+      try (
+          FileInputStream filePersonalCardIn = new FileInputStream(
+              DatabaseProperties.getPersonalCardCrudEntitiesPath() + personalCardFolderName);
+          ObjectInputStream objectPersonalCardIn = new ObjectInputStream(filePersonalCardIn);
+      ) {
         PersonalCard object = (PersonalCard) objectPersonalCardIn.readObject();
-        if (object != null && uuid !=null) {
-          if (object.getUuid().equals(uuid)) {
-            log.info("Personal card was found>");
-            personalCard = object;
-          }
-          objectPersonalCardIn.close();
+        if (object != null && object.getUuid().equals(uuid)) {
+          log.info(END);
+          personalCard = object;
+
         }
-
-
+      } catch (IOException | ClassNotFoundException exception) {
+        exception.printStackTrace();
       }
-    } catch (FileNotFoundException exception) {
-      exception.printStackTrace();
-    } catch (IOException e) {
-      e.printStackTrace();
-    } catch (ClassNotFoundException e) {
-      e.printStackTrace();
-    } finally {
-      if (personalCard == null) {
-        log.error("PERSONAL CARD NOT FOUND>");
-      }
-      return personalCard;
     }
+    if (personalCard == null) {
+      log.error(ERROR);
+    }
+    return personalCard;
   }
 
   @Override
   public String searchFileName(PersonalCard personalCard) {
-    log.info("<Start searching file name of personal card...");
+    log.info(START);
 
-    File personalCardFolderDirectory = new File("entSAVE/personalcard_entities");
+    File personalCardFolderDirectory = new File(
+        DatabaseProperties.getPersonalCardCrudEntitiesPath());
     String[] personalCardList = personalCardFolderDirectory.list();
     String fileName = null;
-    try {
-      for (String personalCardFolderName : personalCardList) {
-
-        FileInputStream filePersonalCardIn = new FileInputStream(
-            "entSAVE/personalcard_entities/" + personalCardFolderName);
-        ObjectInputStream objectPersonalCardIn = new ObjectInputStream(filePersonalCardIn);
+    assert personalCardList != null;
+    for (String personalCardFolderName : personalCardList) {
+      try (
+          FileInputStream filePersonalCardIn = new FileInputStream(
+              DatabaseProperties.getPersonalCardCrudEntitiesPath() + personalCardFolderName);
+          ObjectInputStream objectPersonalCardIn = new ObjectInputStream(filePersonalCardIn);
+      ) {
         PersonalCard object = (PersonalCard) objectPersonalCardIn.readObject();
         if (object.equals(personalCard)) {
-          log.info("File name of personal card was found>");
+          log.info(END);
           fileName = personalCardFolderName;
         }
-        objectPersonalCardIn.close();
-
-
+      } catch (IOException | ClassNotFoundException exception) {
+        exception.printStackTrace();
       }
-    } catch (FileNotFoundException exception) {
-      exception.printStackTrace();
-    } catch (IOException e) {
-      e.printStackTrace();
-    } catch (ClassNotFoundException e) {
-      e.printStackTrace();
-    } finally {
-      if (fileName == null) {
-        log.error("FILE NAME OF PERSONAL CARD NOT FOUND>");
-      }
-      return fileName;
     }
+    if (fileName == null) {
+      log.error(ERROR);
+    }
+    return fileName;
   }
 
   @Override
   public void deleteObject(PersonalCard object) {
 
     //Отвязываем карту от пользователя
-    PersonalCard personalCard = null;
-    Guest guest = guestCRUD.searchUUIDObject(object.getUuid());
-    Employee employee = employeeCRUD.searchUUIDObject(object.getUuid());
+    Guest guest = guestCRUD.searchUUIDObject(object.getPersonID());
+    Employee employee = employeeCRUD.searchUUIDObject(object.getPersonID());
     if (guest == null && employee == null) {
-      log.error("PERSON NOT FOUND");
+      log.error("Person not found its strange");
     } else if (employee == null) {
-      employee.setCardID(null);
+      guest.setCardID(null);
       log.info("Person Guest with this card was found");
     } else if (guest == null) {
-      guest.setCardID(null);
+      employee.setCardID(null);
       log.info("Person Employee with this card was found");
     }
 
     //Удаляем карту
-    File deleteFile = new File("entSAVE/guest_entities/" + searchFileName(object));
-    if (deleteFile != null) {
-      log.info("Guest was successfully deleted>");
-      deleteFile.delete();
+    File deleteFile = new File(DatabaseProperties.getPersonalCardCrudEntitiesPath() + searchFileName(object));
+    if (deleteFile.delete()) {
+      log.info("Personal card was successfully deleted>");
     } else {
-      log.warn("NOTHING WAS DELETED, FILE GUEST NOT FOUND>");
+      log.warn(ERROR);
     }
   }
 
@@ -241,13 +238,13 @@ public class PersonalCardCRUD implements IGuestCRUD<PersonalCard> {
   public void saveObject(PersonalCard card) {
     log.info("<Start saving personal card...");
 
-    try {
-      FileOutputStream filePersonalCardOut = new FileOutputStream(
-          "entSAVE/personalcard_entities/" + card.getUuid() + "-personalCard.txt");
-
-      ObjectOutputStream objectPersonalCardOut = new ObjectOutputStream(filePersonalCardOut);
+    try (
+        FileOutputStream filePersonalCardOut = new FileOutputStream(
+            DatabaseProperties.getPersonalCardCrudEntitiesPath() + card.getUuid()
+                + "-personalCard.txt");
+        ObjectOutputStream objectPersonalCardOut = new ObjectOutputStream(filePersonalCardOut);
+    ) {
       objectPersonalCardOut.writeObject(card);
-      objectPersonalCardOut.close();
       log.info("Success saving card>");
 
     } catch (Exception ex) {

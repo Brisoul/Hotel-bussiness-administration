@@ -2,11 +2,11 @@ package com.netcracker.hb.entities.hotel;
 
 
 import com.netcracker.hb.entities.Role;
-import java.util.Set;
 import lombok.Builder;
 import lombok.Data;
 
 import java.io.Serializable;
+import java.util.Set;
 import java.util.UUID;
 
 @Data

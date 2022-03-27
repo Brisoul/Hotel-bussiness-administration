@@ -1,13 +1,11 @@
 package com.netcracker.hb.Dao.CRUD.Person;
 
-import com.netcracker.hb.Dao.CRUD.CRUD;
+import com.netcracker.hb.Dao.CRUD.DatabaseProperties;
 import com.netcracker.hb.entities.Role;
 import com.netcracker.hb.entities.persons.Contract;
 import com.netcracker.hb.entities.persons.Employee;
-import com.netcracker.hb.entities.persons.PersonalCard;
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
@@ -15,7 +13,6 @@ import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
-import lombok.Builder;
 import lombok.extern.log4j.Log4j;
 
 
@@ -23,48 +20,55 @@ import lombok.extern.log4j.Log4j;
 public class ContractCRUD implements IGuestCRUD<Contract> {
 
 
-  private static final IGuestCRUD<Contract> contractCRUD = new ContractCRUD();
+  private static IGuestCRUD<Contract> contractCRUD;
+
   private ContractCRUD() {
   }
-  public static IGuestCRUD<Contract> getContractCRUD() {
+
+  public static synchronized IGuestCRUD<Contract> getContractCRUD() {
+    if (contractCRUD == null){
+      contractCRUD = new ContractCRUD();
+    }
     return contractCRUD;
   }
+
+
+  private static final String START = "<Start searching employee contract....";
+  private static final String END = "employee contract was found>";
+  private static final String ERROR = "employee contract was not found>";
 
   private static final IEmployeeCRUD<Employee> employeeCRUD = EmployeeCRUD.getIEmployeeCRUD();
 
   @Override
   public Contract searchObjectNameSurname(String name, String surname) {
-    log.info("<Start searching employee contract....");
-
-    File contractFolderDirectory = new File("entSAVE/contract_entities");
+    log.info(START);
+    File contractFolderDirectory = new File(DatabaseProperties.getContractCrudEntitiesPath());
     String[] contractList = contractFolderDirectory.list();
     Contract contract = null;
-    try {
-      for (String contractFolderName : contractList) {
-        FileInputStream fileContractIn = new FileInputStream("entSAVE/contract_entities/"
-            + contractFolderName);
-        ObjectInputStream objectContractIn = new ObjectInputStream(fileContractIn);
+    assert contractList != null;
+    for (String contractFolderName : contractList) {
+      try (
+
+          FileInputStream fileContractIn = new FileInputStream(
+              DatabaseProperties.getContractCrudEntitiesPath()
+                  + contractFolderName); ObjectInputStream objectContractIn = new ObjectInputStream(
+          fileContractIn);) {
         Contract object = (Contract) objectContractIn.readObject();
         Employee employee = employeeCRUD.searchObjectNameSurname(name, surname);
 
         if (employee.getContractID().equals(object.getUuid())) {
-          log.info("employee contract was found>");
+          log.info(END);
           contract = object;
         }
-        objectContractIn.close();
+
+      } catch (IOException | ClassNotFoundException exception) {
+        exception.printStackTrace();
       }
-    } catch (FileNotFoundException exception) {
-      exception.printStackTrace();
-    } catch (IOException e) {
-      e.printStackTrace();
-    } catch (ClassNotFoundException e) {
-      e.printStackTrace();
-    } finally {
-      if (contract == null) {
-        log.error("EMPLOYEE CONTRACT NOT FOUND>");
-      }
-      return contract;
     }
+    if (contract == null) {
+      log.error(ERROR);
+    }
+    return contract;
   }
 
   //не должно работать
@@ -75,32 +79,28 @@ public class ContractCRUD implements IGuestCRUD<Contract> {
 
   @Override
   public List<Contract> searchObjects() {
-    log.info("<Start searching employee contractы....");
+    log.info(START);
 
-    File contractFolderDirectory = new File("entSAVE/contract_entities");
+    File contractFolderDirectory = new File(DatabaseProperties.getContractCrudEntitiesPath());
     String[] contractList = contractFolderDirectory.list();
-    List contracts = new ArrayList();
-    try {
-      for (String contractFolderName : contractList) {
-        FileInputStream fileContractIn = new FileInputStream("entSAVE/contract_entities/"
-            + contractFolderName);
-        ObjectInputStream objectContractIn = new ObjectInputStream(fileContractIn);
+    List<Contract> contracts = new ArrayList<>();
+    assert contractList != null;
+    for (String contractFolderName : contractList) {
+      try (FileInputStream fileContractIn = new FileInputStream(
+          DatabaseProperties.getContractCrudEntitiesPath()
+              + contractFolderName); ObjectInputStream objectContractIn = new ObjectInputStream(
+          fileContractIn);) {
         Contract object = (Contract) objectContractIn.readObject();
         contracts.add(object);
-        objectContractIn.close();
+
+      } catch (IOException | ClassNotFoundException exception) {
+        exception.printStackTrace();
       }
-    } catch (FileNotFoundException exception) {
-      exception.printStackTrace();
-    } catch (IOException e) {
-      e.printStackTrace();
-    } catch (ClassNotFoundException e) {
-      e.printStackTrace();
-    } finally {
-      if (contracts == null) {
-        log.error("EMPLOYEE CONTRACT NOT FOUND>");
-      }
-      return contracts;
     }
+    if (contracts.isEmpty()) {
+      log.error(ERROR);
+    }
+    return contracts;
   }
 
   //не должно работать
@@ -113,85 +113,80 @@ public class ContractCRUD implements IGuestCRUD<Contract> {
 
   @Override
   public Contract searchUUIDObject(UUID uuid) {
-    log.info("<Start searching employee contract....");
+    log.info(START);
+    if(uuid == null){
+      return null;
+    }
 
-    File contractFolderDirectory = new File("entSAVE/contract_entities");
+    File contractFolderDirectory = new File(DatabaseProperties.getContractCrudEntitiesPath());
     String[] contractList = contractFolderDirectory.list();
     Contract contract = null;
-    try {
-      for (String contractFolderName : contractList) {
-        FileInputStream fileContractIn = new FileInputStream("entSAVE/contract_entities/"
-            + contractFolderName);
-        ObjectInputStream objectContractIn = new ObjectInputStream(fileContractIn);
+    assert contractList != null;
+    for (String contractFolderName : contractList) {
+      try (FileInputStream fileContractIn = new FileInputStream(
+          DatabaseProperties.getContractCrudEntitiesPath()
+              + contractFolderName); ObjectInputStream objectContractIn = new ObjectInputStream(
+          fileContractIn);) {
         Contract object = (Contract) objectContractIn.readObject();
         if (object.getUuid().equals(uuid)) {
-          log.info("contract was found>");
+          log.info(END);
           contract = object;
         }
-        objectContractIn.close();
+      } catch (IOException | ClassNotFoundException exception) {
+        exception.printStackTrace();
       }
-    } catch (FileNotFoundException exception) {
-      exception.printStackTrace();
-    } catch (IOException e) {
-      e.printStackTrace();
-    } catch (ClassNotFoundException e) {
-      e.printStackTrace();
-    } finally {
-      if (contract == null) {
-        log.error("EMPLOYEE CONTRACT NOT FOUND>");
-      }
-      return contract;
     }
+    if (contract == null) {
+      log.error(ERROR);
+    }
+    return contract;
   }
 
   @Override
   public String searchFileName(Contract contract) {
-    log.info("<Start searching employee contract....");
+    log.info(START);
 
-    File contractFolderDirectory = new File("entSAVE/contract_entities");
+    File contractFolderDirectory = new File(DatabaseProperties.getContractCrudEntitiesPath());
     String[] contractList = contractFolderDirectory.list();
     String fileName = null;
-    try {
-      for (String contractFolderName : contractList) {
-        FileInputStream fileContractIn = new FileInputStream("entSAVE/contract_entities/"
-            + contractFolderName);
-        ObjectInputStream objectContractIn = new ObjectInputStream(fileContractIn);
+    assert contractList != null;
+    for (String contractFolderName : contractList) {
+      try (FileInputStream fileContractIn = new FileInputStream(
+          DatabaseProperties.getContractCrudEntitiesPath()
+              + contractFolderName); ObjectInputStream objectContractIn = new ObjectInputStream(
+          fileContractIn);) {
+
         Contract object = (Contract) objectContractIn.readObject();
         if (object.equals(contract)) {
           log.info("contract was found>");
           fileName = contractFolderName;
         }
-        objectContractIn.close();
+
+      } catch (IOException | ClassNotFoundException exception) {
+        exception.printStackTrace();
       }
-    } catch (FileNotFoundException exception) {
-      exception.printStackTrace();
-    } catch (IOException e) {
-      e.printStackTrace();
-    } catch (ClassNotFoundException e) {
-      e.printStackTrace();
-    } finally {
-      if (fileName == null) {
-        log.error("EMPLOYEE CONTRACT NOT FOUND>");
-      }
-      return fileName;
     }
+    if (fileName == null) {
+      log.error(ERROR);
+    }
+    return fileName;
   }
 
   @Override
   public void deleteObject(Contract object) {
 
     //отвязываем от работника
-    Employee employee = employeeCRUD.searchUUIDObject(object.getUuid());
+    Employee employee = employeeCRUD.searchUUIDObject(object.getEmployeeID());
     employee.setContractID(null);
 
     // удаляем
     Contract contract = searchUUIDObject(object.getUuid());
-    File deleteFile = new File("entSAVE/contract_entities/"+ searchFileName(contract));
-    if (deleteFile != null) {
-      log.info("Contract was successfully deleted>" );
-      deleteFile.delete();
-    } else{
-      log.warn("NOTHING WAS DELETED, FILE CONTRACT NOT FOUND>");
+    File deleteFile = new File(
+        DatabaseProperties.getContractCrudEntitiesPath() + searchFileName(contract));
+    if (deleteFile.delete()) {
+      log.info("Contract was successfully deleted>");
+    } else {
+      log.warn(ERROR);
     }
 
 
@@ -201,17 +196,14 @@ public class ContractCRUD implements IGuestCRUD<Contract> {
   public void saveObject(Contract contract) {
 
     log.info("<Start saving contract...");
-    try {
-      FileOutputStream fileContractOut = new FileOutputStream(
-          "entSAVE/contract_entities/" + contract.getUuid() + "-personalCard.txt");
-
-      ObjectOutputStream objectContractOut = new ObjectOutputStream(fileContractOut);
+    try (FileOutputStream fileContractOut = new FileOutputStream(
+        DatabaseProperties.getContractCrudEntitiesPath() + contract.getUuid()
+            + "-personalCard.txt"); ObjectOutputStream objectContractOut = new ObjectOutputStream(
+        fileContractOut);) {
       objectContractOut.writeObject(contract);
-      objectContractOut.close();
       log.info("Success saving contract>");
     } catch (Exception ex) {
       ex.printStackTrace();
     }
-
   }
 }

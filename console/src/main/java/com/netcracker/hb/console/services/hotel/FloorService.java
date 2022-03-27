@@ -18,18 +18,33 @@ import lombok.extern.log4j.Log4j;
 @Log4j
 public class FloorService implements Service<Floor> {
 
-  private static final Service<Floor> floorService = new FloorService();
-  private FloorService(){}
-  public static Service<Floor> getFloorService(){
+  private static Service<Floor> floorService;
+
+  private FloorService() {
+  }
+
+  public static synchronized Service<Floor> getFloorService() {
+    if (floorService == null) {
+      floorService = new FloorService();
+    }
     return floorService;
   }
 
-  private static int floorNum;
   private static final CRUD<Hotel> hotelCRUD = HotelCRUD.getHotelCRUD();
   private static final CRUD<Floor> floorCRUD = FloorCRUD.getFloorCRUD();
   private static final CRUD<Room> roomsCRUD = RoomsCRUD.getRoomsCRUD();
   private static final ValidationService validationService = ValidationService.getValidationService();
 
+
+  private int numIterator(){
+    int iterator = 0;
+    for(Floor floor :floorCRUD.searchObjects()){
+      if(iterator<floor.getFloorNum()){
+        iterator =floor.getFloorNum();
+      }
+    }
+    return iterator+1;
+  }
 
   @Override
   public void addObject() {
@@ -37,8 +52,7 @@ public class FloorService implements Service<Floor> {
 
     //Создали этаж
     Hotel hotel = hotelCRUD.searchObjectNum(1);
-    //todo ломается при перезапуске программы
-    floorNum += 1;
+    int floorNum = numIterator();
     Floor floor = Floor.builder()
         .floorNum(floorNum)
         .roomsID(new HashSet<>())
@@ -48,7 +62,7 @@ public class FloorService implements Service<Floor> {
     floorCRUD.saveObject(floor);//сохраняем
 
     //Связали с отелем
-    Set floorsID = hotel.getFloorsID();
+    Set<UUID> floorsID = hotel.getFloorsID();
     floorsID.add(floor.getUuid());
     hotel.setFloorsID(floorsID);
     hotelCRUD.saveObject(hotel);//сохраняем
@@ -86,11 +100,11 @@ public class FloorService implements Service<Floor> {
   public void displayObject(Floor object) {
     log.info("_______________________");
     log.info(floorCRUD.searchFileName(object));
-    log.info("Номер этажа : " + object.getFloorNum());
-    log.info("Количество комнат : " + object.getRoomsID().size());
-    log.info("Номера комнат : ");
+    log.info("Floor num : " + object.getFloorNum());
+    log.info("Rooms quantity : " + object.getRoomsID().size());
+    log.info("Rooms num : ");
 
-    for(UUID uuid : object.getRoomsID()){
+    for (UUID uuid : object.getRoomsID()) {
       Room room = roomsCRUD.searchUUIDObject(uuid);
       log.info(room.getRoomNum());
     }

@@ -2,11 +2,11 @@ package com.netcracker.hb.Dao.CRUD.hotel;
 
 
 import com.netcracker.hb.Dao.CRUD.CRUD;
+import com.netcracker.hb.Dao.CRUD.DatabaseProperties;
 import com.netcracker.hb.entities.hotel.Floor;
 import com.netcracker.hb.entities.hotel.Hotel;
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
@@ -19,111 +19,109 @@ import lombok.extern.log4j.Log4j;
 @Log4j
 public class HotelCRUD implements CRUD<Hotel> {
 
-  private static final CRUD<Hotel> hotelCRUD = new HotelCRUD();
+  private static CRUD<Hotel> hotelCRUD;
 
   private HotelCRUD() {
   }
 
-  public static CRUD<Hotel> getHotelCRUD() {
+  public static synchronized CRUD<Hotel> getHotelCRUD() {
+    if(hotelCRUD == null){
+      hotelCRUD = new HotelCRUD();
+    }
     return hotelCRUD;
   }
+
+  private static final String START = "<Start searching hotel....";
+  private static final String END = "Hotel was found>";
+  private static final String ERROR = "Hotel was not found>";
+
 
   private static final CRUD<Floor> floorCRUD = FloorCRUD.getFloorCRUD();
 
 
   @Override
   public List<Hotel> searchObjects() {
-    List hotels = new ArrayList();
+    List<Hotel> hotels = new ArrayList<>();
     hotels.add(searchObjectNum(1));
     return hotels;
   }
 
   @Override
   public Hotel searchObjectNum(int hotelNum) {
-    log.info("<Start searching hotel...");
+    log.info(START);
 
-    File hotelFolderDirectory = new File(
-        "entSAVE/hotel_entities");
+    File hotelFolderDirectory = new File(DatabaseProperties.getHotelCrudEntitiesPath());
     String[] hotelList = hotelFolderDirectory.list();
-
     Hotel hotel = null;
-    try {
-      for (String hotelFolderName : hotelList) {
-
-        FileInputStream fileHotelIn = new FileInputStream(
-            "entSAVE/hotel_entities/"
-                + hotelFolderName);
-        ObjectInputStream objectHotelIn = new ObjectInputStream(fileHotelIn);
+    assert hotelList != null;
+    for (String hotelFolderName : hotelList) {
+      try (
+          FileInputStream fileHotelIn = new FileInputStream(
+              DatabaseProperties.getHotelCrudEntitiesPath()
+                  + hotelFolderName);
+          ObjectInputStream objectHotelIn = new ObjectInputStream(fileHotelIn)) {
 
         Hotel object = (Hotel) objectHotelIn.readObject();
         if (object != null) {
-          log.info("Hotel was found>");
+          log.info(END);
           hotel = object;
         }
-        objectHotelIn.close();
-
-
+      } catch (IOException | ClassNotFoundException exception) {
+        exception.printStackTrace();
       }
-    } catch (FileNotFoundException exception) {
-      exception.printStackTrace();
-    } catch (IOException e) {
-      e.printStackTrace();
-    } catch (ClassNotFoundException e) {
-      e.printStackTrace();
-    } finally {
-      if (hotel == null) {
-        log.error("HOTEL NOT FOUND>");
-      }
-      return hotel;
     }
+    if (hotel == null) {
+      log.error(ERROR);
+    }
+    return hotel;
   }
 
   @Override
   public Hotel searchUUIDObject(UUID uuid) {
+    if(uuid == null){
+      return null;
+    }
     return searchObjectNum(1);
   }
 
   @Override
   public String searchFileName(Hotel object) {
-    log.info("<Start searching file name of hotel...");
+    log.info(START);
 
-    File hotelFolderDirectory = new File("entSAVE/hotel_entities");
+    File hotelFolderDirectory = new File(DatabaseProperties.getHotelCrudEntitiesPath());
     String[] hotelList = hotelFolderDirectory.list();
 
     String fileName = null;
+    assert hotelList != null;
     for (String hotelFolderName : hotelList) {
       fileName = hotelFolderName;
-      log.info("File name of hotel was found>");
+      log.info(END);
     }
     if (fileName == null) {
-      log.error("FILE NAME OF HOTEL NOT FOUND>");
+      log.error(ERROR);
     }
     return fileName;
-
   }
 
   @Override
   public void deleteObject(Hotel hotel) {
     log.info("<Start delete hotel...");
     //удаляем все внутренние этажи
-
     if (hotel.getFloorsID() != null && !hotel.getFloorsID().isEmpty()) {
       for (UUID uuid : hotel.getFloorsID()) {
         floorCRUD.deleteObject(floorCRUD.searchUUIDObject(uuid));
 
       }
     }
-
     Hotel object = searchObjectNum(1);
-    //todo возможно прийдется удалять еще привязанных гостей
     //удаляем файл
-    File deleteFile = new File("entSAVE/hotel_entities/" + searchFileName(object));
+    File deleteFile = new File(
+        DatabaseProperties.getHotelCrudEntitiesPath() + searchFileName(object));
 
-    if (deleteFile != null) {
+    if (deleteFile.delete()) {
       log.info("hotel was successfully deleted>");
-      deleteFile.delete();
     } else {
-      log.warn("NOTHING WAS DELETED, FILE HOTEL NOT FOUND>");
+      log.warn(ERROR);
     }
 
   }
@@ -131,12 +129,12 @@ public class HotelCRUD implements CRUD<Hotel> {
   @Override
   public void saveObject(Hotel hotel) {
     log.info("<Start saving hotel...");
-    try {
-      FileOutputStream fileHotelOut = new FileOutputStream("entSAVE/hotel_entities/"
-          + hotel.getUuid() + "-hotel.txt");
-      ObjectOutputStream objectHotelOut = new ObjectOutputStream(fileHotelOut);
+    try (
+        FileOutputStream fileHotelOut = new FileOutputStream(
+            DatabaseProperties.getHotelCrudEntitiesPath()
+                + hotel.getUuid() + "-hotel.txt");
+        ObjectOutputStream objectHotelOut = new ObjectOutputStream(fileHotelOut)) {
       objectHotelOut.writeObject(hotel);
-      objectHotelOut.close();
       log.info("Success saving hotel>");
     } catch (Exception ex) {
       ex.printStackTrace();

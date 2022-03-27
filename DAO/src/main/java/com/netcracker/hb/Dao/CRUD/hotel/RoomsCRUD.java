@@ -1,6 +1,7 @@
 package com.netcracker.hb.Dao.CRUD.hotel;
 
 import com.netcracker.hb.Dao.CRUD.CRUD;
+import com.netcracker.hb.Dao.CRUD.DatabaseProperties;
 import com.netcracker.hb.Dao.CRUD.Person.EmployeeCRUD;
 import com.netcracker.hb.Dao.CRUD.Person.GuestCRUD;
 import com.netcracker.hb.Dao.CRUD.Person.IEmployeeCRUD;
@@ -11,7 +12,6 @@ import com.netcracker.hb.entities.persons.Employee;
 import com.netcracker.hb.entities.persons.Guest;
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
@@ -24,11 +24,22 @@ import lombok.extern.log4j.Log4j;
 @Log4j
 public class RoomsCRUD implements CRUD<Room> {
 
-  private static final CRUD<Room> roomsCRUD = new RoomsCRUD();
-  private RoomsCRUD(){}
-  public static CRUD<Room> getRoomsCRUD(){
+  private static CRUD<Room> roomsCRUD;
+
+  private RoomsCRUD() {
+  }
+
+  public static synchronized CRUD<Room> getRoomsCRUD() {
+    if(roomsCRUD == null){
+      roomsCRUD = new RoomsCRUD();
+    }
     return roomsCRUD;
   }
+
+  private static final String START = "<Start searching room....";
+  private static final String END = "Room was found>";
+  private static final String ERROR = "Room was not found>";
+
 
   private static final CRUD<Floor> floorCRUD = FloorCRUD.getFloorCRUD();
   private static final IEmployeeCRUD<Employee> employeeCRUD = EmployeeCRUD.getIEmployeeCRUD();
@@ -37,157 +48,124 @@ public class RoomsCRUD implements CRUD<Room> {
 
   @Override
   public List<Room> searchObjects() {
-    log.info("<Start searching rooms....");
+    log.info(START);
 
-    File roomFolderDirectory = new File(
-        "entSAVE/room_entities");
+    File roomFolderDirectory = new File(DatabaseProperties.getRoomCrudEntitiesPath());
     String[] roomList = roomFolderDirectory.list();
-    List rooms = new ArrayList();
-    try {
-      for (String roomFolderName : roomList) {
-
-        FileInputStream fileRoomIn = new FileInputStream(
-            "entSAVE/room_entities/"
-                + roomFolderName);
-        ObjectInputStream objectRoomIn = new ObjectInputStream(fileRoomIn);
+    List<Room> rooms = new ArrayList<>();
+    assert roomList != null;
+    for (String roomFolderName : roomList) {
+      try (
+          FileInputStream fileRoomIn = new FileInputStream(
+              DatabaseProperties.getRoomCrudEntitiesPath() + roomFolderName);
+          ObjectInputStream objectRoomIn = new ObjectInputStream(fileRoomIn);
+      ) {
         Room object = (Room) objectRoomIn.readObject();
-        //если номер комнаты совпадает то передаем
         rooms.add(object);
-        objectRoomIn.close();
 
-
+      } catch (IOException | ClassNotFoundException exception) {
+        exception.printStackTrace();
       }
-    } catch (FileNotFoundException exception) {
-      exception.printStackTrace();
-    } catch (IOException e) {
-      e.printStackTrace();
-    } catch (ClassNotFoundException e) {
-      e.printStackTrace();
-    } finally {
-      if(rooms.isEmpty()){
-        log.error("ROOMS NOT FOUND>");
-      }
-      return rooms;
     }
+    if (rooms.isEmpty()) {
+      log.error(ERROR);
+    }
+    return rooms;
   }
 
   @Override
   public Room searchObjectNum(int roomNum) {
-    log.info("<Start searching room....");
+    log.info(START);
 
-    File roomFolderDirectory = new File(
-        "entSAVE/room_entities");
+    File roomFolderDirectory = new File(DatabaseProperties.getRoomCrudEntitiesPath());
     String[] roomList = roomFolderDirectory.list();
-    Object room = null;
-    try {
-      for (String roomFolderName : roomList) {
+    Room room = null;
+    assert roomList != null;
+    for (String roomFolderName : roomList) {
+      try (
 
-        FileInputStream fileRoomIn = new FileInputStream(
-            "entSAVE/room_entities/"
-                + roomFolderName);
-        ObjectInputStream objectRoomIn = new ObjectInputStream(fileRoomIn);
+          FileInputStream fileRoomIn = new FileInputStream(
+              DatabaseProperties.getRoomCrudEntitiesPath() + roomFolderName);
+          ObjectInputStream objectRoomIn = new ObjectInputStream(fileRoomIn);
+      ) {
         Room object = (Room) objectRoomIn.readObject();
         //если номер комнаты совпадает то передаем
         if (object.getRoomNum() == roomNum) {
-          log.info("Room was found>");
+          log.info(END);
           room = object;
         }
-        objectRoomIn.close();
-
-
+      } catch (IOException | ClassNotFoundException exception) {
+        exception.printStackTrace();
       }
-    } catch (FileNotFoundException exception) {
-      exception.printStackTrace();
-    } catch (IOException e) {
-      e.printStackTrace();
-    } catch (ClassNotFoundException e) {
-      e.printStackTrace();
-    } finally {
-      if(room ==null){
-        log.error("ROOM NOT FOUND>");
-      }
-      return (Room) room;
     }
-
-
+    if (room == null) {
+      log.error(ERROR);
+    }
+    return room;
   }
 
   @Override
   public Room searchUUIDObject(UUID uuid) {
 
-    log.info("<Start searching room....");
+    log.info(START);
+    if(uuid == null){
+      return null;
+    }
 
-    File roomFolderDirectory = new File("entSAVE/room_entities");
+    File roomFolderDirectory = new File(DatabaseProperties.getRoomCrudEntitiesPath());
     String[] roomList = roomFolderDirectory.list();
-    Object room = null;
-    try {
-      for (String roomFolderName : roomList) {
+    Room room = null;
+    assert roomList != null;
+    for (String roomFolderName : roomList) {
+      try (
 
-        FileInputStream fileRoomIn = new FileInputStream(
-            "entSAVE/room_entities/"
-                + roomFolderName);
-        ObjectInputStream objectRoomIn = new ObjectInputStream(fileRoomIn);
+          FileInputStream fileRoomIn = new FileInputStream(
+              DatabaseProperties.getRoomCrudEntitiesPath() + roomFolderName);
+          ObjectInputStream objectRoomIn = new ObjectInputStream(fileRoomIn);
+      ) {
         Room object = (Room) objectRoomIn.readObject();
         //если ююайди комнаты совпадает то передаем
         if (object.getUuid().equals(uuid)) {
-          log.info("Room was found>");
+          log.info(END);
           room = object;
         }
-        objectRoomIn.close();
-
+      } catch (ClassNotFoundException | IOException exception) {
+        exception.printStackTrace();
       }
-    } catch (FileNotFoundException exception) {
-      exception.printStackTrace();
-    } catch (IOException e) {
-      e.printStackTrace();
-    } catch (ClassNotFoundException e) {
-      e.printStackTrace();
-    } finally {
-      if(room ==null){
-        log.error("ROOM NOT FOUND>");
-      }
-      return (Room) room;
     }
-
-
+    if (room == null) {
+      log.error(ERROR);
+    }
+    return room;
   }
 
   @Override
   public String searchFileName(Room room) {
-    log.info("<Start searching file name of room...");
-    File roomFolderDirectory = new File(
-        "entSAVE/room_entities");
+    log.info(START);
+    File roomFolderDirectory = new File(DatabaseProperties.getRoomCrudEntitiesPath());
     String[] roomList = roomFolderDirectory.list();
     String fileName = null;
-    try {
-      for (String roomFolderName : roomList) {
+    assert roomList != null;
+    for (String roomFolderName : roomList) {
+      try (
 
-        FileInputStream fileRoomIn = new FileInputStream(
-            "entSAVE/room_entities/"
-                + roomFolderName);
-        ObjectInputStream objectRoomIn = new ObjectInputStream(fileRoomIn);
+          FileInputStream fileRoomIn = new FileInputStream(
+              DatabaseProperties.getRoomCrudEntitiesPath() + roomFolderName);
+          ObjectInputStream objectRoomIn = new ObjectInputStream(fileRoomIn);
+      ) {
         Room object = (Room) objectRoomIn.readObject();
-        //если номер комнаты совпадает то передаем
         if (object.equals(room)) {
-          log.info("File name of room was found>");
+          log.info(END);
           fileName = roomFolderName;
         }
-        objectRoomIn.close();
-
+      } catch (IOException | ClassNotFoundException exception) {
+        exception.printStackTrace();
       }
-    } catch (FileNotFoundException exception) {
-      exception.printStackTrace();
-    } catch (IOException e) {
-      e.printStackTrace();
-    } catch (ClassNotFoundException e) {
-      e.printStackTrace();
-    } finally {
-      if(fileName == null){
-        log.error("FILE NAME OF ROOM NOT FOUND>");
-      }
-      return fileName;
     }
-
+    if (fileName == null) {
+      log.error(ERROR);
+    }
+    return fileName;
 
   }
 
@@ -203,13 +181,13 @@ public class RoomsCRUD implements CRUD<Room> {
     floorCRUD.saveObject(floor);
 
     //удаляем всех гостей и работников
-    for(UUID uuidEmployee : room.getEmployeeID()){
+    for (UUID uuidEmployee : room.getEmployeeID()) {
       Employee employee = employeeCRUD.searchUUIDObject(uuidEmployee);
       employee.deleteRoomsID(room.getUuid());
       employeeCRUD.saveObject(employee);
     }
 
-    for(UUID uuidGuest : room.getGuestID()){
+    for (UUID uuidGuest : room.getGuestID()) {
       Guest guest = guestCRUD.searchUUIDObject(uuidGuest);
       guest.setRoomID(null);
       guestCRUD.saveObject(guest);
@@ -217,27 +195,27 @@ public class RoomsCRUD implements CRUD<Room> {
 
     object = searchObjectNum(room.getRoomNum());
     //удаляем файл
-    File deleteFile = new File("entSAVE/room_entities/" + searchFileName(object));
-    if (deleteFile != null) {
-      log.info("Room was successfully deleted>" );
-      deleteFile.delete();
-    } else{
-      log.warn("NOTHING WAS DELETED, FILE ROOM NOT FOUND>");
+    File deleteFile = new File(
+        DatabaseProperties.getRoomCrudEntitiesPath() + searchFileName(object));
+    if (deleteFile.delete()) {
+      log.info("Room was successfully deleted>");
+    } else {
+      log.warn(ERROR);
     }
   }
 
   @Override
   public void saveObject(Room room) {
     log.info("<Start saving room...");
-    int roomNum = room.getRoomNum();
-    try {
+    try (
 
-      FileOutputStream fileRoomOut = new FileOutputStream(
-          "entSAVE/room_entities/" + room.getUuid() + "-room.txt");
-      ObjectOutputStream objectRoomOut = new ObjectOutputStream(fileRoomOut);
+        FileOutputStream fileRoomOut = new FileOutputStream(
+            DatabaseProperties.getRoomCrudEntitiesPath()
+                + room.getUuid() + "-room.txt");
+        ObjectOutputStream objectRoomOut = new ObjectOutputStream(fileRoomOut);
+    ) {
       objectRoomOut.writeObject(room);
       log.info("Success saving room>");
-      objectRoomOut.close();
     } catch (Exception ex) {
       ex.printStackTrace();
     }

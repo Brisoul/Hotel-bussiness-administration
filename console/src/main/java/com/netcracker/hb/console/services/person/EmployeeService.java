@@ -23,17 +23,19 @@ import lombok.extern.log4j.Log4j;
 @Log4j
 public class EmployeeService implements Service<Employee> {
 
-  private static final Service<Employee> employeeService = new EmployeeService();
+  private static Service<Employee> employeeService;
 
   private EmployeeService() {
   }
 
-  public static Service<Employee> getEmployeeService() {
+  public static synchronized Service<Employee> getEmployeeService() {
+    if(employeeService ==null){
+      employeeService = new EmployeeService();
+    }
     return employeeService;
   }
 
-  public ValidationService validationService = ValidationService.getValidationService();
-
+  public static final ValidationService validationService = ValidationService.getValidationService();
   private static final IPersonalCard<PersonalCard> personalCardService = PersonalCardService.getPersonalCardService();
   private static final CRUD<Room> roomCRUD = RoomsCRUD.getRoomsCRUD();
   private static final IEmployeeCRUD<Employee> employeeCRUD = EmployeeCRUD.getIEmployeeCRUD();
@@ -106,7 +108,7 @@ public class EmployeeService implements Service<Employee> {
           employeeCRUD.saveObject(object);
           break;
         case 5:
-          if(object.getCardID()!=null){
+          if (object.getCardID() != null) {
             personalCardCRUD.deleteObject(personalCardCRUD.searchUUIDObject(object.getCardID()));
           }
           for (UUID uuidRoom : object.getRoomsID()) {
@@ -129,43 +131,31 @@ public class EmployeeService implements Service<Employee> {
           break;
         case 8:
           PersonalCard myCard = null;
-
           if (object.getCardID() == null) {
             for (PersonalCard personalCard : personalCardCRUD.searchObjects()) {
-              if (personalCard.getPersonID().equals(object.getUuid())){
+              if (personalCard.getPersonID().equals(object.getUuid())) {
                 myCard = personalCard;
-                log.info("we find card with user uuid");
               }
             }
-
-            if(myCard == null){
+            if (myCard == null) {
               personalCardService.addObjectPerson(object);
-              log.info("Card not found, start creating card");
+
               for (PersonalCard personalCard : personalCardCRUD.searchObjects()) {
-                if (personalCard.getPersonID().equals(object.getUuid())){
+                if (personalCard.getPersonID().equals(object.getUuid())) {
                   myCard = personalCard;
-                  log.info("we find card with user uuid");
                 }
               }
-              log.info("Card was found");
-              object.setCardID(myCard.getUuid());
-              employeeCRUD.saveObject(object);
-
             } else {
-              log.info("Card was found");
               object.setCardID(myCard.getUuid());
               employeeCRUD.saveObject(object);
             }
-
           }
+
           for (PersonalCard personalCard : personalCardCRUD.searchObjects()) {
-            if (personalCard.getPersonID().equals(object.getUuid())){
+            if (personalCard.getPersonID().equals(object.getUuid())) {
               myCard = personalCard;
-              log.info("we find card with user uuid");
             }
           }
-
-          log.info("Card was found start changing...");
           personalCardService.changeObject(myCard);
           employeeCRUD.saveObject(object);
           break;
@@ -174,18 +164,16 @@ public class EmployeeService implements Service<Employee> {
           Contract myContract = null;
           if (object.getContractID() == null) {
             for (Contract contract : contractCRUD.searchObjects()) {
-              if (contract.getEmployeeID().equals(object.getUuid())){
+              if (contract.getEmployeeID().equals(object.getUuid())) {
                 myContract = contract;
-                log.info("we find contract with user uuid");
               }
             }
-            if(myContract == null){
+            if (myContract == null) {
               contractService.addObjectPerson(object);
               log.info("contract not found, start creating contract");
               for (Contract contract : contractCRUD.searchObjects()) {
-                if (contract.getEmployeeID().equals(object.getUuid())){
+                if (contract.getEmployeeID().equals(object.getUuid())) {
                   myContract = contract;
-                  log.info("we find contract with user uuid");
                 }
               }
               log.info("contract was found");
@@ -199,7 +187,7 @@ public class EmployeeService implements Service<Employee> {
           }
 
           for (Contract contract : contractCRUD.searchObjects()) {
-            if (contract.getEmployeeID().equals(object.getUuid())){
+            if (contract.getEmployeeID().equals(object.getUuid())) {
               myContract = contract;
               log.info("we find contract with user uuid");
             }
@@ -208,14 +196,13 @@ public class EmployeeService implements Service<Employee> {
           log.info("Card was found start changing...");
           contractService.changeObject(myContract);
 
-
           employeeCRUD.saveObject(object);
           break;
         case 10:
           log.info("Write room num");
           int roomNum = validationService.validationNumberChoice();
           Room room = roomCRUD.searchObjectNum(roomNum);
-          if(validationService.validationRole(room.getRole(), object.getRole())){
+          if (validationService.validationRole(room.getRole(), object.getRole())) {
             log.info("access is allowed");
             Set<UUID> employers = room.getEmployeeID();
             employers.add(object.getUuid());
@@ -226,7 +213,7 @@ public class EmployeeService implements Service<Employee> {
             roomSet.add(room.getUuid());
             object.setRoomsID(roomSet);
             employeeCRUD.saveObject(object);
-          } else{
+          } else {
             log.error("access is denied");
             log.error("Error adding room");
           }
@@ -250,28 +237,28 @@ public class EmployeeService implements Service<Employee> {
     log.info("_______________________");
     log.info(employeeCRUD.searchFileName(object));
     log.info(object.getName() + "  " + object.getSurname());
-    log.info("Возраст " + object.getAge());
-    log.info("Пол " + object.getSex());
-    log.info("Должность " + object.getRole());
+    log.info("Age " + object.getAge());
+    log.info("Sex " + object.getSex());
+    log.info("Post " + object.getRole());
     log.info("_______________________");
-    log.info("Доступно комнат "+ object.getRoomsID().size());
-    log.info("Номера доступных комнат ");
-    for(UUID uuid : object.getRoomsID()){
+    log.info("Rooms access " + object.getRoomsID().size());
+    log.info("Rooms numbers ");
+    for (UUID uuid : object.getRoomsID()) {
       Room room = roomCRUD.searchUUIDObject(uuid);
       log.info(room.getRoomNum());
     }
     log.info("_______________________");
     if (object.getContractID() == null) {
-      log.info("Контракт : не задан");
+      log.info("Contract : not found");
     } else {
-      log.info("Контракт : " + contractCRUD.searchFileName(
-          contractCRUD.searchUUIDObject(object.getContractID())));
+      log.info("Contract : ");
+      contractService.displayObject(contractCRUD.searchUUIDObject(object.getContractID()));
     }
     log.info("_______________________");
     if (object.getCardID() == null) {
-      log.info("Карта : не задана");
+      log.info("Card : not found");
     } else {
-      log.info("Карта : ");
+      log.info("Card : ");
       personalCardService.displayObject(personalCardCRUD.searchUUIDObject(object.getCardID()));
     }
     log.info("_______________________");

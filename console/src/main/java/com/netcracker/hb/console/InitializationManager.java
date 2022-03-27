@@ -21,6 +21,16 @@ import lombok.extern.log4j.Log4j;
 @Log4j
 public class InitializationManager {
 
+  private static InitializationManager initializationManager;
+  private InitializationManager(){}
+
+  public static InitializationManager getInitializationManager() {
+    if(initializationManager ==null){
+      initializationManager = new InitializationManager();
+    }
+    return initializationManager;
+  }
+
   private static final CRUD<Hotel> hotelCRUD = HotelCRUD.getHotelCRUD();
   private static final IEmployeeCRUD<Employee> employeeCRUD = EmployeeCRUD.getIEmployeeCRUD();
 

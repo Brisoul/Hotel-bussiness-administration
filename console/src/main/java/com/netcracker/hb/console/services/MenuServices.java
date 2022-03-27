@@ -23,12 +23,15 @@ import lombok.extern.log4j.Log4j;
 @Log4j
 public class MenuServices {
 
-  private static final MenuServices menuServices = new MenuServices();
+  private static MenuServices menuServices ;
 
   private MenuServices() {
   }
 
-  public static MenuServices getMenuServices() {
+  public static synchronized MenuServices getMenuServices() {
+    if(menuServices ==null){
+      menuServices = new MenuServices();
+    }
     return menuServices;
   }
 
@@ -67,7 +70,7 @@ public class MenuServices {
           if (floorCRUD.searchObjectNum(floorNum) != null) {
             floorService.displayObject(floorCRUD.searchObjectNum(floorNum));
           } else {
-            log.error("UNDEFINED FLOOR ");
+            log.error("Undefined room");
           }
           break;
         case 3:
@@ -79,7 +82,7 @@ public class MenuServices {
           if (floorCRUD.searchObjectNum(floorNum) != null) {
             floorCRUD.deleteObject(floorCRUD.searchObjectNum(floorNum));
           } else {
-            log.error("UNDEFINED FLOOR ");
+            log.error("Undefined floor ");
           }
           break;
         case 5:
@@ -88,7 +91,7 @@ public class MenuServices {
           if (floorCRUD.searchObjectNum(floorNum) != null) {
             floorService.changeObject(floorCRUD.searchObjectNum(floorNum));
           } else {
-            log.error("UNDEFINED FLOOR ");
+            log.error("Undefined floor ");
           }
           break;
         case 666:
@@ -126,7 +129,7 @@ public class MenuServices {
           if (roomCRUD.searchObjectNum(roomNum) != null) {
             roomService.displayObject(roomCRUD.searchObjectNum(roomNum));
           } else {
-            log.error("UNDEFINED ROOM ");
+            log.error("Undefined room ");
           }
           break;
         case 3:
@@ -138,7 +141,7 @@ public class MenuServices {
           if (roomCRUD.searchObjectNum(roomNum) != null) {
             roomCRUD.deleteObject(roomCRUD.searchObjectNum(roomNum));
           } else {
-            log.error("UNDEFINED ROOM ");
+            log.error("Undefined room ");
           }
           break;
         case 5:
@@ -147,7 +150,7 @@ public class MenuServices {
           if (roomCRUD.searchObjectNum(roomNum) != null) {
             roomService.changeObject(roomCRUD.searchObjectNum(roomNum));
           } else {
-            log.error("UNDEFINED ROOM ");
+            log.error("Undefined room ");
           }
           break;
         case 666:
@@ -184,7 +187,7 @@ public class MenuServices {
           if (employee != null) {
             employeeService.displayObject(employee);
           } else {
-            log.error("UNDEFINED EMPLOYEE ");
+            log.error("Undefined employee ");
           }
           break;
         case 3:
@@ -195,7 +198,7 @@ public class MenuServices {
           if (object != null) {
             employeeCRUD.deleteObject(object);
           } else {
-            log.error("UNDEFINED EMPLOYEE ");
+            log.error("Undefined employee ");
           }
           break;
         case 5:
@@ -203,7 +206,7 @@ public class MenuServices {
           if (object != null) {
             employeeService.changeObject(object);
           } else {
-            log.error("UNDEFINED EMPLOYEE ");
+            log.error("Undefined employee ");
           }
           break;
         case 666:
@@ -239,7 +242,7 @@ public class MenuServices {
           if (guest != null) {
             guestService.displayObject(guest);
           } else {
-            log.error("UNDEFINED GUEST ");
+            log.error("Undefined guest");
           }
           break;
         case 3:
@@ -250,7 +253,7 @@ public class MenuServices {
           if (object != null) {
             guestCRUD.deleteObject(object);
           } else {
-            log.error("UNDEFINED GUEST ");
+            log.error("Undefined guest");
           }
           break;
         case 5:
@@ -258,7 +261,7 @@ public class MenuServices {
           if (object != null) {
             guestService.changeObject(object);
           } else {
-            log.error("UNDEFINED GUEST ");
+            log.error("Undefined guest");
           }
           break;
         case 666:
@@ -299,7 +302,7 @@ public class MenuServices {
           break;
         case 111:
           utilizeManager.utilize();
-          log.warn("AFTER UTILIZING HOTEL PROGRAM CANNOT WORK, REBOOT IT");
+          log.warn("After deleting hotel program canoot work correct, reboot it");
           break;
         case 666:
           log.info("see u!");
@@ -325,6 +328,7 @@ public class MenuServices {
       switch (userChoice) {
         case 1:
           employersWorkMenu();
+          break;
         case 2:
           employeeMenu();
           break;

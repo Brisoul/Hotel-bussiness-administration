@@ -12,9 +12,15 @@ import lombok.extern.log4j.Log4j;
 @Log4j
 public class HotelService implements Service<Hotel> {
 
-  private static final Service<Hotel> hotelService = new HotelService();
-  private HotelService(){}
-  public static Service<Hotel> getHotelService(){
+  private static Service<Hotel> hotelService;
+
+  private HotelService() {
+  }
+
+  public static synchronized Service<Hotel> getHotelService() {
+    if(hotelService ==null){
+      hotelService = new HotelService();
+    }
     return hotelService;
   }
 
@@ -36,7 +42,7 @@ public class HotelService implements Service<Hotel> {
 
   @Override
   public void changeObject(Hotel hotel) {
-
+    //U cannot change object hotel u can only rebuild it
   }
 
   @Override

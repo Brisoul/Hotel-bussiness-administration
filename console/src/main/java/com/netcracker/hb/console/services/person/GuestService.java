@@ -20,12 +20,15 @@ import lombok.extern.log4j.Log4j;
 @Log4j
 public class GuestService implements Service<Guest> {
 
-  private static final Service<Guest> guestService = new GuestService();
+  private static Service<Guest> guestService;
 
   private GuestService() {
   }
 
-  public static Service<Guest> getGuestService() {
+  public static synchronized Service<Guest> getGuestService() {
+    if(guestService==null){
+      guestService = new GuestService();
+    }
     return guestService;
   }
 
@@ -89,21 +92,17 @@ public class GuestService implements Service<Guest> {
             for (PersonalCard personalCard : personalCardCRUD.searchObjects()) {
               if (personalCard.getPersonID().equals(object.getUuid())) {
                 myCard = personalCard;
-                log.info("we find card with user uuid");
               }
             }
             if (myCard == null) {
-              log.info("Card not found, start creating card");
               personalCardService.addObjectPerson(object);
 
               for (PersonalCard personalCard : personalCardCRUD.searchObjects()) {
                 if (personalCard.getPersonID().equals(object.getUuid())) {
                   myCard = personalCard;
-                  log.info("we find card with user uuid");
                 }
               }
             } else {
-              log.info("Card was found");
               object.setCardID(myCard.getUuid());
               guestCRUD.saveObject(object);
             }
@@ -112,10 +111,8 @@ public class GuestService implements Service<Guest> {
           for (PersonalCard personalCard : personalCardCRUD.searchObjects()) {
             if (personalCard.getPersonID().equals(object.getUuid())) {
               myCard = personalCard;
-              log.info("we find card with user uuid");
             }
           }
-          log.info("Card was found start changing...");
           personalCardService.changeObject(myCard);
           guestCRUD.saveObject(object);
           break;
@@ -155,21 +152,21 @@ public class GuestService implements Service<Guest> {
     log.info("_______________________");
     log.info(guestCRUD.searchFileName(object));
     log.info(object.getName() + "  " + object.getSurname());
-    log.info("Возраст " + object.getAge());
-    log.info("Пол " + object.getSex());
-    log.info("Статус " + object.getRole());
+    log.info("Age " + object.getAge());
+    log.info("Sex " + object.getSex());
+    log.info("Status " + object.getRole());
     log.info("_______________________");
     if (object.getRoomID() != null) {
-      log.info("Номер комнаты: ");
+      log.info("Number room: ");
       log.info(roomCRUD.searchUUIDObject(object.getRoomID()).getRoomNum());
     } else {
-      log.info("не заселен");
+      log.info("not in room");
     }
     log.info("_______________________");
     if (object.getCardID() == null) {
-      log.info("Карта : не задана");
+      log.info("Card : not found");
     } else {
-      log.info("Карта : ");
+      log.info("Card : ");
       personalCardService.displayObject(personalCardCRUD.searchUUIDObject(object.getCardID()));
     }
     log.info("_______________________");

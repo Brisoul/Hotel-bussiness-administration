@@ -4,5 +4,5 @@ target/
 *.iml
 .idea/
 entSAVE/
-history.log
+*.log
 ```

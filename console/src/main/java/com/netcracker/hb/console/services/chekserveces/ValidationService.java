@@ -1,4 +1,4 @@
-package com.netcracker.hb.console.services.chekServeces;
+package com.netcracker.hb.console.services.chekserveces;
 
 import static java.lang.Character.isLetter;
 import static java.lang.Character.isLetterOrDigit;
@@ -108,7 +108,7 @@ public class ValidationService {
           break;
         default:
           i = 0;
-          log.info("choose correct num");
+          log.info("Choose correct num");
           role = null;
       }
     } while (i != 1);
@@ -147,7 +147,7 @@ public class ValidationService {
           break;
         default:
           i = 0;
-          log.info("choose correct num");
+          log.info("Choose correct num");
           role = null;
       }
     } while (i != 1);
@@ -214,7 +214,7 @@ public class ValidationService {
       Guest guest = guestCRUD.searchObjectNameSurname(name, surname);
       Employee employee = employeeCRUD.searchObjectNameSurname(name, surname);
       if (guest == null && employee == null) {
-        log.error("PERSON NOT FOUND");
+        log.error("Person not found");
       } else if (employee == null) {
         person = guest;
         log.info("Person Guest was found");

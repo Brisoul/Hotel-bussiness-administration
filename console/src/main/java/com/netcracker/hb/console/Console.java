@@ -1,7 +1,7 @@
 package com.netcracker.hb.console;
 
-import com.netcracker.hb.console.services.chekServeces.LogIn;
-import com.netcracker.hb.console.services.chekServeces.ValidationService;
+import com.netcracker.hb.console.services.chekserveces.LogIn;
+import com.netcracker.hb.console.services.chekserveces.ValidationService;
 import lombok.extern.log4j.Log4j;
 
 
@@ -35,7 +35,7 @@ public class Console {
           log.error("ONLY ADMINISTRATOR CAN ADD NEW USERS");
           break;
         case 666:
-          log.info("see u!");
+          log.info("See u!");
           break;
         default:
           log.error("Choose correct num");

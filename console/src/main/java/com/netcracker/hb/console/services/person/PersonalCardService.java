@@ -7,7 +7,7 @@ import com.netcracker.hb.Dao.CRUD.Person.IEmployeeCRUD;
 import com.netcracker.hb.Dao.CRUD.Person.IGuestCRUD;
 import com.netcracker.hb.Dao.CRUD.Person.PersonalCardCRUD;
 import com.netcracker.hb.console.services.IPersonalCard;
-import com.netcracker.hb.console.services.chekServeces.ValidationService;
+import com.netcracker.hb.console.services.chekserveces.ValidationService;
 import com.netcracker.hb.entities.Role;
 import com.netcracker.hb.entities.persons.Employee;
 import com.netcracker.hb.entities.persons.Guest;
@@ -124,7 +124,7 @@ public class PersonalCardService implements IPersonalCard<PersonalCard> {
           personalCardCRUD.saveObject(object);
           break;
         case 666:
-          log.info("see u!");
+          log.info("See u!");
           break;
         default:
           log.error("Choose correct num");

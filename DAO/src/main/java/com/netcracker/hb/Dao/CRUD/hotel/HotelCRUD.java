@@ -119,7 +119,7 @@ public class HotelCRUD implements CRUD<Hotel> {
         DatabaseProperties.HOTEL_CRUD_ENTITIES_PATH + searchFileName(object));
 
     if (deleteFile.delete()) {
-      log.info("hotel was successfully deleted>");
+      log.info("Hotel was successfully deleted>");
     } else {
       log.warn(ERROR);
     }

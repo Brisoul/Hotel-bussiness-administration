@@ -9,7 +9,7 @@ import com.netcracker.hb.Dao.CRUD.Person.PersonalCardCRUD;
 import com.netcracker.hb.Dao.CRUD.hotel.RoomsCRUD;
 import com.netcracker.hb.console.services.IPersonalCard;
 import com.netcracker.hb.console.services.Service;
-import com.netcracker.hb.console.services.chekServeces.ValidationService;
+import com.netcracker.hb.console.services.chekserveces.ValidationService;
 import com.netcracker.hb.console.services.hotel.RoomService;
 import com.netcracker.hb.entities.hotel.Room;
 import com.netcracker.hb.entities.persons.Contract;
@@ -200,7 +200,7 @@ public class EmployeeService implements Service<Employee> {
           changeRoomList(object);
           break;
         case 666:
-          log.info("see u!");
+          log.info("See u!");
           break;
         default:
           log.error("Choose correct num");

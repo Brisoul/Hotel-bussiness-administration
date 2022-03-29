@@ -8,7 +8,7 @@ import com.netcracker.hb.Dao.CRUD.Person.IGuestCRUD;
 import com.netcracker.hb.Dao.CRUD.hotel.FloorCRUD;
 import com.netcracker.hb.Dao.CRUD.hotel.RoomsCRUD;
 import com.netcracker.hb.console.services.Service;
-import com.netcracker.hb.console.services.chekServeces.ValidationService;
+import com.netcracker.hb.console.services.chekserveces.ValidationService;
 import com.netcracker.hb.entities.Role;
 import com.netcracker.hb.entities.hotel.Floor;
 import com.netcracker.hb.entities.hotel.Room;
@@ -87,7 +87,7 @@ public class RoomService implements Service<Room> {
 
       log.info("End creating room>");
     } else {
-      log.error("ERROR CREATING ROOM>");
+      log.error("Error creating room>");
     }
 
   }
@@ -97,19 +97,11 @@ public class RoomService implements Service<Room> {
     log.info("Start changing room " + roomsCRUD.searchFileName(object));
     int userChoice;
     do {
-      log.info("1.Set room num(not work)");
-      log.info("2.Set floor num(not work)");
-      log.info("3.Set role(that will delete all persons connections)");
+      log.info("1.Set role(that will delete all persons connections)");
       log.info("666.Back to previous menu");
       userChoice = validationService.validationNumberChoice();
       switch (userChoice) {
         case 1:
-          log.info("U CANT CHANGE ROOM NUM, BUILD ANOTHER ROOM");
-          break;
-        case 2:
-          log.info("U CANT CHANGE FLOOR NUM, BUILD ANOTHER ROOM");
-          break;
-        case 3:
           for (UUID uuidEmployee : object.getEmployeeID()) {
             Employee employee = employeeCRUD.searchUUIDObject(uuidEmployee);
             employee.deleteRoomsID(object.getUuid());
@@ -124,7 +116,7 @@ public class RoomService implements Service<Room> {
           roomsCRUD.saveObject(object);
           break;
         case 666:
-          log.info("see u!");
+          log.info("See u!");
           break;
         default:
           log.error("Choose correct num");

@@ -5,7 +5,7 @@ import com.netcracker.hb.Dao.CRUD.hotel.FloorCRUD;
 import com.netcracker.hb.Dao.CRUD.hotel.HotelCRUD;
 import com.netcracker.hb.Dao.CRUD.hotel.RoomsCRUD;
 import com.netcracker.hb.console.services.Service;
-import com.netcracker.hb.console.services.chekServeces.ValidationService;
+import com.netcracker.hb.console.services.chekserveces.ValidationService;
 import com.netcracker.hb.entities.hotel.Floor;
 import com.netcracker.hb.entities.hotel.Hotel;
 import com.netcracker.hb.entities.hotel.Room;
@@ -77,15 +77,12 @@ public class FloorService implements Service<Floor> {
     log.info("Start changing floor " + floorCRUD.searchFileName(object));
     int userChoice;
     do {
-      log.info("1.Set floor num");
+      log.info("There is nothing u can do, build new floor or delete worst");
       log.info("666.Back to previous menu");
       userChoice = validationService.validationNumberChoice();
       switch (userChoice) {
-        case 1:
-          log.info("U CANT CHANGE FLOOR NUM, BUILD ANOTHER FLOOR");
-          break;
         case 666:
-          log.info("see u!");
+          log.info("See u!");
           break;
         default:
           log.error("Choose correct num");

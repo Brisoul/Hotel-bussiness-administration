@@ -8,8 +8,7 @@ import com.netcracker.hb.Dao.CRUD.Person.IEmployeeCRUD;
 import com.netcracker.hb.Dao.CRUD.Person.IGuestCRUD;
 import com.netcracker.hb.Dao.CRUD.hotel.FloorCRUD;
 import com.netcracker.hb.Dao.CRUD.hotel.RoomsCRUD;
-import com.netcracker.hb.console.UtilizeManager;
-import com.netcracker.hb.console.services.chekServeces.ValidationService;
+import com.netcracker.hb.console.services.chekserveces.ValidationService;
 import com.netcracker.hb.console.services.hotel.FloorService;
 import com.netcracker.hb.console.services.hotel.RoomService;
 import com.netcracker.hb.console.services.person.EmployeeService;
@@ -34,8 +33,7 @@ public class MenuServices {
     }
     return menuServices;
   }
-
-  private static final UtilizeManager utilizeManager = UtilizeManager.getUtilizeManager();
+  
   private static final ValidationService validationService = ValidationService.getValidationService();
   private static final Service<Floor> floorService = FloorService.getFloorService();
   private static final Service<Room> roomService = RoomService.getRoomService();
@@ -95,7 +93,7 @@ public class MenuServices {
           }
           break;
         case 666:
-          log.info("see u!");
+          log.info("See u!");
           break;
         default:
           log.error("Choose correct num");
@@ -154,7 +152,7 @@ public class MenuServices {
           }
           break;
         case 666:
-          log.info("see u!");
+          log.info("See u!");
           break;
         default:
           log.error("Choose correct num");
@@ -210,7 +208,7 @@ public class MenuServices {
           }
           break;
         case 666:
-          log.info("see u!");
+          log.info("See u!");
           break;
         default:
           log.error("Choose correct num");
@@ -265,7 +263,7 @@ public class MenuServices {
           }
           break;
         case 666:
-          log.info("see u!");
+          log.info("See u!");
           break;
         default:
           log.error("Choose correct num");
@@ -300,7 +298,7 @@ public class MenuServices {
           employeeMenu();
           break;
         case 666:
-          log.info("see u!");
+          log.info("See u!");
           break;
         default:
           log.error("Choose correct num");
@@ -328,7 +326,7 @@ public class MenuServices {
           employeeMenu();
           break;
         case 666:
-          log.info("see u!");
+          log.info("See u!");
           break;
         default:
           log.error("Choose correct num");
@@ -352,7 +350,7 @@ public class MenuServices {
           guestsWorkMenu();
           break;
         case 666:
-          log.info("see u!");
+          log.info("See u!");
           break;
         default:
           log.error("Choose correct num");

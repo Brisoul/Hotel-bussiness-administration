@@ -1,4 +1,4 @@
-package com.netcracker.hb.console.services.chekServeces;
+package com.netcracker.hb.console.services.chekserveces;
 
 import com.netcracker.hb.console.services.MenuServices;
 import com.netcracker.hb.entities.persons.Employee;
@@ -48,13 +48,13 @@ public class LogIn {
               menuServices.employeeMenu();
               break;
             case GUEST:
-              log.error("guest cant use it");
+              log.error("Guest cant use it");
               userChoice = 666;
               break;
           }
           break;
         case 666:
-          log.info("see u!");
+          log.info("See u!");
           break;
         default:
           log.error("Choose correct num");

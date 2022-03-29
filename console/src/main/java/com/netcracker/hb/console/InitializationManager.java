@@ -6,7 +6,7 @@ import com.netcracker.hb.Dao.CRUD.Person.IEmployeeCRUD;
 import com.netcracker.hb.Dao.CRUD.Person.EmployeeCRUD;
 import com.netcracker.hb.Dao.CRUD.hotel.HotelCRUD;
 
-import com.netcracker.hb.console.services.chekServeces.ValidationService;
+import com.netcracker.hb.console.services.chekserveces.ValidationService;
 import com.netcracker.hb.console.services.hotel.FloorService;
 import com.netcracker.hb.console.services.hotel.HotelService;
 import com.netcracker.hb.console.services.hotel.RoomService;
@@ -67,7 +67,7 @@ public class InitializationManager {
       }
 
     } else {
-      log.info("hotel is already created");
+      log.info("The hotel has already been built");
     }
   }
 

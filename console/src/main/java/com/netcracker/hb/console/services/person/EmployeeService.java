@@ -2,6 +2,7 @@ package com.netcracker.hb.console.services.person;
 
 import com.netcracker.hb.Dao.crud.CRUD;
 import com.netcracker.hb.Dao.crud.Person.ContractCRUD;
+import com.netcracker.hb.Dao.crud.Person.IContractCRUD;
 import com.netcracker.hb.Dao.crud.Person.IEmployeeCRUD;
 import com.netcracker.hb.Dao.crud.Person.EmployeeCRUD;
 import com.netcracker.hb.Dao.crud.Person.IGuestCRUD;
@@ -41,7 +42,7 @@ public class EmployeeService implements Service<Employee> {
   private static final CRUD<Room> roomCRUD = RoomsCRUD.getRoomsCRUD();
   private static final Service<Room> roomService = RoomService.getRoomService();
   private static final IEmployeeCRUD<Employee> employeeCRUD = EmployeeCRUD.getIEmployeeCRUD();
-  private static final IGuestCRUD<Contract> contractCRUD = ContractCRUD.getContractCRUD();
+  private static final IContractCRUD<Contract> contractCRUD = ContractCRUD.getContractCRUD();
   private static final IGuestCRUD<PersonalCard> personalCardCRUD = PersonalCardCRUD.getPersonalCardCRUD();
   private static final IPersonalCard<Contract> contractService = ContractService.getContractService();
 

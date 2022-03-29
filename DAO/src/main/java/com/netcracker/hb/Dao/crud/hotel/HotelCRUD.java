@@ -25,7 +25,7 @@ public class HotelCRUD implements CRUD<Hotel> {
   }
 
   public static synchronized CRUD<Hotel> getHotelCRUD() {
-    if(hotelCRUD == null){
+    if (hotelCRUD == null) {
       hotelCRUD = new HotelCRUD();
     }
     return hotelCRUD;
@@ -53,7 +53,9 @@ public class HotelCRUD implements CRUD<Hotel> {
     File hotelFolderDirectory = new File(DatabaseProperties.HOTEL_CRUD_ENTITIES_PATH);
     String[] hotelList = hotelFolderDirectory.list();
     Hotel hotel = null;
-    assert hotelList != null;
+    if (hotelList == null) {
+      return null;
+    }
     for (String hotelFolderName : hotelList) {
       try (
           FileInputStream fileHotelIn = new FileInputStream(
@@ -78,7 +80,7 @@ public class HotelCRUD implements CRUD<Hotel> {
 
   @Override
   public Hotel searchUUIDObject(UUID uuid) {
-    if(uuid == null){
+    if (uuid == null) {
       return null;
     }
     return searchObjectNum(1);
@@ -92,7 +94,9 @@ public class HotelCRUD implements CRUD<Hotel> {
     String[] hotelList = hotelFolderDirectory.list();
 
     String fileName = null;
-    assert hotelList != null;
+    if (hotelList == null) {
+      return null;
+    }
     for (String hotelFolderName : hotelList) {
       fileName = hotelFolderName;
       log.info(END);

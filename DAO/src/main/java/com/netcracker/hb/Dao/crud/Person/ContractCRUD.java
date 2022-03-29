@@ -17,16 +17,16 @@ import lombok.extern.log4j.Log4j;
 
 
 @Log4j
-public class ContractCRUD implements IGuestCRUD<Contract> {
+public class ContractCRUD implements IContractCRUD<Contract> {
 
 
-  private static IGuestCRUD<Contract> contractCRUD;
+  private static IContractCRUD<Contract> contractCRUD;
 
   private ContractCRUD() {
   }
 
-  public static synchronized IGuestCRUD<Contract> getContractCRUD() {
-    if (contractCRUD == null){
+  public static synchronized IContractCRUD<Contract> getContractCRUD() {
+    if (contractCRUD == null) {
       contractCRUD = new ContractCRUD();
     }
     return contractCRUD;
@@ -45,7 +45,9 @@ public class ContractCRUD implements IGuestCRUD<Contract> {
     File contractFolderDirectory = new File(DatabaseProperties.CONTRACT_CRUD_ENTITIES_PATH);
     String[] contractList = contractFolderDirectory.list();
     Contract contract = null;
-    assert contractList != null;
+    if (contractList == null) {
+      return null;
+    }
     for (String contractFolderName : contractList) {
       try (
 
@@ -71,12 +73,6 @@ public class ContractCRUD implements IGuestCRUD<Contract> {
     return contract;
   }
 
-  //не должно работать
-  @Override
-  public boolean searchObjectRole(Role role) {
-    return false;
-  }
-
   @Override
   public List<Contract> searchObjects() {
     log.info(START);
@@ -84,7 +80,9 @@ public class ContractCRUD implements IGuestCRUD<Contract> {
     File contractFolderDirectory = new File(DatabaseProperties.CONTRACT_CRUD_ENTITIES_PATH);
     String[] contractList = contractFolderDirectory.list();
     List<Contract> contracts = new ArrayList<>();
-    assert contractList != null;
+    if (contractList == null) {
+      return null;
+    }
     for (String contractFolderName : contractList) {
       try (FileInputStream fileContractIn = new FileInputStream(
           DatabaseProperties.CONTRACT_CRUD_ENTITIES_PATH
@@ -114,14 +112,16 @@ public class ContractCRUD implements IGuestCRUD<Contract> {
   @Override
   public Contract searchUUIDObject(UUID uuid) {
     log.info(START);
-    if(uuid == null){
+    if (uuid == null) {
       return null;
     }
 
     File contractFolderDirectory = new File(DatabaseProperties.CONTRACT_CRUD_ENTITIES_PATH);
     String[] contractList = contractFolderDirectory.list();
     Contract contract = null;
-    assert contractList != null;
+    if (contractList == null) {
+      return null;
+    }
     for (String contractFolderName : contractList) {
       try (FileInputStream fileContractIn = new FileInputStream(
           DatabaseProperties.CONTRACT_CRUD_ENTITIES_PATH
@@ -149,7 +149,9 @@ public class ContractCRUD implements IGuestCRUD<Contract> {
     File contractFolderDirectory = new File(DatabaseProperties.CONTRACT_CRUD_ENTITIES_PATH);
     String[] contractList = contractFolderDirectory.list();
     String fileName = null;
-    assert contractList != null;
+    if (contractList == null) {
+      return null;
+    }
     for (String contractFolderName : contractList) {
       try (FileInputStream fileContractIn = new FileInputStream(
           DatabaseProperties.CONTRACT_CRUD_ENTITIES_PATH

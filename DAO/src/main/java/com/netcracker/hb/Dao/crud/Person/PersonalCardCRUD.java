@@ -48,7 +48,9 @@ public class PersonalCardCRUD implements IGuestCRUD<PersonalCard> {
         DatabaseProperties.PERSONAL_CARD_CRUD_ENTITIES_PATH);
     String[] personalCardList = personalCardFolderDirectory.list();
     PersonalCard personalCard = null;
-    assert personalCardList != null;
+    if (personalCardList == null) {
+      return null;
+    }
     for (String personalCardFolderName : personalCardList) {
       try (
           FileInputStream filePersonalCardIn = new FileInputStream(
@@ -96,7 +98,9 @@ public class PersonalCardCRUD implements IGuestCRUD<PersonalCard> {
         DatabaseProperties.PERSONAL_CARD_CRUD_ENTITIES_PATH);
     String[] personalCardList = personalCardFolderDirectory.list();
     List<PersonalCard> personalCards = new ArrayList<>();
-    assert personalCardList != null;
+    if (personalCardList == null) {
+      return null;
+    }
     for (String personalCardFolderName : personalCardList) {
       try (
           FileInputStream filePersonalCardIn = new FileInputStream(
@@ -122,7 +126,9 @@ public class PersonalCardCRUD implements IGuestCRUD<PersonalCard> {
         DatabaseProperties.PERSONAL_CARD_CRUD_ENTITIES_PATH);
     String[] personalCardList = personalCardFolderDirectory.list();
     PersonalCard personalCard = null;
-    assert personalCardList != null;
+    if (personalCardList == null) {
+      return null;
+    }
     for (String personalCardFolderName : personalCardList) {
       try (
           FileInputStream filePersonalCardIn = new FileInputStream(
@@ -156,7 +162,9 @@ public class PersonalCardCRUD implements IGuestCRUD<PersonalCard> {
         DatabaseProperties.PERSONAL_CARD_CRUD_ENTITIES_PATH);
     String[] personalCardList = personalCardFolderDirectory.list();
     PersonalCard personalCard = null;
-    assert personalCardList != null;
+    if (personalCardList == null) {
+      return null;
+    }
     for (String personalCardFolderName : personalCardList) {
       try (
           FileInputStream filePersonalCardIn = new FileInputStream(
@@ -187,7 +195,9 @@ public class PersonalCardCRUD implements IGuestCRUD<PersonalCard> {
         DatabaseProperties.PERSONAL_CARD_CRUD_ENTITIES_PATH);
     String[] personalCardList = personalCardFolderDirectory.list();
     String fileName = null;
-    assert personalCardList != null;
+    if (personalCardList == null) {
+      return null;
+    }
     for (String personalCardFolderName : personalCardList) {
       try (
           FileInputStream filePersonalCardIn = new FileInputStream(
@@ -226,7 +236,8 @@ public class PersonalCardCRUD implements IGuestCRUD<PersonalCard> {
     }
 
     //Удаляем карту
-    File deleteFile = new File(DatabaseProperties.PERSONAL_CARD_CRUD_ENTITIES_PATH + searchFileName(object));
+    File deleteFile = new File(
+        DatabaseProperties.PERSONAL_CARD_CRUD_ENTITIES_PATH + searchFileName(object));
     if (deleteFile.delete()) {
       log.info("Personal card was successfully deleted>");
     } else {

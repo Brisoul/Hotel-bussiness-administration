@@ -30,7 +30,7 @@ public class RoomsCRUD implements CRUD<Room> {
   }
 
   public static synchronized CRUD<Room> getRoomsCRUD() {
-    if(roomsCRUD == null){
+    if (roomsCRUD == null) {
       roomsCRUD = new RoomsCRUD();
     }
     return roomsCRUD;
@@ -53,7 +53,9 @@ public class RoomsCRUD implements CRUD<Room> {
     File roomFolderDirectory = new File(DatabaseProperties.ROOM_CRUD_ENTITIES_PATH);
     String[] roomList = roomFolderDirectory.list();
     List<Room> rooms = new ArrayList<>();
-    assert roomList != null;
+    if (roomList == null) {
+      return null;
+    }
     for (String roomFolderName : roomList) {
       try (
           FileInputStream fileRoomIn = new FileInputStream(
@@ -80,7 +82,9 @@ public class RoomsCRUD implements CRUD<Room> {
     File roomFolderDirectory = new File(DatabaseProperties.ROOM_CRUD_ENTITIES_PATH);
     String[] roomList = roomFolderDirectory.list();
     Room room = null;
-    assert roomList != null;
+    if (roomList == null) {
+      return null;
+    }
     for (String roomFolderName : roomList) {
       try (
 
@@ -108,14 +112,16 @@ public class RoomsCRUD implements CRUD<Room> {
   public Room searchUUIDObject(UUID uuid) {
 
     log.info(START);
-    if(uuid == null){
+    if (uuid == null) {
       return null;
     }
 
     File roomFolderDirectory = new File(DatabaseProperties.ROOM_CRUD_ENTITIES_PATH);
     String[] roomList = roomFolderDirectory.list();
     Room room = null;
-    assert roomList != null;
+    if (roomList == null) {
+      return null;
+    }
     for (String roomFolderName : roomList) {
       try (
 
@@ -145,7 +151,9 @@ public class RoomsCRUD implements CRUD<Room> {
     File roomFolderDirectory = new File(DatabaseProperties.ROOM_CRUD_ENTITIES_PATH);
     String[] roomList = roomFolderDirectory.list();
     String fileName = null;
-    assert roomList != null;
+    if (roomList == null) {
+      return null;
+    }
     for (String roomFolderName : roomList) {
       try (
 

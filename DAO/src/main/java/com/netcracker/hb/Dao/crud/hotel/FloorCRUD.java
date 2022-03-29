@@ -21,18 +21,20 @@ import lombok.extern.log4j.Log4j;
 public class FloorCRUD implements CRUD<Floor> {
 
   private static CRUD<Floor> floorCRUD;
+
   private FloorCRUD() {
   }
+
   public static synchronized CRUD<Floor> getFloorCRUD() {
-    if(floorCRUD ==null){
+    if (floorCRUD == null) {
       floorCRUD = new FloorCRUD();
     }
     return floorCRUD;
   }
+
   private static final String START = "<Start searching floors....";
   private static final String END = "Floors was found>";
   private static final String ERROR = "Floors was not found>";
-
 
 
   private static final CRUD<Hotel> hotelCRUD = HotelCRUD.getHotelCRUD();
@@ -45,7 +47,9 @@ public class FloorCRUD implements CRUD<Floor> {
     File floorFolderDirectory = new File(DatabaseProperties.FLOOR_CRUD_ENTITIES_PATH);
     String[] floorList = floorFolderDirectory.list();
     List<Floor> floors = new ArrayList<>();
-    assert floorList != null;
+    if (floorList == null) {
+      return null;
+    }
     for (String floorFolderName : floorList) {
       try (
           FileInputStream fileFloorIn = new FileInputStream(
@@ -70,7 +74,9 @@ public class FloorCRUD implements CRUD<Floor> {
     File floorFolderDirectory = new File(DatabaseProperties.FLOOR_CRUD_ENTITIES_PATH);
     String[] floorList = floorFolderDirectory.list();
     Floor floor = null;
-    assert floorList != null;
+    if (floorList == null) {
+      return null;
+    }
     for (String floorFolderName : floorList) {
       try (
           FileInputStream fileFloorIn = new FileInputStream(
@@ -96,14 +102,16 @@ public class FloorCRUD implements CRUD<Floor> {
   @Override
   public Floor searchUUIDObject(UUID uuid) {
     log.info(START);
-    if(uuid == null){
+    if (uuid == null) {
       return null;
     }
     File floorFolderDirectory = new File(DatabaseProperties.FLOOR_CRUD_ENTITIES_PATH);
     String[] floorList = floorFolderDirectory.list();
     Floor floor = null;
 
-    assert floorList != null;
+    if (floorList == null) {
+      return null;
+    }
     for (String floorFolderName : floorList) {
       try (
           FileInputStream fileFloorIn = new FileInputStream(
@@ -134,7 +142,9 @@ public class FloorCRUD implements CRUD<Floor> {
     String[] floorList = floorFolderDirectory.list();
     String fileName = null;
 
-    assert floorList != null;
+    if (floorList == null) {
+      return null;
+    }
     for (String floorFolderName : floorList) {
       try (
           FileInputStream fileFloorIn = new FileInputStream(
@@ -179,7 +189,8 @@ public class FloorCRUD implements CRUD<Floor> {
       //Сохраняем
       floor = searchObjectNum(object.getFloorNum());
       //удаляем файл
-      File deleteFile = new File(DatabaseProperties.FLOOR_CRUD_ENTITIES_PATH + searchFileName(floor));
+      File deleteFile = new File(
+          DatabaseProperties.FLOOR_CRUD_ENTITIES_PATH + searchFileName(floor));
       if (deleteFile.delete()) {
         log.info("Floor was successfully deleted>");
       }

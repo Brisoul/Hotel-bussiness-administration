@@ -47,7 +47,9 @@ public class GuestCRUD implements IGuestCRUD<Guest> {
     File guestFolderDirectory = new File(DatabaseProperties.GUEST_CRUD_ENTITIES_PATH);
     String[] guestList = guestFolderDirectory.list();
     Guest guest = null;
-    assert guestList != null;
+    if (guestList == null) {
+      return null;
+    }
     for (String guestFolderName : guestList) {
       try (
           FileInputStream fileGuestIn = new FileInputStream(
@@ -81,7 +83,9 @@ public class GuestCRUD implements IGuestCRUD<Guest> {
     File guestFolderDirectory = new File(DatabaseProperties.GUEST_CRUD_ENTITIES_PATH);
     String[] guestList = guestFolderDirectory.list();
     List<Guest> guests = new ArrayList<>();
-    assert guestList != null;
+    if (guestList == null) {
+      return null;
+    }
     for (String guestFolderName : guestList) {
       try (
           FileInputStream fileGuestIn = new FileInputStream(
@@ -130,7 +134,9 @@ public class GuestCRUD implements IGuestCRUD<Guest> {
     File guestFolderDirectory = new File(DatabaseProperties.GUEST_CRUD_ENTITIES_PATH);
     String[] guestList = guestFolderDirectory.list();
     Guest guest = null;
-    assert guestList != null;
+    if (guestList == null) {
+      return null;
+    }
     for (String guestFolderName : guestList) {
       try (
           FileInputStream fileGuestIn = new FileInputStream(
@@ -162,7 +168,9 @@ public class GuestCRUD implements IGuestCRUD<Guest> {
     File guestFolderDirectory = new File(DatabaseProperties.GUEST_CRUD_ENTITIES_PATH);
     String[] guestList = guestFolderDirectory.list();
     String fileName = null;
-    assert guestList != null;
+    if (guestList == null) {
+      return null;
+    }
     for (String guestFolderName : guestList) {
       try (
           FileInputStream fileGuestIn = new FileInputStream(

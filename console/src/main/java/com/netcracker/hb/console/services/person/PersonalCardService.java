@@ -50,7 +50,6 @@ public class PersonalCardService implements IPersonalCard<PersonalCard> {
 
   @Override
   public void addObjectPerson(Person person) {
-
     int cardNum = numIterator();
     PersonalCard personalCard = PersonalCard.builder()
         .uuid(UUID.randomUUID())
@@ -79,7 +78,6 @@ public class PersonalCardService implements IPersonalCard<PersonalCard> {
 
   @Override
   public void addObject() {
-
     int cardNum = numIterator();
     Person person = validationService.validationSearchPerson();
     UUID id;
@@ -100,14 +98,12 @@ public class PersonalCardService implements IPersonalCard<PersonalCard> {
         .uuid(UUID.randomUUID())
         .num(cardNum)
         .build();
-
     personalCardCRUD.saveObject(personalCard);
   }
 
 
   @Override
   public void changeObject(PersonalCard object) {
-
     log.info("Start changing personal card " + personalCardCRUD.searchFileName(object));
     int userChoice;
     do {
@@ -116,7 +112,7 @@ public class PersonalCardService implements IPersonalCard<PersonalCard> {
       userChoice = validationService.validationNumberChoice();
       switch (userChoice) {
         case 1:
-          log.info("write how many years do u wonna add to date expire(from 1970 :В)");
+          log.info("write how many years do u wanna add to date expire(from 1970 :В)");
           long years = validationService.validationNumberChoice();
           years *= 360L * 86400000L;
           Date date = new Date(years);
@@ -130,10 +126,7 @@ public class PersonalCardService implements IPersonalCard<PersonalCard> {
           log.error("Choose correct num");
           break;
       }
-
     } while (userChoice != 666);
-
-
   }
 
   @Override
@@ -146,6 +139,5 @@ public class PersonalCardService implements IPersonalCard<PersonalCard> {
     log.info("Role " + object.getRole());
     log.info("_______________________");
     log.info("_______________________");
-
   }
 }

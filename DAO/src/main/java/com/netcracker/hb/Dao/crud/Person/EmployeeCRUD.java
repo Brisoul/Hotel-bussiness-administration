@@ -44,7 +44,7 @@ public class EmployeeCRUD implements IEmployeeCRUD<Employee> {
 
   private static final CRUD<Room> roomCRUD = RoomsCRUD.getRoomsCRUD();
   private static final IGuestCRUD<PersonalCard> personalCardCRUD = PersonalCardCRUD.getPersonalCardCRUD();
-  private static final IGuestCRUD<Contract> contractCRUD = ContractCRUD.getContractCRUD();
+  private static final IContractCRUD<Contract> contractCRUD = ContractCRUD.getContractCRUD();
 
   @Override
   public Employee searchObjectNameSurname(String name, String surname) {
@@ -53,7 +53,9 @@ public class EmployeeCRUD implements IEmployeeCRUD<Employee> {
     File employeeFolderDirectory = new File(DatabaseProperties.EMPLOYEE_CRUD_ENTITIES_PATH);
     String[] employeeList = employeeFolderDirectory.list();
     Employee employee = null;
-    assert employeeList != null;
+    if (employeeList == null) {
+      return null;
+    }
     for (String employeeFolderName : employeeList) {
       try (
           FileInputStream fileEmployeeIn = new FileInputStream(
@@ -83,7 +85,9 @@ public class EmployeeCRUD implements IEmployeeCRUD<Employee> {
     File employeeFolderDirectory = new File(DatabaseProperties.EMPLOYEE_CRUD_ENTITIES_PATH);
     String[] employeeList = employeeFolderDirectory.list();
     Employee employee = null;
-    assert employeeList != null;
+    if (employeeList == null) {
+      return null;
+    }
     for (String employeeFolderName : employeeList) {
       try (
           FileInputStream fileEmployeeIn = new FileInputStream(
@@ -113,7 +117,9 @@ public class EmployeeCRUD implements IEmployeeCRUD<Employee> {
     File employeeFolderDirectory = new File(DatabaseProperties.EMPLOYEE_CRUD_ENTITIES_PATH);
     String[] employeeList = employeeFolderDirectory.list();
     boolean searchStatus = false;
-    assert employeeList != null;
+    if (employeeList == null) {
+      return false;
+    }
     for (String employeeFolderName : employeeList) {
       try (
           FileInputStream fileEmployeeIn = new FileInputStream(
@@ -143,7 +149,9 @@ public class EmployeeCRUD implements IEmployeeCRUD<Employee> {
     File employeeFolderDirectory = new File(DatabaseProperties.EMPLOYEE_CRUD_ENTITIES_PATH);
     String[] employeeList = employeeFolderDirectory.list();
     List<Employee> employers = new ArrayList<>();
-    assert employeeList != null;
+    if (employeeList == null) {
+      return null;
+    }
     for (String employeeFolderName : employeeList) {
       try (
           FileInputStream fileEmployeeIn = new FileInputStream(
@@ -195,7 +203,9 @@ public class EmployeeCRUD implements IEmployeeCRUD<Employee> {
     File employeeFolderDirectory = new File(DatabaseProperties.EMPLOYEE_CRUD_ENTITIES_PATH);
     String[] employeeList = employeeFolderDirectory.list();
     Employee employee = null;
-    assert employeeList != null;
+    if (employeeList == null) {
+      return null;
+    }
     for (String employeeFolderName : employeeList) {
       try (
           FileInputStream fileEmployeeIn = new FileInputStream(
@@ -227,7 +237,9 @@ public class EmployeeCRUD implements IEmployeeCRUD<Employee> {
     File employeeFolderDirectory = new File(DatabaseProperties.EMPLOYEE_CRUD_ENTITIES_PATH);
     String[] employeeList = employeeFolderDirectory.list();
     String fileName = null;
-    assert employeeList != null;
+    if (employeeList == null) {
+      return null;
+    }
     for (String employeeFolderName : employeeList) {
       try (
           FileInputStream fileEmployeeIn = new FileInputStream(

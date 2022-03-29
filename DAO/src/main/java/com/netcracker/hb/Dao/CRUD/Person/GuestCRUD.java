@@ -44,14 +44,14 @@ public class GuestCRUD implements IGuestCRUD<Guest> {
   public Guest searchObjectNameSurname(String name, String surname) {
     log.info(START);
 
-    File guestFolderDirectory = new File(DatabaseProperties.getGuestCrudEntitiesPath());
+    File guestFolderDirectory = new File(DatabaseProperties.GUEST_CRUD_ENTITIES_PATH);
     String[] guestList = guestFolderDirectory.list();
     Guest guest = null;
     assert guestList != null;
     for (String guestFolderName : guestList) {
       try (
           FileInputStream fileGuestIn = new FileInputStream(
-              DatabaseProperties.getGuestCrudEntitiesPath()
+              DatabaseProperties.GUEST_CRUD_ENTITIES_PATH
                   + guestFolderName);
           ObjectInputStream objectGuestIn = new ObjectInputStream(fileGuestIn);
       ) {
@@ -78,14 +78,14 @@ public class GuestCRUD implements IGuestCRUD<Guest> {
   @Override
   public List<Guest> searchObjects() {
     log.info(START);
-    File guestFolderDirectory = new File(DatabaseProperties.getGuestCrudEntitiesPath());
+    File guestFolderDirectory = new File(DatabaseProperties.GUEST_CRUD_ENTITIES_PATH);
     String[] guestList = guestFolderDirectory.list();
     List<Guest> guests = new ArrayList<>();
     assert guestList != null;
     for (String guestFolderName : guestList) {
       try (
           FileInputStream fileGuestIn = new FileInputStream(
-              DatabaseProperties.getGuestCrudEntitiesPath()
+              DatabaseProperties.GUEST_CRUD_ENTITIES_PATH
                   + guestFolderName);
           ObjectInputStream objectGuestIn = new ObjectInputStream(fileGuestIn);
       ) {
@@ -127,14 +127,14 @@ public class GuestCRUD implements IGuestCRUD<Guest> {
     if (uuid == null) {
       return null;
     }
-    File guestFolderDirectory = new File(DatabaseProperties.getGuestCrudEntitiesPath());
+    File guestFolderDirectory = new File(DatabaseProperties.GUEST_CRUD_ENTITIES_PATH);
     String[] guestList = guestFolderDirectory.list();
     Guest guest = null;
     assert guestList != null;
     for (String guestFolderName : guestList) {
       try (
           FileInputStream fileGuestIn = new FileInputStream(
-              DatabaseProperties.getGuestCrudEntitiesPath()
+              DatabaseProperties.GUEST_CRUD_ENTITIES_PATH
                   + guestFolderName);
           ObjectInputStream objectGuestIn = new ObjectInputStream(fileGuestIn);
       ) {
@@ -159,14 +159,14 @@ public class GuestCRUD implements IGuestCRUD<Guest> {
     if (object == null) {
       return null;
     }
-    File guestFolderDirectory = new File(DatabaseProperties.getGuestCrudEntitiesPath());
+    File guestFolderDirectory = new File(DatabaseProperties.GUEST_CRUD_ENTITIES_PATH);
     String[] guestList = guestFolderDirectory.list();
     String fileName = null;
     assert guestList != null;
     for (String guestFolderName : guestList) {
       try (
           FileInputStream fileGuestIn = new FileInputStream(
-              DatabaseProperties.getGuestCrudEntitiesPath()
+              DatabaseProperties.GUEST_CRUD_ENTITIES_PATH
                   + guestFolderName);
           ObjectInputStream objectGuestIn = new ObjectInputStream(fileGuestIn);
       ) {
@@ -207,7 +207,7 @@ public class GuestCRUD implements IGuestCRUD<Guest> {
     // удаляем
     Guest guest = searchUUIDObject(object.getUuid());
     File deleteFile = new File(
-        DatabaseProperties.getGuestCrudEntitiesPath() + searchFileName(guest));
+        DatabaseProperties.GUEST_CRUD_ENTITIES_PATH + searchFileName(guest));
     if (deleteFile.delete()) {
       log.info("Guest was successfully deleted>");
     } else {
@@ -221,7 +221,7 @@ public class GuestCRUD implements IGuestCRUD<Guest> {
 
     try (
         FileOutputStream fileGuestOut = new FileOutputStream(
-            DatabaseProperties.getGuestCrudEntitiesPath() + guest.getUuid() + "-guest.txt");
+            DatabaseProperties.GUEST_CRUD_ENTITIES_PATH + guest.getUuid() + "-guest.txt");
 
         ObjectOutputStream objectGuestOut = new ObjectOutputStream(fileGuestOut);
     ) {

@@ -42,14 +42,14 @@ public class FloorCRUD implements CRUD<Floor> {
   @Override
   public List<Floor> searchObjects() {
     log.info(START);
-    File floorFolderDirectory = new File(DatabaseProperties.getFloorCrudEntitiesPath());
+    File floorFolderDirectory = new File(DatabaseProperties.FLOOR_CRUD_ENTITIES_PATH);
     String[] floorList = floorFolderDirectory.list();
     List<Floor> floors = new ArrayList<>();
     assert floorList != null;
     for (String floorFolderName : floorList) {
       try (
           FileInputStream fileFloorIn = new FileInputStream(
-              DatabaseProperties.getFloorCrudEntitiesPath() + floorFolderName);
+              DatabaseProperties.FLOOR_CRUD_ENTITIES_PATH + floorFolderName);
           ObjectInputStream objectFloorIn = new ObjectInputStream(fileFloorIn)) {
         Floor object = (Floor) objectFloorIn.readObject();
         floors.add(object);
@@ -67,14 +67,14 @@ public class FloorCRUD implements CRUD<Floor> {
   public Floor searchObjectNum(int floorNum) {
 
     log.info(START);
-    File floorFolderDirectory = new File(DatabaseProperties.getFloorCrudEntitiesPath());
+    File floorFolderDirectory = new File(DatabaseProperties.FLOOR_CRUD_ENTITIES_PATH);
     String[] floorList = floorFolderDirectory.list();
     Floor floor = null;
     assert floorList != null;
     for (String floorFolderName : floorList) {
       try (
           FileInputStream fileFloorIn = new FileInputStream(
-              DatabaseProperties.getFloorCrudEntitiesPath() + floorFolderName);
+              DatabaseProperties.FLOOR_CRUD_ENTITIES_PATH + floorFolderName);
           ObjectInputStream objectFloorIn = new ObjectInputStream(fileFloorIn)) {
         Floor object = (Floor) objectFloorIn.readObject();
         //если номер этажа совпадает то передаем
@@ -99,7 +99,7 @@ public class FloorCRUD implements CRUD<Floor> {
     if(uuid == null){
       return null;
     }
-    File floorFolderDirectory = new File(DatabaseProperties.getFloorCrudEntitiesPath());
+    File floorFolderDirectory = new File(DatabaseProperties.FLOOR_CRUD_ENTITIES_PATH);
     String[] floorList = floorFolderDirectory.list();
     Floor floor = null;
 
@@ -107,7 +107,7 @@ public class FloorCRUD implements CRUD<Floor> {
     for (String floorFolderName : floorList) {
       try (
           FileInputStream fileFloorIn = new FileInputStream(
-              DatabaseProperties.getFloorCrudEntitiesPath() + floorFolderName);
+              DatabaseProperties.FLOOR_CRUD_ENTITIES_PATH + floorFolderName);
           ObjectInputStream objectFloorIn = new ObjectInputStream(fileFloorIn)) {
         Floor object = (Floor) objectFloorIn.readObject();
         if (object.getUuid().equals(uuid)) {
@@ -130,7 +130,7 @@ public class FloorCRUD implements CRUD<Floor> {
 
     log.info(START);
 
-    File floorFolderDirectory = new File(DatabaseProperties.getFloorCrudEntitiesPath());
+    File floorFolderDirectory = new File(DatabaseProperties.FLOOR_CRUD_ENTITIES_PATH);
     String[] floorList = floorFolderDirectory.list();
     String fileName = null;
 
@@ -138,7 +138,7 @@ public class FloorCRUD implements CRUD<Floor> {
     for (String floorFolderName : floorList) {
       try (
           FileInputStream fileFloorIn = new FileInputStream(
-              DatabaseProperties.getFloorCrudEntitiesPath() + floorFolderName);
+              DatabaseProperties.FLOOR_CRUD_ENTITIES_PATH + floorFolderName);
           ObjectInputStream objectFloorIn = new ObjectInputStream(fileFloorIn)) {
         Floor object = (Floor) objectFloorIn.readObject();
 
@@ -179,7 +179,7 @@ public class FloorCRUD implements CRUD<Floor> {
       //Сохраняем
       floor = searchObjectNum(object.getFloorNum());
       //удаляем файл
-      File deleteFile = new File(DatabaseProperties.getFloorCrudEntitiesPath() + searchFileName(floor));
+      File deleteFile = new File(DatabaseProperties.FLOOR_CRUD_ENTITIES_PATH + searchFileName(floor));
       if (deleteFile.delete()) {
         log.info("Floor was successfully deleted>");
       }
@@ -194,7 +194,7 @@ public class FloorCRUD implements CRUD<Floor> {
 
     try (
         FileOutputStream fileFloorOut = new FileOutputStream(
-            DatabaseProperties.getFloorCrudEntitiesPath() + floor.getUuid() + "-floor.txt");
+            DatabaseProperties.FLOOR_CRUD_ENTITIES_PATH + floor.getUuid() + "-floor.txt");
 
         ObjectOutputStream objectFloorOut = new ObjectOutputStream(fileFloorOut)) {
       objectFloorOut.writeObject(floor);

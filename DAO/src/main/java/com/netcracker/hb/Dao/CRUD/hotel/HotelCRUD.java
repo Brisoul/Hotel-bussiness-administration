@@ -50,14 +50,14 @@ public class HotelCRUD implements CRUD<Hotel> {
   public Hotel searchObjectNum(int hotelNum) {
     log.info(START);
 
-    File hotelFolderDirectory = new File(DatabaseProperties.getHotelCrudEntitiesPath());
+    File hotelFolderDirectory = new File(DatabaseProperties.HOTEL_CRUD_ENTITIES_PATH);
     String[] hotelList = hotelFolderDirectory.list();
     Hotel hotel = null;
     assert hotelList != null;
     for (String hotelFolderName : hotelList) {
       try (
           FileInputStream fileHotelIn = new FileInputStream(
-              DatabaseProperties.getHotelCrudEntitiesPath()
+              DatabaseProperties.HOTEL_CRUD_ENTITIES_PATH
                   + hotelFolderName);
           ObjectInputStream objectHotelIn = new ObjectInputStream(fileHotelIn)) {
 
@@ -88,7 +88,7 @@ public class HotelCRUD implements CRUD<Hotel> {
   public String searchFileName(Hotel object) {
     log.info(START);
 
-    File hotelFolderDirectory = new File(DatabaseProperties.getHotelCrudEntitiesPath());
+    File hotelFolderDirectory = new File(DatabaseProperties.HOTEL_CRUD_ENTITIES_PATH);
     String[] hotelList = hotelFolderDirectory.list();
 
     String fileName = null;
@@ -116,7 +116,7 @@ public class HotelCRUD implements CRUD<Hotel> {
     Hotel object = searchObjectNum(1);
     //удаляем файл
     File deleteFile = new File(
-        DatabaseProperties.getHotelCrudEntitiesPath() + searchFileName(object));
+        DatabaseProperties.HOTEL_CRUD_ENTITIES_PATH + searchFileName(object));
 
     if (deleteFile.delete()) {
       log.info("hotel was successfully deleted>");
@@ -131,7 +131,7 @@ public class HotelCRUD implements CRUD<Hotel> {
     log.info("<Start saving hotel...");
     try (
         FileOutputStream fileHotelOut = new FileOutputStream(
-            DatabaseProperties.getHotelCrudEntitiesPath()
+            DatabaseProperties.HOTEL_CRUD_ENTITIES_PATH
                 + hotel.getUuid() + "-hotel.txt");
         ObjectOutputStream objectHotelOut = new ObjectOutputStream(fileHotelOut)) {
       objectHotelOut.writeObject(hotel);

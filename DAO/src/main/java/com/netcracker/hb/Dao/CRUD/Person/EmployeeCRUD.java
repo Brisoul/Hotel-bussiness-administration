@@ -50,14 +50,14 @@ public class EmployeeCRUD implements IEmployeeCRUD<Employee> {
   public Employee searchObjectNameSurname(String name, String surname) {
     log.info(START);
 
-    File employeeFolderDirectory = new File(DatabaseProperties.getEmployeeCrudEntitiesPath());
+    File employeeFolderDirectory = new File(DatabaseProperties.EMPLOYEE_CRUD_ENTITIES_PATH);
     String[] employeeList = employeeFolderDirectory.list();
     Employee employee = null;
     assert employeeList != null;
     for (String employeeFolderName : employeeList) {
       try (
           FileInputStream fileEmployeeIn = new FileInputStream(
-              DatabaseProperties.getEmployeeCrudEntitiesPath()
+              DatabaseProperties.EMPLOYEE_CRUD_ENTITIES_PATH
                   + employeeFolderName);
           ObjectInputStream objectEmployeeIn = new ObjectInputStream(fileEmployeeIn)) {
         Employee object = (Employee) objectEmployeeIn.readObject();
@@ -80,14 +80,14 @@ public class EmployeeCRUD implements IEmployeeCRUD<Employee> {
   public Employee searchObjectLogIn(String username, String password) {
     log.info(START);
 
-    File employeeFolderDirectory = new File(DatabaseProperties.getEmployeeCrudEntitiesPath());
+    File employeeFolderDirectory = new File(DatabaseProperties.EMPLOYEE_CRUD_ENTITIES_PATH);
     String[] employeeList = employeeFolderDirectory.list();
     Employee employee = null;
     assert employeeList != null;
     for (String employeeFolderName : employeeList) {
       try (
           FileInputStream fileEmployeeIn = new FileInputStream(
-              DatabaseProperties.getEmployeeCrudEntitiesPath()
+              DatabaseProperties.EMPLOYEE_CRUD_ENTITIES_PATH
                   + employeeFolderName);
           ObjectInputStream objectEmployeeIn = new ObjectInputStream(fileEmployeeIn)
       ) {
@@ -110,14 +110,14 @@ public class EmployeeCRUD implements IEmployeeCRUD<Employee> {
   public boolean searchObjectRole(Role role) {
     log.info(START);
 
-    File employeeFolderDirectory = new File(DatabaseProperties.getEmployeeCrudEntitiesPath());
+    File employeeFolderDirectory = new File(DatabaseProperties.EMPLOYEE_CRUD_ENTITIES_PATH);
     String[] employeeList = employeeFolderDirectory.list();
     boolean searchStatus = false;
     assert employeeList != null;
     for (String employeeFolderName : employeeList) {
       try (
           FileInputStream fileEmployeeIn = new FileInputStream(
-              DatabaseProperties.getEmployeeCrudEntitiesPath()
+              DatabaseProperties.EMPLOYEE_CRUD_ENTITIES_PATH
                   + employeeFolderName);
           ObjectInputStream objectEmployeeIn = new ObjectInputStream(fileEmployeeIn);
       ) {
@@ -140,14 +140,14 @@ public class EmployeeCRUD implements IEmployeeCRUD<Employee> {
   @Override
   public List<Employee> searchObjects() {
     log.info(START);
-    File employeeFolderDirectory = new File(DatabaseProperties.getEmployeeCrudEntitiesPath());
+    File employeeFolderDirectory = new File(DatabaseProperties.EMPLOYEE_CRUD_ENTITIES_PATH);
     String[] employeeList = employeeFolderDirectory.list();
     List<Employee> employers = new ArrayList<>();
     assert employeeList != null;
     for (String employeeFolderName : employeeList) {
       try (
           FileInputStream fileEmployeeIn = new FileInputStream(
-              DatabaseProperties.getEmployeeCrudEntitiesPath()
+              DatabaseProperties.EMPLOYEE_CRUD_ENTITIES_PATH
                   + employeeFolderName);
           ObjectInputStream objectEmployeeIn = new ObjectInputStream(fileEmployeeIn);
       ) {
@@ -192,14 +192,14 @@ public class EmployeeCRUD implements IEmployeeCRUD<Employee> {
     if (uuid == null) {
       return null;
     }
-    File employeeFolderDirectory = new File(DatabaseProperties.getEmployeeCrudEntitiesPath());
+    File employeeFolderDirectory = new File(DatabaseProperties.EMPLOYEE_CRUD_ENTITIES_PATH);
     String[] employeeList = employeeFolderDirectory.list();
     Employee employee = null;
     assert employeeList != null;
     for (String employeeFolderName : employeeList) {
       try (
           FileInputStream fileEmployeeIn = new FileInputStream(
-              DatabaseProperties.getEmployeeCrudEntitiesPath()
+              DatabaseProperties.EMPLOYEE_CRUD_ENTITIES_PATH
                   + employeeFolderName);
           ObjectInputStream objectEmployeeIn = new ObjectInputStream(fileEmployeeIn);
       ) {
@@ -224,14 +224,14 @@ public class EmployeeCRUD implements IEmployeeCRUD<Employee> {
   @Override
   public String searchFileName(Employee object) {
     log.info(START);
-    File employeeFolderDirectory = new File(DatabaseProperties.getEmployeeCrudEntitiesPath());
+    File employeeFolderDirectory = new File(DatabaseProperties.EMPLOYEE_CRUD_ENTITIES_PATH);
     String[] employeeList = employeeFolderDirectory.list();
     String fileName = null;
     assert employeeList != null;
     for (String employeeFolderName : employeeList) {
       try (
           FileInputStream fileEmployeeIn = new FileInputStream(
-              DatabaseProperties.getEmployeeCrudEntitiesPath()
+              DatabaseProperties.EMPLOYEE_CRUD_ENTITIES_PATH
                   + employeeFolderName);
           ObjectInputStream objectEmployeeIn = new ObjectInputStream(fileEmployeeIn);
       ) {
@@ -281,7 +281,7 @@ public class EmployeeCRUD implements IEmployeeCRUD<Employee> {
     // удаляем
     Employee employee = searchUUIDObject(object.getUuid());
     File deleteFile = new File(
-        DatabaseProperties.getEmployeeCrudEntitiesPath() + searchFileName(employee));
+        DatabaseProperties.EMPLOYEE_CRUD_ENTITIES_PATH + searchFileName(employee));
     if (deleteFile.delete()) {
       log.info("Employee was successfully deleted>");
     } else {
@@ -296,7 +296,7 @@ public class EmployeeCRUD implements IEmployeeCRUD<Employee> {
 
     try (
         FileOutputStream fileEmployeeOut = new FileOutputStream(
-            DatabaseProperties.getEmployeeCrudEntitiesPath() + employee.getUuid()
+            DatabaseProperties.EMPLOYEE_CRUD_ENTITIES_PATH + employee.getUuid()
                 + "-employee.txt");
         ObjectOutputStream objectEmployeeOut = new ObjectOutputStream(fileEmployeeOut);
     ) {

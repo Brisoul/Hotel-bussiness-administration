@@ -42,7 +42,7 @@ public class ContractCRUD implements IGuestCRUD<Contract> {
   @Override
   public Contract searchObjectNameSurname(String name, String surname) {
     log.info(START);
-    File contractFolderDirectory = new File(DatabaseProperties.getContractCrudEntitiesPath());
+    File contractFolderDirectory = new File(DatabaseProperties.CONTRACT_CRUD_ENTITIES_PATH);
     String[] contractList = contractFolderDirectory.list();
     Contract contract = null;
     assert contractList != null;
@@ -50,7 +50,7 @@ public class ContractCRUD implements IGuestCRUD<Contract> {
       try (
 
           FileInputStream fileContractIn = new FileInputStream(
-              DatabaseProperties.getContractCrudEntitiesPath()
+              DatabaseProperties.CONTRACT_CRUD_ENTITIES_PATH
                   + contractFolderName); ObjectInputStream objectContractIn = new ObjectInputStream(
           fileContractIn);) {
         Contract object = (Contract) objectContractIn.readObject();
@@ -81,13 +81,13 @@ public class ContractCRUD implements IGuestCRUD<Contract> {
   public List<Contract> searchObjects() {
     log.info(START);
 
-    File contractFolderDirectory = new File(DatabaseProperties.getContractCrudEntitiesPath());
+    File contractFolderDirectory = new File(DatabaseProperties.CONTRACT_CRUD_ENTITIES_PATH);
     String[] contractList = contractFolderDirectory.list();
     List<Contract> contracts = new ArrayList<>();
     assert contractList != null;
     for (String contractFolderName : contractList) {
       try (FileInputStream fileContractIn = new FileInputStream(
-          DatabaseProperties.getContractCrudEntitiesPath()
+          DatabaseProperties.CONTRACT_CRUD_ENTITIES_PATH
               + contractFolderName); ObjectInputStream objectContractIn = new ObjectInputStream(
           fileContractIn);) {
         Contract object = (Contract) objectContractIn.readObject();
@@ -118,13 +118,13 @@ public class ContractCRUD implements IGuestCRUD<Contract> {
       return null;
     }
 
-    File contractFolderDirectory = new File(DatabaseProperties.getContractCrudEntitiesPath());
+    File contractFolderDirectory = new File(DatabaseProperties.CONTRACT_CRUD_ENTITIES_PATH);
     String[] contractList = contractFolderDirectory.list();
     Contract contract = null;
     assert contractList != null;
     for (String contractFolderName : contractList) {
       try (FileInputStream fileContractIn = new FileInputStream(
-          DatabaseProperties.getContractCrudEntitiesPath()
+          DatabaseProperties.CONTRACT_CRUD_ENTITIES_PATH
               + contractFolderName); ObjectInputStream objectContractIn = new ObjectInputStream(
           fileContractIn);) {
         Contract object = (Contract) objectContractIn.readObject();
@@ -146,13 +146,13 @@ public class ContractCRUD implements IGuestCRUD<Contract> {
   public String searchFileName(Contract contract) {
     log.info(START);
 
-    File contractFolderDirectory = new File(DatabaseProperties.getContractCrudEntitiesPath());
+    File contractFolderDirectory = new File(DatabaseProperties.CONTRACT_CRUD_ENTITIES_PATH);
     String[] contractList = contractFolderDirectory.list();
     String fileName = null;
     assert contractList != null;
     for (String contractFolderName : contractList) {
       try (FileInputStream fileContractIn = new FileInputStream(
-          DatabaseProperties.getContractCrudEntitiesPath()
+          DatabaseProperties.CONTRACT_CRUD_ENTITIES_PATH
               + contractFolderName); ObjectInputStream objectContractIn = new ObjectInputStream(
           fileContractIn);) {
 
@@ -182,7 +182,7 @@ public class ContractCRUD implements IGuestCRUD<Contract> {
     // удаляем
     Contract contract = searchUUIDObject(object.getUuid());
     File deleteFile = new File(
-        DatabaseProperties.getContractCrudEntitiesPath() + searchFileName(contract));
+        DatabaseProperties.CONTRACT_CRUD_ENTITIES_PATH + searchFileName(contract));
 
     if (deleteFile.delete()) {
       log.info("Contract was successfully deleted>");
@@ -198,7 +198,7 @@ public class ContractCRUD implements IGuestCRUD<Contract> {
 
     log.info("<Start saving contract...");
     try (FileOutputStream fileContractOut = new FileOutputStream(
-        DatabaseProperties.getContractCrudEntitiesPath() + contract.getUuid()
+        DatabaseProperties.CONTRACT_CRUD_ENTITIES_PATH + contract.getUuid()
             + "-personalCard.txt"); ObjectOutputStream objectContractOut = new ObjectOutputStream(
         fileContractOut);) {
       objectContractOut.writeObject(contract);

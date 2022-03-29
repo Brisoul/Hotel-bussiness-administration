@@ -50,14 +50,14 @@ public class RoomsCRUD implements CRUD<Room> {
   public List<Room> searchObjects() {
     log.info(START);
 
-    File roomFolderDirectory = new File(DatabaseProperties.getRoomCrudEntitiesPath());
+    File roomFolderDirectory = new File(DatabaseProperties.ROOM_CRUD_ENTITIES_PATH);
     String[] roomList = roomFolderDirectory.list();
     List<Room> rooms = new ArrayList<>();
     assert roomList != null;
     for (String roomFolderName : roomList) {
       try (
           FileInputStream fileRoomIn = new FileInputStream(
-              DatabaseProperties.getRoomCrudEntitiesPath() + roomFolderName);
+              DatabaseProperties.ROOM_CRUD_ENTITIES_PATH + roomFolderName);
           ObjectInputStream objectRoomIn = new ObjectInputStream(fileRoomIn);
       ) {
         Room object = (Room) objectRoomIn.readObject();
@@ -77,7 +77,7 @@ public class RoomsCRUD implements CRUD<Room> {
   public Room searchObjectNum(int roomNum) {
     log.info(START);
 
-    File roomFolderDirectory = new File(DatabaseProperties.getRoomCrudEntitiesPath());
+    File roomFolderDirectory = new File(DatabaseProperties.ROOM_CRUD_ENTITIES_PATH);
     String[] roomList = roomFolderDirectory.list();
     Room room = null;
     assert roomList != null;
@@ -85,7 +85,7 @@ public class RoomsCRUD implements CRUD<Room> {
       try (
 
           FileInputStream fileRoomIn = new FileInputStream(
-              DatabaseProperties.getRoomCrudEntitiesPath() + roomFolderName);
+              DatabaseProperties.ROOM_CRUD_ENTITIES_PATH + roomFolderName);
           ObjectInputStream objectRoomIn = new ObjectInputStream(fileRoomIn);
       ) {
         Room object = (Room) objectRoomIn.readObject();
@@ -112,7 +112,7 @@ public class RoomsCRUD implements CRUD<Room> {
       return null;
     }
 
-    File roomFolderDirectory = new File(DatabaseProperties.getRoomCrudEntitiesPath());
+    File roomFolderDirectory = new File(DatabaseProperties.ROOM_CRUD_ENTITIES_PATH);
     String[] roomList = roomFolderDirectory.list();
     Room room = null;
     assert roomList != null;
@@ -120,7 +120,7 @@ public class RoomsCRUD implements CRUD<Room> {
       try (
 
           FileInputStream fileRoomIn = new FileInputStream(
-              DatabaseProperties.getRoomCrudEntitiesPath() + roomFolderName);
+              DatabaseProperties.ROOM_CRUD_ENTITIES_PATH + roomFolderName);
           ObjectInputStream objectRoomIn = new ObjectInputStream(fileRoomIn);
       ) {
         Room object = (Room) objectRoomIn.readObject();
@@ -142,7 +142,7 @@ public class RoomsCRUD implements CRUD<Room> {
   @Override
   public String searchFileName(Room room) {
     log.info(START);
-    File roomFolderDirectory = new File(DatabaseProperties.getRoomCrudEntitiesPath());
+    File roomFolderDirectory = new File(DatabaseProperties.ROOM_CRUD_ENTITIES_PATH);
     String[] roomList = roomFolderDirectory.list();
     String fileName = null;
     assert roomList != null;
@@ -150,7 +150,7 @@ public class RoomsCRUD implements CRUD<Room> {
       try (
 
           FileInputStream fileRoomIn = new FileInputStream(
-              DatabaseProperties.getRoomCrudEntitiesPath() + roomFolderName);
+              DatabaseProperties.ROOM_CRUD_ENTITIES_PATH + roomFolderName);
           ObjectInputStream objectRoomIn = new ObjectInputStream(fileRoomIn);
       ) {
         Room object = (Room) objectRoomIn.readObject();
@@ -196,7 +196,7 @@ public class RoomsCRUD implements CRUD<Room> {
     object = searchObjectNum(room.getRoomNum());
     //удаляем файл
     File deleteFile = new File(
-        DatabaseProperties.getRoomCrudEntitiesPath() + searchFileName(object));
+        DatabaseProperties.ROOM_CRUD_ENTITIES_PATH + searchFileName(object));
     if (deleteFile.delete()) {
       log.info("Room was successfully deleted>");
     } else {
@@ -210,7 +210,7 @@ public class RoomsCRUD implements CRUD<Room> {
     try (
 
         FileOutputStream fileRoomOut = new FileOutputStream(
-            DatabaseProperties.getRoomCrudEntitiesPath()
+            DatabaseProperties.ROOM_CRUD_ENTITIES_PATH
                 + room.getUuid() + "-room.txt");
         ObjectOutputStream objectRoomOut = new ObjectOutputStream(fileRoomOut);
     ) {

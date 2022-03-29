@@ -21,11 +21,13 @@ import lombok.extern.log4j.Log4j;
 @Log4j
 public class PersonalCardService implements IPersonalCard<PersonalCard> {
 
-  private static  IPersonalCard<PersonalCard> iPersonalCardService ;
+  private static IPersonalCard<PersonalCard> iPersonalCardService;
+
   private PersonalCardService() {
   }
+
   public static synchronized IPersonalCard<PersonalCard> getPersonalCardService() {
-    if(iPersonalCardService==null){
+    if (iPersonalCardService == null) {
       iPersonalCardService = new PersonalCardService();
     }
     return iPersonalCardService;
@@ -36,14 +38,14 @@ public class PersonalCardService implements IPersonalCard<PersonalCard> {
   private static final IEmployeeCRUD<Employee> employeeCRUD = EmployeeCRUD.getIEmployeeCRUD();
   private static final IGuestCRUD<Guest> guestCRUD = GuestCRUD.getGuestCRUD();
 
-  private int numIterator(){
+  private int numIterator() {
     int iterator = 0;
-    for(PersonalCard personalCard:personalCardCRUD.searchObjects()){
-      if(iterator<personalCard.getNum()){
-        iterator =personalCard.getNum();
+    for (PersonalCard personalCard : personalCardCRUD.searchObjects()) {
+      if (iterator < personalCard.getNum()) {
+        iterator = personalCard.getNum();
       }
     }
-    return iterator+1;
+    return iterator + 1;
   }
 
   @Override
@@ -54,15 +56,15 @@ public class PersonalCardService implements IPersonalCard<PersonalCard> {
         .uuid(UUID.randomUUID())
         .num(cardNum)
         .build();
-    UUID id ;
-    Role role ;
-    if (person instanceof Guest){
-      Guest guest = (Guest)person;
+    UUID id;
+    Role role;
+    if (person instanceof Guest) {
+      Guest guest = (Guest) person;
       id = guest.getUuid();
       role = Role.GUEST;
       guest.setCardID(personalCard.getUuid());
       guestCRUD.saveObject(guest);
-    } else{
+    } else {
       Employee employee = (Employee) person;
       id = employee.getUuid();
       role = employee.getRole();
@@ -82,11 +84,11 @@ public class PersonalCardService implements IPersonalCard<PersonalCard> {
     Person person = validationService.validationSearchPerson();
     UUID id;
     Role role;
-    if (person instanceof Guest){
-      Guest guest = (Guest)person;
+    if (person instanceof Guest) {
+      Guest guest = (Guest) person;
       id = guest.getUuid();
       role = Role.GUEST;
-    } else{
+    } else {
       Employee employee = (Employee) person;
       id = employee.getUuid();
       role = employee.getRole();
@@ -116,7 +118,7 @@ public class PersonalCardService implements IPersonalCard<PersonalCard> {
         case 1:
           log.info("write how many years do u wonna add to date expire(from 1970 :В)");
           long years = validationService.validationNumberChoice();
-          years *= 360L*86400000L;
+          years *= 360L * 86400000L;
           Date date = new Date(years);
           object.setExpireDate(date);
           personalCardCRUD.saveObject(object);
@@ -132,7 +134,6 @@ public class PersonalCardService implements IPersonalCard<PersonalCard> {
     } while (userChoice != 666);
 
 
-
   }
 
   @Override
@@ -141,7 +142,7 @@ public class PersonalCardService implements IPersonalCard<PersonalCard> {
     log.info("_______________________");
     log.info(personalCardCRUD.searchFileName(object));
     log.info("Card number " + object.getNum());
-    log.info("Date expire "+object.getExpireDate());
+    log.info("Date expire " + object.getExpireDate());
     log.info("Role " + object.getRole());
     log.info("_______________________");
     log.info("_______________________");

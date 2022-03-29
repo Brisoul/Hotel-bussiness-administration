@@ -183,6 +183,7 @@ public class ContractCRUD implements IGuestCRUD<Contract> {
     Contract contract = searchUUIDObject(object.getUuid());
     File deleteFile = new File(
         DatabaseProperties.getContractCrudEntitiesPath() + searchFileName(contract));
+
     if (deleteFile.delete()) {
       log.info("Contract was successfully deleted>");
     } else {

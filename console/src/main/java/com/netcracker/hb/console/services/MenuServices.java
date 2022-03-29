@@ -283,7 +283,6 @@ public class MenuServices {
       log.info("2.Work with rooms");
       log.info("3.Start work as manager");
       log.info("4.Start work as service employee");
-      log.info("111.UTILIZE HOTEL");
       log.info("666.Exit");
       log.info("Choose a number of menu:");
       userChoice = validationService.validationNumberChoice();
@@ -299,10 +298,6 @@ public class MenuServices {
           break;
         case 4:
           employeeMenu();
-          break;
-        case 111:
-          utilizeManager.utilize();
-          log.warn("After deleting hotel program canoot work correct, reboot it");
           break;
         case 666:
           log.info("see u!");

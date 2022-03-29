@@ -40,17 +40,21 @@ public class ValidationService {
 
   public int validationNumberChoice() {
 
-    int num;
-    int correctChoice;
+    int num = 0;
+    int correctChoice = 1;
     Scanner in = new Scanner(System.in);
     do {
-      num = in.nextInt();
+      try {
+        String numString = in.next();
+        num = Integer.parseInt(numString);
+      } catch (Exception exception){
+        log.error("Cannot parse number, please try again",exception);
+        continue;
+      }
       if (num <= 0) {
         log.info("0 is not a good choice");
-        correctChoice = 1;
-      } else if (num > 10000) {
+      } else if (num > 1000) {
         log.info("Dear user, our builders cant make it so big");
-        correctChoice = 1;
       } else {
         correctChoice = 0;
       }

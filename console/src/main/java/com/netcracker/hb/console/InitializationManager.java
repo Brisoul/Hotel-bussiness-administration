@@ -1,6 +1,7 @@
 package com.netcracker.hb.console;
 
 import com.netcracker.hb.Dao.CRUD.CRUD;
+import com.netcracker.hb.Dao.CRUD.DatabaseProperties;
 import com.netcracker.hb.Dao.CRUD.Person.IEmployeeCRUD;
 import com.netcracker.hb.Dao.CRUD.Person.EmployeeCRUD;
 import com.netcracker.hb.Dao.CRUD.hotel.HotelCRUD;
@@ -68,7 +69,6 @@ public class InitializationManager {
     } else {
       log.info("hotel is already created");
     }
-
   }
 
   public void initializeAdmin(){
@@ -87,10 +87,12 @@ public class InitializationManager {
 
   }
 
-  public void displayAll(){
-    Hotel hotel = hotelCRUD.searchObjectNum(1);
-    hotelService.displayObject(hotel);
+  public void initializationDirectory(){
+    DatabaseProperties databaseProperties = new DatabaseProperties();
+    databaseProperties.directoryInit();
+
   }
+
 
 
 }

@@ -8,12 +8,13 @@ import lombok.extern.log4j.Log4j;
 @Log4j
 public class Console {
 
+
   private static final InitializationManager initializationManager = InitializationManager.getInitializationManager();
   private static final ValidationService validationService = ValidationService.getValidationService();
   private static final LogIn logIn = LogIn.getLogIn();
 
   public static void main(String[] args) {
-
+    initializationManager.initializationDirectory();
     initializationManager.initializeHotel();
     initializationManager.initializeAdmin();
 

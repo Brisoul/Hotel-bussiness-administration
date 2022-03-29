@@ -178,14 +178,10 @@ public class EmployeeService implements Service<Employee> {
                   myContract = contract;
                 }
               }
-              log.info("contract was found");
-              object.setContractID(myContract.getUuid());
-              employeeCRUD.saveObject(object);
-            } else {
-              log.info("contract was found");
-              object.setContractID(myContract.getUuid());
-              employeeCRUD.saveObject(object);
             }
+            log.info("contract was found");
+            object.setContractID(myContract.getUuid());
+            employeeCRUD.saveObject(object);
           }
 
           for (Contract contract : contractCRUD.searchObjects()) {

@@ -1,10 +1,10 @@
 package com.netcracker.hb.console.services.person;
 
-import com.netcracker.hb.Dao.CRUD.CRUD;
-import com.netcracker.hb.Dao.CRUD.Person.GuestCRUD;
-import com.netcracker.hb.Dao.CRUD.Person.IGuestCRUD;
-import com.netcracker.hb.Dao.CRUD.Person.PersonalCardCRUD;
-import com.netcracker.hb.Dao.CRUD.hotel.RoomsCRUD;
+import com.netcracker.hb.Dao.crud.CRUD;
+import com.netcracker.hb.Dao.crud.Person.GuestCRUD;
+import com.netcracker.hb.Dao.crud.Person.IGuestCRUD;
+import com.netcracker.hb.Dao.crud.Person.PersonalCardCRUD;
+import com.netcracker.hb.Dao.crud.hotel.RoomsCRUD;
 import com.netcracker.hb.console.services.IPersonalCard;
 import com.netcracker.hb.console.services.Service;
 import com.netcracker.hb.console.services.chekserveces.ValidationService;
@@ -136,29 +136,30 @@ public class GuestService implements Service<Guest> {
 
   @Override
   public void displayObject(Guest object) {
-    log.info("_______________________");
-    log.info("_______________________");
+    final String BORDER = "_______________________";
+    log.info(BORDER);
+    log.info(BORDER);
     log.info(guestCRUD.searchFileName(object));
     log.info(object.getName() + "  " + object.getSurname());
     log.info("Age " + object.getAge());
     log.info("Sex " + object.getSex());
     log.info("Status " + object.getRole());
-    log.info("_______________________");
+    log.info(BORDER);
     if (object.getRoomID() != null) {
       log.info("Number room: ");
       log.info(roomCRUD.searchUUIDObject(object.getRoomID()).getRoomNum());
     } else {
       log.info("not in room");
     }
-    log.info("_______________________");
+    log.info(BORDER);
     if (object.getCardID() == null) {
       log.info("Card : not found");
     } else {
       log.info("Card : ");
       personalCardService.displayObject(personalCardCRUD.searchUUIDObject(object.getCardID()));
     }
-    log.info("_______________________");
-    log.info("_______________________");
+    log.info(BORDER);
+    log.info(BORDER);
 
   }
 

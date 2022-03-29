@@ -1,9 +1,9 @@
 package com.netcracker.hb.console.services.hotel;
 
-import com.netcracker.hb.Dao.CRUD.CRUD;
-import com.netcracker.hb.Dao.CRUD.hotel.FloorCRUD;
-import com.netcracker.hb.Dao.CRUD.hotel.HotelCRUD;
-import com.netcracker.hb.Dao.CRUD.hotel.RoomsCRUD;
+import com.netcracker.hb.Dao.crud.CRUD;
+import com.netcracker.hb.Dao.crud.hotel.FloorCRUD;
+import com.netcracker.hb.Dao.crud.hotel.HotelCRUD;
+import com.netcracker.hb.Dao.crud.hotel.RoomsCRUD;
 import com.netcracker.hb.console.services.Service;
 import com.netcracker.hb.console.services.chekserveces.ValidationService;
 import com.netcracker.hb.entities.hotel.Floor;
@@ -80,15 +80,11 @@ public class FloorService implements Service<Floor> {
       log.info("There is nothing u can do, build new floor or delete worst");
       log.info("666.Back to previous menu");
       userChoice = validationService.validationNumberChoice();
-      switch (userChoice) {
-        case 666:
-          log.info("See u!");
-          break;
-        default:
-          log.error("Choose correct num");
-          break;
+      if (userChoice == 666) {
+        log.info("See u!");
+      } else {
+        log.error("Choose correct num");
       }
-
     } while (userChoice != 666);
 
   }

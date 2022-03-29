@@ -1,7 +1,7 @@
 package com.netcracker.hb.console.services.hotel;
 
-import com.netcracker.hb.Dao.CRUD.CRUD;
-import com.netcracker.hb.Dao.CRUD.hotel.HotelCRUD;
+import com.netcracker.hb.Dao.crud.CRUD;
+import com.netcracker.hb.Dao.crud.hotel.HotelCRUD;
 import com.netcracker.hb.console.services.Service;
 import com.netcracker.hb.entities.hotel.Hotel;
 import java.util.HashSet;
@@ -47,11 +47,12 @@ public class HotelService implements Service<Hotel> {
 
   @Override
   public void displayObject(Hotel object) {
-    log.info("_______________________");
+    final String BORDER = "_______________________";
+    log.info(BORDER);
     log.info(hotelCRUD.searchFileName(object));
-    log.info("_______________________");
+    log.info(BORDER);
     log.info("Hotel have " + object.getFloorsID().size() + "Floors");
-    log.info("_______________________");
+    log.info(BORDER);
   }
 
 

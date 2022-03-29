@@ -1,12 +1,12 @@
 package com.netcracker.hb.console.services.person;
 
-import com.netcracker.hb.Dao.CRUD.CRUD;
-import com.netcracker.hb.Dao.CRUD.Person.ContractCRUD;
-import com.netcracker.hb.Dao.CRUD.Person.IEmployeeCRUD;
-import com.netcracker.hb.Dao.CRUD.Person.EmployeeCRUD;
-import com.netcracker.hb.Dao.CRUD.Person.IGuestCRUD;
-import com.netcracker.hb.Dao.CRUD.Person.PersonalCardCRUD;
-import com.netcracker.hb.Dao.CRUD.hotel.RoomsCRUD;
+import com.netcracker.hb.Dao.crud.CRUD;
+import com.netcracker.hb.Dao.crud.Person.ContractCRUD;
+import com.netcracker.hb.Dao.crud.Person.IEmployeeCRUD;
+import com.netcracker.hb.Dao.crud.Person.EmployeeCRUD;
+import com.netcracker.hb.Dao.crud.Person.IGuestCRUD;
+import com.netcracker.hb.Dao.crud.Person.PersonalCardCRUD;
+import com.netcracker.hb.Dao.crud.hotel.RoomsCRUD;
 import com.netcracker.hb.console.services.IPersonalCard;
 import com.netcracker.hb.console.services.Service;
 import com.netcracker.hb.console.services.chekserveces.ValidationService;
@@ -214,36 +214,37 @@ public class EmployeeService implements Service<Employee> {
 
   @Override
   public void displayObject(Employee object) {
-    log.info("_______________________");
-    log.info("_______________________");
+    final String BORDER = "_______________________";
+    log.info(BORDER);
+    log.info(BORDER);
     log.info(employeeCRUD.searchFileName(object));
     log.info(object.getName() + "  " + object.getSurname());
     log.info("Age " + object.getAge());
     log.info("Sex " + object.getSex());
     log.info("Post " + object.getRole());
-    log.info("_______________________");
+    log.info(BORDER);
     log.info("Rooms access " + object.getRoomsID().size());
     log.info("Rooms numbers ");
     for (UUID uuid : object.getRoomsID()) {
       Room room = roomCRUD.searchUUIDObject(uuid);
       log.info(room.getRoomNum());
     }
-    log.info("_______________________");
+    log.info(BORDER);
     if (object.getContractID() == null) {
       log.info("Contract : not found");
     } else {
       log.info("Contract : ");
       contractService.displayObject(contractCRUD.searchUUIDObject(object.getContractID()));
     }
-    log.info("_______________________");
+    log.info(BORDER);
     if (object.getCardID() == null) {
       log.info("Card : not found");
     } else {
       log.info("Card : ");
       personalCardService.displayObject(personalCardCRUD.searchUUIDObject(object.getCardID()));
     }
-    log.info("_______________________");
-    log.info("_______________________");
+    log.info(BORDER);
+    log.info(BORDER);
 
   }
 

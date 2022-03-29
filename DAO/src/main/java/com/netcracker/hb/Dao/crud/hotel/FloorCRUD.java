@@ -1,7 +1,7 @@
-package com.netcracker.hb.Dao.CRUD.hotel;
+package com.netcracker.hb.Dao.crud.hotel;
 
-import com.netcracker.hb.Dao.CRUD.CRUD;
-import com.netcracker.hb.Dao.CRUD.DatabaseProperties;
+import com.netcracker.hb.Dao.crud.CRUD;
+import com.netcracker.hb.Dao.crud.DatabaseProperties;
 import com.netcracker.hb.entities.hotel.Floor;
 import com.netcracker.hb.entities.hotel.Hotel;
 import com.netcracker.hb.entities.hotel.Room;

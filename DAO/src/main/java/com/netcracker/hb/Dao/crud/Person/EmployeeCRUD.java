@@ -1,9 +1,9 @@
-package com.netcracker.hb.Dao.CRUD.Person;
+package com.netcracker.hb.Dao.crud.Person;
 
 
-import com.netcracker.hb.Dao.CRUD.CRUD;
-import com.netcracker.hb.Dao.CRUD.DatabaseProperties;
-import com.netcracker.hb.Dao.CRUD.hotel.RoomsCRUD;
+import com.netcracker.hb.Dao.crud.CRUD;
+import com.netcracker.hb.Dao.crud.DatabaseProperties;
+import com.netcracker.hb.Dao.crud.hotel.RoomsCRUD;
 import com.netcracker.hb.entities.Role;
 import com.netcracker.hb.entities.hotel.Room;
 import com.netcracker.hb.entities.persons.Contract;

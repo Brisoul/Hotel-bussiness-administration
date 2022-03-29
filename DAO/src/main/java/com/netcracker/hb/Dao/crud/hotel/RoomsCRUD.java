@@ -1,11 +1,11 @@
-package com.netcracker.hb.Dao.CRUD.hotel;
+package com.netcracker.hb.Dao.crud.hotel;
 
-import com.netcracker.hb.Dao.CRUD.CRUD;
-import com.netcracker.hb.Dao.CRUD.DatabaseProperties;
-import com.netcracker.hb.Dao.CRUD.Person.EmployeeCRUD;
-import com.netcracker.hb.Dao.CRUD.Person.GuestCRUD;
-import com.netcracker.hb.Dao.CRUD.Person.IEmployeeCRUD;
-import com.netcracker.hb.Dao.CRUD.Person.IGuestCRUD;
+import com.netcracker.hb.Dao.crud.CRUD;
+import com.netcracker.hb.Dao.crud.DatabaseProperties;
+import com.netcracker.hb.Dao.crud.Person.EmployeeCRUD;
+import com.netcracker.hb.Dao.crud.Person.GuestCRUD;
+import com.netcracker.hb.Dao.crud.Person.IEmployeeCRUD;
+import com.netcracker.hb.Dao.crud.Person.IGuestCRUD;
 import com.netcracker.hb.entities.hotel.Floor;
 import com.netcracker.hb.entities.hotel.Room;
 import com.netcracker.hb.entities.persons.Employee;

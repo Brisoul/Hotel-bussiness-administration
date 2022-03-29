@@ -1,12 +1,12 @@
 package com.netcracker.hb.console.services.hotel;
 
-import com.netcracker.hb.Dao.CRUD.CRUD;
-import com.netcracker.hb.Dao.CRUD.Person.EmployeeCRUD;
-import com.netcracker.hb.Dao.CRUD.Person.GuestCRUD;
-import com.netcracker.hb.Dao.CRUD.Person.IEmployeeCRUD;
-import com.netcracker.hb.Dao.CRUD.Person.IGuestCRUD;
-import com.netcracker.hb.Dao.CRUD.hotel.FloorCRUD;
-import com.netcracker.hb.Dao.CRUD.hotel.RoomsCRUD;
+import com.netcracker.hb.Dao.crud.CRUD;
+import com.netcracker.hb.Dao.crud.Person.EmployeeCRUD;
+import com.netcracker.hb.Dao.crud.Person.GuestCRUD;
+import com.netcracker.hb.Dao.crud.Person.IEmployeeCRUD;
+import com.netcracker.hb.Dao.crud.Person.IGuestCRUD;
+import com.netcracker.hb.Dao.crud.hotel.FloorCRUD;
+import com.netcracker.hb.Dao.crud.hotel.RoomsCRUD;
 import com.netcracker.hb.console.services.Service;
 import com.netcracker.hb.console.services.chekserveces.ValidationService;
 import com.netcracker.hb.entities.Role;
@@ -129,26 +129,27 @@ public class RoomService implements Service<Room> {
 
   @Override
   public void displayObject(Room object) {
-    log.info("_______________________");
-    log.info("_______________________");
+    final String BORDER = "_______________________";
+    log.info(BORDER);
+    log.info(BORDER);
     log.info(roomsCRUD.searchFileName(object));
     log.info("Room num : " + object.getRoomNum());
-    log.info("_______________________");
+    log.info(BORDER);
     log.info("Guests qun : " + object.getEmployeeID().size());
     log.info("Guests : ");
     for (UUID uuid : object.getGuestID()) {
       Guest guest = guestCRUD.searchUUIDObject(uuid);
       log.info(guest.getSurname() + " " + guest.getName());
     }
-    log.info("_______________________");
+    log.info(BORDER);
     log.info("Employers : " + object.getEmployeeID().size());
     log.info("Employers : ");
     for (UUID uuid : object.getEmployeeID()) {
       Employee employee = employeeCRUD.searchUUIDObject(uuid);
       log.info(employee.getSurname() + " " + employee.getName());
     }
-    log.info("_______________________");
-    log.info("_______________________");
+    log.info(BORDER);
+    log.info(BORDER);
 
   }
 

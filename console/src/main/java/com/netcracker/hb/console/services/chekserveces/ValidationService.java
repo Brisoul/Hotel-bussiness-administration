@@ -3,12 +3,12 @@ package com.netcracker.hb.console.services.chekserveces;
 import static java.lang.Character.isLetter;
 import static java.lang.Character.isLetterOrDigit;
 
-import com.netcracker.hb.Dao.CRUD.CRUD;
-import com.netcracker.hb.Dao.CRUD.Person.EmployeeCRUD;
-import com.netcracker.hb.Dao.CRUD.Person.GuestCRUD;
-import com.netcracker.hb.Dao.CRUD.Person.IEmployeeCRUD;
-import com.netcracker.hb.Dao.CRUD.Person.IGuestCRUD;
-import com.netcracker.hb.Dao.CRUD.hotel.FloorCRUD;
+import com.netcracker.hb.Dao.crud.CRUD;
+import com.netcracker.hb.Dao.crud.Person.EmployeeCRUD;
+import com.netcracker.hb.Dao.crud.Person.GuestCRUD;
+import com.netcracker.hb.Dao.crud.Person.IEmployeeCRUD;
+import com.netcracker.hb.Dao.crud.Person.IGuestCRUD;
+import com.netcracker.hb.Dao.crud.hotel.FloorCRUD;
 import com.netcracker.hb.entities.Role;
 import com.netcracker.hb.entities.hotel.Floor;
 import com.netcracker.hb.entities.persons.Employee;

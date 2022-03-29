@@ -1,9 +1,9 @@
 package com.netcracker.hb.console.services.person;
 
-import com.netcracker.hb.Dao.CRUD.CRUD;
-import com.netcracker.hb.Dao.CRUD.Person.ContractCRUD;
-import com.netcracker.hb.Dao.CRUD.Person.EmployeeCRUD;
-import com.netcracker.hb.Dao.CRUD.Person.IEmployeeCRUD;
+import com.netcracker.hb.Dao.crud.CRUD;
+import com.netcracker.hb.Dao.crud.Person.ContractCRUD;
+import com.netcracker.hb.Dao.crud.Person.EmployeeCRUD;
+import com.netcracker.hb.Dao.crud.Person.IEmployeeCRUD;
 import com.netcracker.hb.console.services.IPersonalCard;
 import com.netcracker.hb.console.services.chekserveces.ValidationService;
 import com.netcracker.hb.entities.persons.Contract;
@@ -107,17 +107,17 @@ public class ContractService implements IPersonalCard<Contract> {
 
   @Override
   public void displayObject(Contract object) {
-
-    log.info("_______________________");
-    log.info("_______________________");
+    final String BORDER = "_______________________";
+    log.info(BORDER);
+    log.info(BORDER);
     log.info(contractCRUD.searchFileName(object));
     log.info("BeginContract " + object.getBeginContract());
     log.info("EndContract " + object.getEndContract());
     log.info("Experience (years)" + object.getExperience());
     log.info("Salary (three hundred bucks)" + object.getSalary());
     log.info("WorkTime (hours)" + object.getWorkTime());
-    log.info("_______________________");
-    log.info("_______________________");
+    log.info(BORDER);
+    log.info(BORDER);
 
   }
 

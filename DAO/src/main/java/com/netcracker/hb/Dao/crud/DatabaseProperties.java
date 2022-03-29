@@ -1,4 +1,4 @@
-package com.netcracker.hb.Dao.CRUD;
+package com.netcracker.hb.Dao.crud;
 
 import java.io.File;
 import lombok.extern.log4j.Log4j;

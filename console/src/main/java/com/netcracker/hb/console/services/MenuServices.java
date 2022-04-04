@@ -1,13 +1,13 @@
 package com.netcracker.hb.console.services;
 
 
-import com.netcracker.hb.Dao.crud.CRUD;
-import com.netcracker.hb.Dao.crud.Person.EmployeeCRUD;
-import com.netcracker.hb.Dao.crud.Person.GuestCRUD;
-import com.netcracker.hb.Dao.crud.Person.IEmployeeCRUD;
-import com.netcracker.hb.Dao.crud.Person.IGuestCRUD;
-import com.netcracker.hb.Dao.crud.hotel.FloorCRUD;
-import com.netcracker.hb.Dao.crud.hotel.RoomsCRUD;
+import com.netcracker.hb.dao.crud.CRUD;
+import com.netcracker.hb.dao.crud.person.EmployeeCRUD;
+import com.netcracker.hb.dao.crud.person.GuestCRUD;
+import com.netcracker.hb.dao.crud.person.IEmployeeCRUD;
+import com.netcracker.hb.dao.crud.person.IGuestCRUD;
+import com.netcracker.hb.dao.crud.hotel.FloorCRUD;
+import com.netcracker.hb.dao.crud.hotel.RoomsCRUD;
 import com.netcracker.hb.console.services.chekserveces.ValidationService;
 import com.netcracker.hb.console.services.hotel.FloorService;
 import com.netcracker.hb.console.services.hotel.RoomService;
@@ -93,7 +93,6 @@ public class MenuServices {
           }
           break;
         case 666:
-          log.info("See u!");
           break;
         default:
           log.error("Choose correct num");
@@ -152,7 +151,6 @@ public class MenuServices {
           }
           break;
         case 666:
-          log.info("See u!");
           break;
         default:
           log.error("Choose correct num");
@@ -208,7 +206,6 @@ public class MenuServices {
           }
           break;
         case 666:
-          log.info("See u!");
           break;
         default:
           log.error("Choose correct num");
@@ -263,7 +260,6 @@ public class MenuServices {
           }
           break;
         case 666:
-          log.info("See u!");
           break;
         default:
           log.error("Choose correct num");

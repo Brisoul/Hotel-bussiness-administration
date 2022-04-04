@@ -1,8 +1,8 @@
-package com.netcracker.hb.Dao.crud.Person;
+package com.netcracker.hb.dao.crud.person;
 
-import com.netcracker.hb.Dao.crud.CRUD;
-import com.netcracker.hb.Dao.crud.DatabaseProperties;
-import com.netcracker.hb.Dao.crud.hotel.RoomsCRUD;
+import com.netcracker.hb.dao.crud.CRUD;
+import com.netcracker.hb.dao.crud.DatabaseProperties;
+import com.netcracker.hb.dao.crud.hotel.RoomsCRUD;
 import com.netcracker.hb.entities.Role;
 import com.netcracker.hb.entities.hotel.Room;
 import com.netcracker.hb.entities.persons.Guest;
@@ -36,6 +36,7 @@ public class GuestCRUD implements IGuestCRUD<Guest> {
   private static final String START = "<Start searching guest....";
   private static final String END = "Guest was found>";
   private static final String ERROR = "Guest was not found>";
+  private static final String EXCEPTION_ERROR = "Something bad with guest try catch";
 
   private static final CRUD<Room> roomCRUD = RoomsCRUD.getRoomsCRUD();
   private static final IGuestCRUD<PersonalCard> personalCardCRUD = PersonalCardCRUD.getPersonalCardCRUD();
@@ -63,7 +64,7 @@ public class GuestCRUD implements IGuestCRUD<Guest> {
           guest = object;
         }
       } catch (IOException | ClassNotFoundException exception) {
-        exception.printStackTrace();
+        log.error(EXCEPTION_ERROR, exception);
       }
     }
     if (guest == null) {
@@ -84,7 +85,7 @@ public class GuestCRUD implements IGuestCRUD<Guest> {
     String[] guestList = guestFolderDirectory.list();
     List<Guest> guests = new ArrayList<>();
     if (guestList == null) {
-      return null;
+      return guests;
     }
     for (String guestFolderName : guestList) {
       try (
@@ -98,7 +99,7 @@ public class GuestCRUD implements IGuestCRUD<Guest> {
         guests.add(object);
 
       } catch (IOException | ClassNotFoundException exception) {
-        exception.printStackTrace();
+        log.error(EXCEPTION_ERROR, exception);
       }
     }
     if (guests.isEmpty()) {
@@ -150,7 +151,7 @@ public class GuestCRUD implements IGuestCRUD<Guest> {
           guest = object;
         }
       } catch (IOException | ClassNotFoundException exception) {
-        exception.printStackTrace();
+        log.error(EXCEPTION_ERROR, exception);
       }
     }
     if (guest == null) {
@@ -184,7 +185,7 @@ public class GuestCRUD implements IGuestCRUD<Guest> {
           fileName = guestFolderName;
         }
       } catch (ClassNotFoundException | IOException exception) {
-        exception.printStackTrace();
+        log.error(EXCEPTION_ERROR, exception);
       }
     }
     if (fileName == null) {
@@ -235,8 +236,8 @@ public class GuestCRUD implements IGuestCRUD<Guest> {
     ) {
       objectGuestOut.writeObject(guest);
       log.info("Success saving guest>");
-    } catch (Exception ex) {
-      ex.printStackTrace();
+    } catch (Exception exception) {
+      log.error(EXCEPTION_ERROR, exception);
     }
 
   }

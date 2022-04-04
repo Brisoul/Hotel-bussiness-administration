@@ -1,7 +1,7 @@
-package com.netcracker.hb.Dao.crud.hotel;
+package com.netcracker.hb.dao.crud.hotel;
 
-import com.netcracker.hb.Dao.crud.CRUD;
-import com.netcracker.hb.Dao.crud.DatabaseProperties;
+import com.netcracker.hb.dao.crud.CRUD;
+import com.netcracker.hb.dao.crud.DatabaseProperties;
 import com.netcracker.hb.entities.hotel.Floor;
 import com.netcracker.hb.entities.hotel.Hotel;
 import com.netcracker.hb.entities.hotel.Room;
@@ -35,6 +35,7 @@ public class FloorCRUD implements CRUD<Floor> {
   private static final String START = "<Start searching floors....";
   private static final String END = "Floors was found>";
   private static final String ERROR = "Floors was not found>";
+  private static final String EXCEPTION_ERROR = "Something bad with floor try catch";
 
 
   private static final CRUD<Hotel> hotelCRUD = HotelCRUD.getHotelCRUD();
@@ -48,7 +49,7 @@ public class FloorCRUD implements CRUD<Floor> {
     String[] floorList = floorFolderDirectory.list();
     List<Floor> floors = new ArrayList<>();
     if (floorList == null) {
-      return null;
+      return floors;
     }
     for (String floorFolderName : floorList) {
       try (
@@ -58,7 +59,7 @@ public class FloorCRUD implements CRUD<Floor> {
         Floor object = (Floor) objectFloorIn.readObject();
         floors.add(object);
       } catch (Exception exception) {
-        exception.printStackTrace();
+        log.error(EXCEPTION_ERROR, exception);
       }
     }
     if (floors.isEmpty()) {
@@ -89,7 +90,7 @@ public class FloorCRUD implements CRUD<Floor> {
           floor = object;
         }
       } catch (IOException | ClassNotFoundException exception) {
-        exception.printStackTrace();
+        log.error(EXCEPTION_ERROR, exception);
       }
     }
     if (floor == null) {
@@ -122,9 +123,8 @@ public class FloorCRUD implements CRUD<Floor> {
           log.info(END);
           floor = object;
         }
-      } catch (IOException |
-          ClassNotFoundException exception) {
-        exception.printStackTrace();
+      } catch (IOException | ClassNotFoundException exception) {
+        log.error(EXCEPTION_ERROR, exception);
       }
     }
     if (floor == null) {
@@ -158,7 +158,7 @@ public class FloorCRUD implements CRUD<Floor> {
         }
 
       } catch (IOException | ClassNotFoundException exception) {
-        exception.printStackTrace();
+        log.error(EXCEPTION_ERROR, exception);
       }
     }
     if (fileName == null) {
@@ -210,8 +210,8 @@ public class FloorCRUD implements CRUD<Floor> {
         ObjectOutputStream objectFloorOut = new ObjectOutputStream(fileFloorOut)) {
       objectFloorOut.writeObject(floor);
       log.info("Success saving floor>");
-    } catch (Exception ex) {
-      ex.printStackTrace();
+    } catch (Exception exception) {
+      log.error(EXCEPTION_ERROR, exception);
     }
   }
 

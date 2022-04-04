@@ -1,13 +1,13 @@
 package com.netcracker.hb.console.services.person;
 
-import com.netcracker.hb.Dao.crud.CRUD;
-import com.netcracker.hb.Dao.crud.Person.ContractCRUD;
-import com.netcracker.hb.Dao.crud.Person.IContractCRUD;
-import com.netcracker.hb.Dao.crud.Person.IEmployeeCRUD;
-import com.netcracker.hb.Dao.crud.Person.EmployeeCRUD;
-import com.netcracker.hb.Dao.crud.Person.IGuestCRUD;
-import com.netcracker.hb.Dao.crud.Person.PersonalCardCRUD;
-import com.netcracker.hb.Dao.crud.hotel.RoomsCRUD;
+import com.netcracker.hb.dao.crud.CRUD;
+import com.netcracker.hb.dao.crud.person.ContractCRUD;
+import com.netcracker.hb.dao.crud.person.IContractCRUD;
+import com.netcracker.hb.dao.crud.person.IEmployeeCRUD;
+import com.netcracker.hb.dao.crud.person.EmployeeCRUD;
+import com.netcracker.hb.dao.crud.person.IGuestCRUD;
+import com.netcracker.hb.dao.crud.person.PersonalCardCRUD;
+import com.netcracker.hb.dao.crud.hotel.RoomsCRUD;
 import com.netcracker.hb.console.services.IPersonalCard;
 import com.netcracker.hb.console.services.Service;
 import com.netcracker.hb.console.services.chekserveces.ValidationService;
@@ -201,7 +201,6 @@ public class EmployeeService implements Service<Employee> {
           changeRoomList(object);
           break;
         case 666:
-          log.info("See u!");
           break;
         default:
           log.error("Choose correct num");
@@ -308,6 +307,8 @@ public class EmployeeService implements Service<Employee> {
           } else {
             log.error("Room not found error removing room");
           }
+          break;
+        case 666:
           break;
         default:
           log.error("Choose correct num");

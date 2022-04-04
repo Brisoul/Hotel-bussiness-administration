@@ -3,12 +3,12 @@ package com.netcracker.hb.console.services.chekserveces;
 import static java.lang.Character.isLetter;
 import static java.lang.Character.isLetterOrDigit;
 
-import com.netcracker.hb.Dao.crud.CRUD;
-import com.netcracker.hb.Dao.crud.Person.EmployeeCRUD;
-import com.netcracker.hb.Dao.crud.Person.GuestCRUD;
-import com.netcracker.hb.Dao.crud.Person.IEmployeeCRUD;
-import com.netcracker.hb.Dao.crud.Person.IGuestCRUD;
-import com.netcracker.hb.Dao.crud.hotel.FloorCRUD;
+import com.netcracker.hb.dao.crud.CRUD;
+import com.netcracker.hb.dao.crud.person.EmployeeCRUD;
+import com.netcracker.hb.dao.crud.person.GuestCRUD;
+import com.netcracker.hb.dao.crud.person.IEmployeeCRUD;
+import com.netcracker.hb.dao.crud.person.IGuestCRUD;
+import com.netcracker.hb.dao.crud.hotel.FloorCRUD;
 import com.netcracker.hb.entities.Role;
 import com.netcracker.hb.entities.hotel.Floor;
 import com.netcracker.hb.entities.persons.Employee;
@@ -54,7 +54,7 @@ public class ValidationService {
       if (num <= 0) {
         log.info("0 is not a good choice");
       } else if (num > 1000) {
-        log.info("Dear user, our builders cant make it so big");
+        log.info("Number is too big");
       } else {
         correctChoice = 0;
       }

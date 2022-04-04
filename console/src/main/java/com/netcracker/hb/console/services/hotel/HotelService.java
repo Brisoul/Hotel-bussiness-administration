@@ -1,7 +1,7 @@
 package com.netcracker.hb.console.services.hotel;
 
-import com.netcracker.hb.Dao.crud.CRUD;
-import com.netcracker.hb.Dao.crud.hotel.HotelCRUD;
+import com.netcracker.hb.dao.crud.CRUD;
+import com.netcracker.hb.dao.crud.hotel.HotelCRUD;
 import com.netcracker.hb.console.services.Service;
 import com.netcracker.hb.entities.hotel.Hotel;
 import java.util.HashSet;

@@ -1,10 +1,10 @@
 package com.netcracker.hb.console;
 
-import com.netcracker.hb.Dao.crud.CRUD;
-import com.netcracker.hb.Dao.crud.DatabaseProperties;
-import com.netcracker.hb.Dao.crud.Person.IEmployeeCRUD;
-import com.netcracker.hb.Dao.crud.Person.EmployeeCRUD;
-import com.netcracker.hb.Dao.crud.hotel.HotelCRUD;
+import com.netcracker.hb.dao.crud.CRUD;
+import com.netcracker.hb.dao.crud.DatabaseProperties;
+import com.netcracker.hb.dao.crud.person.IEmployeeCRUD;
+import com.netcracker.hb.dao.crud.person.EmployeeCRUD;
+import com.netcracker.hb.dao.crud.hotel.HotelCRUD;
 
 import com.netcracker.hb.console.services.chekserveces.ValidationService;
 import com.netcracker.hb.console.services.hotel.FloorService;

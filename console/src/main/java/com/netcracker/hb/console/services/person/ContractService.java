@@ -1,9 +1,10 @@
 package com.netcracker.hb.console.services.person;
 
-import com.netcracker.hb.Dao.crud.CRUD;
-import com.netcracker.hb.Dao.crud.Person.ContractCRUD;
-import com.netcracker.hb.Dao.crud.Person.EmployeeCRUD;
-import com.netcracker.hb.Dao.crud.Person.IEmployeeCRUD;
+import com.netcracker.hb.dao.crud.CRUD;
+import com.netcracker.hb.dao.crud.person.ContractCRUD;
+import com.netcracker.hb.dao.crud.person.EmployeeCRUD;
+import com.netcracker.hb.dao.crud.person.IContractCRUD;
+import com.netcracker.hb.dao.crud.person.IEmployeeCRUD;
 import com.netcracker.hb.console.services.IPersonalCard;
 import com.netcracker.hb.console.services.chekserveces.ValidationService;
 import com.netcracker.hb.entities.persons.Contract;
@@ -31,7 +32,7 @@ public class ContractService implements IPersonalCard<Contract> {
 
   private static final IEmployeeCRUD<Employee> employeeCRUD = EmployeeCRUD.getIEmployeeCRUD();
   private static final ValidationService validationService = ValidationService.getValidationService();
-  private static final CRUD<Contract> contractCRUD = ContractCRUD.getContractCRUD();
+  private static final IContractCRUD<Contract> contractCRUD = ContractCRUD.getContractCRUD();
 
   @Override
   public void addObject() {

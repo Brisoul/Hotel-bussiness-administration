@@ -1,4 +1,4 @@
-package com.netcracker.hb.Dao.crud;
+package com.netcracker.hb.dao.crud;
 
 import java.util.List;
 import java.util.UUID;

@@ -1,4 +1,4 @@
-package com.netcracker.hb.Dao.crud;
+package com.netcracker.hb.dao.crud;
 
 import java.io.File;
 import lombok.extern.log4j.Log4j;
@@ -38,7 +38,7 @@ public class DatabaseProperties {
     if(!folderEmployee.exists() && folderEmployee.mkdirs()){
       log.info("Hotel Employee folder was created");
     }
-    if(!folderGuest.exists() && folderHotel.mkdirs()){
+    if(!folderGuest.exists() && folderGuest.mkdirs()){
       log.info("Hotel floor folder was created");
     }
     if(!folderRoom.exists() && folderRoom.mkdirs()){

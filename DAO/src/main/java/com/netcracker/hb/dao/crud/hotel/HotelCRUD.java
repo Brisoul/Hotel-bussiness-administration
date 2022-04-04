@@ -1,8 +1,8 @@
-package com.netcracker.hb.Dao.crud.hotel;
+package com.netcracker.hb.dao.crud.hotel;
 
 
-import com.netcracker.hb.Dao.crud.CRUD;
-import com.netcracker.hb.Dao.crud.DatabaseProperties;
+import com.netcracker.hb.dao.crud.CRUD;
+import com.netcracker.hb.dao.crud.DatabaseProperties;
 import com.netcracker.hb.entities.hotel.Floor;
 import com.netcracker.hb.entities.hotel.Hotel;
 import java.io.File;
@@ -34,6 +34,7 @@ public class HotelCRUD implements CRUD<Hotel> {
   private static final String START = "<Start searching hotel....";
   private static final String END = "Hotel was found>";
   private static final String ERROR = "Hotel was not found>";
+  private static final String EXCEPTION_ERROR = "Something bad with hotel try catch";
 
 
   private static final CRUD<Floor> floorCRUD = FloorCRUD.getFloorCRUD();
@@ -69,7 +70,7 @@ public class HotelCRUD implements CRUD<Hotel> {
           hotel = object;
         }
       } catch (IOException | ClassNotFoundException exception) {
-        exception.printStackTrace();
+        log.error(EXCEPTION_ERROR, exception);
       }
     }
     if (hotel == null) {
@@ -140,8 +141,8 @@ public class HotelCRUD implements CRUD<Hotel> {
         ObjectOutputStream objectHotelOut = new ObjectOutputStream(fileHotelOut)) {
       objectHotelOut.writeObject(hotel);
       log.info("Success saving hotel>");
-    } catch (Exception ex) {
-      ex.printStackTrace();
+    } catch (Exception exception) {
+      log.error(EXCEPTION_ERROR, exception);
     }
 
   }

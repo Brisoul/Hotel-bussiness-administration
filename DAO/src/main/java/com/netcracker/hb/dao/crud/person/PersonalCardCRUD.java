@@ -1,6 +1,6 @@
-package com.netcracker.hb.Dao.crud.Person;
+package com.netcracker.hb.dao.crud.person;
 
-import com.netcracker.hb.Dao.crud.DatabaseProperties;
+import com.netcracker.hb.dao.crud.DatabaseProperties;
 import com.netcracker.hb.entities.Role;
 import com.netcracker.hb.entities.persons.Employee;
 import com.netcracker.hb.entities.persons.Guest;
@@ -35,6 +35,7 @@ public class PersonalCardCRUD implements IGuestCRUD<PersonalCard> {
   private static final String START = "<Start searching personal card....";
   private static final String END = "Personal card was found>";
   private static final String ERROR = "Personal card was not found>";
+  private static final String EXCEPTION_ERROR = "Something bad with personal card try catch";
 
   private final IGuestCRUD<Guest> guestCRUD = GuestCRUD.getGuestCRUD();
   private final IEmployeeCRUD<Employee> employeeCRUD = EmployeeCRUD.getIEmployeeCRUD();
@@ -74,7 +75,7 @@ public class PersonalCardCRUD implements IGuestCRUD<PersonalCard> {
           }
         }
       } catch (IOException | ClassNotFoundException exception) {
-        exception.printStackTrace();
+        log.error(EXCEPTION_ERROR, exception);
       }
     }
     if (personalCard == null) {
@@ -99,7 +100,7 @@ public class PersonalCardCRUD implements IGuestCRUD<PersonalCard> {
     String[] personalCardList = personalCardFolderDirectory.list();
     List<PersonalCard> personalCards = new ArrayList<>();
     if (personalCardList == null) {
-      return null;
+      return personalCards;
     }
     for (String personalCardFolderName : personalCardList) {
       try (
@@ -110,7 +111,7 @@ public class PersonalCardCRUD implements IGuestCRUD<PersonalCard> {
         PersonalCard object = (PersonalCard) objectPersonalCardIn.readObject();
         personalCards.add(object);
       } catch (ClassNotFoundException | IOException exception) {
-        exception.printStackTrace();
+        log.error(EXCEPTION_ERROR, exception);
       }
     }
     if (personalCards.isEmpty()) {
@@ -141,7 +142,7 @@ public class PersonalCardCRUD implements IGuestCRUD<PersonalCard> {
           personalCard = object;
         }
       } catch (IOException | ClassNotFoundException exception) {
-        exception.printStackTrace();
+        log.error(EXCEPTION_ERROR, exception);
       }
     }
     if (personalCard == null) {
@@ -178,7 +179,7 @@ public class PersonalCardCRUD implements IGuestCRUD<PersonalCard> {
 
         }
       } catch (IOException | ClassNotFoundException exception) {
-        exception.printStackTrace();
+        log.error(EXCEPTION_ERROR, exception);
       }
     }
     if (personalCard == null) {
@@ -210,7 +211,7 @@ public class PersonalCardCRUD implements IGuestCRUD<PersonalCard> {
           fileName = personalCardFolderName;
         }
       } catch (IOException | ClassNotFoundException exception) {
-        exception.printStackTrace();
+        log.error(EXCEPTION_ERROR, exception);
       }
     }
     if (fileName == null) {
@@ -223,16 +224,18 @@ public class PersonalCardCRUD implements IGuestCRUD<PersonalCard> {
   public void deleteObject(PersonalCard object) {
 
     //Отвязываем карту от пользователя
-    Guest guest = guestCRUD.searchUUIDObject(object.getPersonID());
-    Employee employee = employeeCRUD.searchUUIDObject(object.getPersonID());
-    if (guest == null && employee == null) {
-      log.error("Person not found its strange");
-    } else if (employee == null) {
-      guest.setCardID(null);
-      log.info("Person Guest with this card was found");
-    } else if (guest == null) {
-      employee.setCardID(null);
-      log.info("Person Employee with this card was found");
+    if(object.getPersonID() !=null) {
+      Guest guest = guestCRUD.searchUUIDObject(object.getPersonID());
+      Employee employee = employeeCRUD.searchUUIDObject(object.getPersonID());
+      if (guest == null && employee == null) {
+        log.error("Person not found its strange");
+      } else if (employee == null) {
+        guest.setCardID(null);
+        log.info("Person Guest with this card was found");
+      } else if (guest == null) {
+        employee.setCardID(null);
+        log.info("Person Employee with this card was found");
+      }
     }
 
     //Удаляем карту
@@ -258,8 +261,8 @@ public class PersonalCardCRUD implements IGuestCRUD<PersonalCard> {
       objectPersonalCardOut.writeObject(card);
       log.info("Success saving card>");
 
-    } catch (Exception ex) {
-      ex.printStackTrace();
+    } catch (Exception exception) {
+      log.error(EXCEPTION_ERROR, exception);
     }
 
   }

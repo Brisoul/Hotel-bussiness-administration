@@ -1,7 +1,6 @@
-package com.netcracker.hb.Dao.crud.Person;
+package com.netcracker.hb.dao.crud.person;
 
-import com.netcracker.hb.Dao.crud.DatabaseProperties;
-import com.netcracker.hb.entities.Role;
+import com.netcracker.hb.dao.crud.DatabaseProperties;
 import com.netcracker.hb.entities.persons.Contract;
 import com.netcracker.hb.entities.persons.Employee;
 import java.io.File;
@@ -36,42 +35,9 @@ public class ContractCRUD implements IContractCRUD<Contract> {
   private static final String START = "<Start searching employee contract....";
   private static final String END = "employee contract was found>";
   private static final String ERROR = "employee contract was not found>";
+  private static final String EXCEPTION_ERROR = "Something bad with contract try catch";
 
   private static final IEmployeeCRUD<Employee> employeeCRUD = EmployeeCRUD.getIEmployeeCRUD();
-
-  @Override
-  public Contract searchObjectNameSurname(String name, String surname) {
-    log.info(START);
-    File contractFolderDirectory = new File(DatabaseProperties.CONTRACT_CRUD_ENTITIES_PATH);
-    String[] contractList = contractFolderDirectory.list();
-    Contract contract = null;
-    if (contractList == null) {
-      return null;
-    }
-    for (String contractFolderName : contractList) {
-      try (
-
-          FileInputStream fileContractIn = new FileInputStream(
-              DatabaseProperties.CONTRACT_CRUD_ENTITIES_PATH
-                  + contractFolderName); ObjectInputStream objectContractIn = new ObjectInputStream(
-          fileContractIn);) {
-        Contract object = (Contract) objectContractIn.readObject();
-        Employee employee = employeeCRUD.searchObjectNameSurname(name, surname);
-
-        if (employee.getContractID().equals(object.getUuid())) {
-          log.info(END);
-          contract = object;
-        }
-
-      } catch (IOException | ClassNotFoundException exception) {
-        exception.printStackTrace();
-      }
-    }
-    if (contract == null) {
-      log.error(ERROR);
-    }
-    return contract;
-  }
 
   @Override
   public List<Contract> searchObjects() {
@@ -81,7 +47,7 @@ public class ContractCRUD implements IContractCRUD<Contract> {
     String[] contractList = contractFolderDirectory.list();
     List<Contract> contracts = new ArrayList<>();
     if (contractList == null) {
-      return null;
+      return contracts;
     }
     for (String contractFolderName : contractList) {
       try (FileInputStream fileContractIn = new FileInputStream(
@@ -92,21 +58,13 @@ public class ContractCRUD implements IContractCRUD<Contract> {
         contracts.add(object);
 
       } catch (IOException | ClassNotFoundException exception) {
-        exception.printStackTrace();
+        log.error(EXCEPTION_ERROR, exception);
       }
     }
     if (contracts.isEmpty()) {
       log.error(ERROR);
     }
     return contracts;
-  }
-
-  //не должно работать
-  @Override
-  public Contract searchObjectNum(int num) {
-    //тк у контракта номера нет, то и работать такой поиск не должен
-
-    return null;
   }
 
   @Override
@@ -133,7 +91,7 @@ public class ContractCRUD implements IContractCRUD<Contract> {
           contract = object;
         }
       } catch (IOException | ClassNotFoundException exception) {
-        exception.printStackTrace();
+        log.error(EXCEPTION_ERROR, exception);
       }
     }
     if (contract == null) {
@@ -165,7 +123,7 @@ public class ContractCRUD implements IContractCRUD<Contract> {
         }
 
       } catch (IOException | ClassNotFoundException exception) {
-        exception.printStackTrace();
+        log.error(EXCEPTION_ERROR, exception);
       }
     }
     if (fileName == null) {
@@ -205,8 +163,8 @@ public class ContractCRUD implements IContractCRUD<Contract> {
         fileContractOut);) {
       objectContractOut.writeObject(contract);
       log.info("Success saving contract>");
-    } catch (Exception ex) {
-      ex.printStackTrace();
+    } catch (Exception exception) {
+      log.error(EXCEPTION_ERROR, exception);
     }
   }
 }

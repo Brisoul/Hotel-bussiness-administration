@@ -1,10 +1,10 @@
 package com.netcracker.hb.console.services.person;
 
-import com.netcracker.hb.Dao.crud.CRUD;
-import com.netcracker.hb.Dao.crud.Person.GuestCRUD;
-import com.netcracker.hb.Dao.crud.Person.IGuestCRUD;
-import com.netcracker.hb.Dao.crud.Person.PersonalCardCRUD;
-import com.netcracker.hb.Dao.crud.hotel.RoomsCRUD;
+import com.netcracker.hb.dao.crud.CRUD;
+import com.netcracker.hb.dao.crud.person.GuestCRUD;
+import com.netcracker.hb.dao.crud.person.IGuestCRUD;
+import com.netcracker.hb.dao.crud.person.PersonalCardCRUD;
+import com.netcracker.hb.dao.crud.hotel.RoomsCRUD;
 import com.netcracker.hb.console.services.IPersonalCard;
 import com.netcracker.hb.console.services.Service;
 import com.netcracker.hb.console.services.chekserveces.ValidationService;
@@ -122,7 +122,6 @@ public class GuestService implements Service<Guest> {
           changeRoom(object);
           break;
         case 666:
-          log.info("See u!");
           break;
         default:
           log.error("Choose correct num");
@@ -216,6 +215,8 @@ public class GuestService implements Service<Guest> {
           } else {
             log.error("Room not found error removing room");
           }
+          break;
+        case 666:
           break;
         default:
           log.error("Choose correct num");

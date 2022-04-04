@@ -1,9 +1,9 @@
-package com.netcracker.hb.Dao.crud.Person;
+package com.netcracker.hb.dao.crud.person;
 
 
-import com.netcracker.hb.Dao.crud.CRUD;
-import com.netcracker.hb.Dao.crud.DatabaseProperties;
-import com.netcracker.hb.Dao.crud.hotel.RoomsCRUD;
+import com.netcracker.hb.dao.crud.CRUD;
+import com.netcracker.hb.dao.crud.DatabaseProperties;
+import com.netcracker.hb.dao.crud.hotel.RoomsCRUD;
 import com.netcracker.hb.entities.Role;
 import com.netcracker.hb.entities.hotel.Room;
 import com.netcracker.hb.entities.persons.Contract;
@@ -40,6 +40,7 @@ public class EmployeeCRUD implements IEmployeeCRUD<Employee> {
   private static final String START = "<Start searching employee....";
   private static final String END = "Employee was found>";
   private static final String ERROR = "Employee was not found>";
+  private static final String EXCEPTION_ERROR = "Something bad with employee try catch";
 
 
   private static final CRUD<Room> roomCRUD = RoomsCRUD.getRoomsCRUD();
@@ -69,7 +70,7 @@ public class EmployeeCRUD implements IEmployeeCRUD<Employee> {
         }
 
       } catch (IOException | ClassNotFoundException exception) {
-        exception.printStackTrace();
+        log.error(EXCEPTION_ERROR, exception);
       }
     }
     if (employee == null) {
@@ -101,7 +102,7 @@ public class EmployeeCRUD implements IEmployeeCRUD<Employee> {
           employee = object;
         }
       } catch (IOException | ClassNotFoundException exception) {
-        exception.printStackTrace();
+        log.error(EXCEPTION_ERROR, exception);
       }
     }
     if (employee == null) {
@@ -134,7 +135,7 @@ public class EmployeeCRUD implements IEmployeeCRUD<Employee> {
         }
 
       } catch (ClassNotFoundException | IOException exception) {
-        exception.printStackTrace();
+        log.error(EXCEPTION_ERROR, exception);
       }
     }
     if (!searchStatus) {
@@ -150,7 +151,7 @@ public class EmployeeCRUD implements IEmployeeCRUD<Employee> {
     String[] employeeList = employeeFolderDirectory.list();
     List<Employee> employers = new ArrayList<>();
     if (employeeList == null) {
-      return null;
+      return employers;
     }
     for (String employeeFolderName : employeeList) {
       try (
@@ -163,7 +164,7 @@ public class EmployeeCRUD implements IEmployeeCRUD<Employee> {
         employers.add(object);
 
       } catch (IOException | ClassNotFoundException exception) {
-        exception.printStackTrace();
+        log.error(EXCEPTION_ERROR, exception);
       }
     }
     if (employers.isEmpty()) {
@@ -221,7 +222,7 @@ public class EmployeeCRUD implements IEmployeeCRUD<Employee> {
 
         }
       } catch (IOException | ClassNotFoundException exception) {
-        exception.printStackTrace();
+        log.error(EXCEPTION_ERROR, exception);
       }
     }
     if (employee == null) {
@@ -254,7 +255,7 @@ public class EmployeeCRUD implements IEmployeeCRUD<Employee> {
           fileName = employeeFolderName;
         }
       } catch (ClassNotFoundException | IOException exception) {
-        exception.printStackTrace();
+        log.error(EXCEPTION_ERROR, exception);
       }
     }
     if (fileName == null) {
@@ -314,8 +315,8 @@ public class EmployeeCRUD implements IEmployeeCRUD<Employee> {
     ) {
       objectEmployeeOut.writeObject(employee);
       log.info("Success saving employee>");
-    } catch (Exception ex) {
-      ex.printStackTrace();
+    } catch (Exception exception) {
+      log.error(EXCEPTION_ERROR, exception);
     }
   }
 }

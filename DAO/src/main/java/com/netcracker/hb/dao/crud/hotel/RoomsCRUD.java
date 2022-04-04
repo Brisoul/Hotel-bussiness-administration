@@ -1,11 +1,11 @@
-package com.netcracker.hb.Dao.crud.hotel;
+package com.netcracker.hb.dao.crud.hotel;
 
-import com.netcracker.hb.Dao.crud.CRUD;
-import com.netcracker.hb.Dao.crud.DatabaseProperties;
-import com.netcracker.hb.Dao.crud.Person.EmployeeCRUD;
-import com.netcracker.hb.Dao.crud.Person.GuestCRUD;
-import com.netcracker.hb.Dao.crud.Person.IEmployeeCRUD;
-import com.netcracker.hb.Dao.crud.Person.IGuestCRUD;
+import com.netcracker.hb.dao.crud.CRUD;
+import com.netcracker.hb.dao.crud.DatabaseProperties;
+import com.netcracker.hb.dao.crud.person.EmployeeCRUD;
+import com.netcracker.hb.dao.crud.person.GuestCRUD;
+import com.netcracker.hb.dao.crud.person.IEmployeeCRUD;
+import com.netcracker.hb.dao.crud.person.IGuestCRUD;
 import com.netcracker.hb.entities.hotel.Floor;
 import com.netcracker.hb.entities.hotel.Room;
 import com.netcracker.hb.entities.persons.Employee;
@@ -39,6 +39,7 @@ public class RoomsCRUD implements CRUD<Room> {
   private static final String START = "<Start searching room....";
   private static final String END = "Room was found>";
   private static final String ERROR = "Room was not found>";
+  private static final String EXCEPTION_ERROR = "Something bad with rooms try catch";
 
 
   private static final CRUD<Floor> floorCRUD = FloorCRUD.getFloorCRUD();
@@ -54,7 +55,7 @@ public class RoomsCRUD implements CRUD<Room> {
     String[] roomList = roomFolderDirectory.list();
     List<Room> rooms = new ArrayList<>();
     if (roomList == null) {
-      return null;
+      return rooms;
     }
     for (String roomFolderName : roomList) {
       try (
@@ -66,7 +67,7 @@ public class RoomsCRUD implements CRUD<Room> {
         rooms.add(object);
 
       } catch (IOException | ClassNotFoundException exception) {
-        exception.printStackTrace();
+        log.error(EXCEPTION_ERROR, exception);
       }
     }
     if (rooms.isEmpty()) {
@@ -99,7 +100,7 @@ public class RoomsCRUD implements CRUD<Room> {
           room = object;
         }
       } catch (IOException | ClassNotFoundException exception) {
-        exception.printStackTrace();
+        log.error(EXCEPTION_ERROR, exception);
       }
     }
     if (room == null) {
@@ -136,7 +137,7 @@ public class RoomsCRUD implements CRUD<Room> {
           room = object;
         }
       } catch (ClassNotFoundException | IOException exception) {
-        exception.printStackTrace();
+        log.error(EXCEPTION_ERROR, exception);
       }
     }
     if (room == null) {
@@ -167,7 +168,7 @@ public class RoomsCRUD implements CRUD<Room> {
           fileName = roomFolderName;
         }
       } catch (IOException | ClassNotFoundException exception) {
-        exception.printStackTrace();
+        log.error(EXCEPTION_ERROR, exception);
       }
     }
     if (fileName == null) {
@@ -224,8 +225,8 @@ public class RoomsCRUD implements CRUD<Room> {
     ) {
       objectRoomOut.writeObject(room);
       log.info("Success saving room>");
-    } catch (Exception ex) {
-      ex.printStackTrace();
+    } catch (Exception exception) {
+      log.error(EXCEPTION_ERROR, exception);
     }
 
   }

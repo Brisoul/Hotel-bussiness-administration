@@ -1,4 +1,4 @@
-Project: Running a hotel business (a tavern instead of a hotel, just for interesting names :D)
+Project: Running a hotel business
 
 I assume that the project will probably receive and change information about employees and guests, same way
 regulate access to rooms, floors. Regulate the normal work of employees, their salary, status, etc.
